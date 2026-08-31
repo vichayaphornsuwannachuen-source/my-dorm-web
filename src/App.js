@@ -29,13 +29,13 @@ function App() {
     { id: 11, nameTH: "หอพัก F4", nameEN: "Dorm F4", type: "ชาย", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/AdxsmwS6mw7bB4NUA", videoUrl: "/videos/f4.mp4", image: "/f4.jpg" },
     { id: 12, nameTH: "หอพัก F5", nameEN: "Dorm F5", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/2Scm791aSiEKYUQb6", videoUrl: "/videos/f5.mp4", image: "/f5.jpg" },
     { id: 13, nameTH: "หอพัก F6", nameEN: "Dorm F6", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/eLWD815Zwmxmvx88A", videoUrl: "/videos/f6.mp4", image: "/f6.jpg" },
-    { id: 14, nameTH: "หอพักสักทอง 1", nameEN: "Sakthong 1", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/yu5DyqudiV6zqbJs6", videoUrl: "/videos/s1.mp4", image: "/sk1.jpg" },
-    { id: 15, nameTH: "หอพักสักทอง 2", nameEN: "Sakthong 2", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/xxxx19", videoUrl: "/videos/s2.mp4" , image: "/sk2.jpg"},
-    { id: 16, nameTH: "หอพักสักทอง 3", nameEN: "Sakthong 3", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/YdtoPXqvVmdLK4ev5", videoUrl: "/videos/s3.mp4", image: "/sk3.jpg" },
+    { id: 14, nameTH: "หอพักสักทอง 1", nameEN: "Sakthong 1", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/yu5DyqudiV6zqbJs6", videoUrl: "/videos/sk1.mp4", image: "/sk1.jpg" },
+    { id: 15, nameTH: "หอพักสักทอง 2", nameEN: "Sakthong 2", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/xxxx19", videoUrl: "/videos/sk2.mp4" , image: "/sk2.jpg"},
+    { id: 16, nameTH: "หอพักสักทอง 3", nameEN: "Sakthong 3", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/YdtoPXqvVmdLK4ev5", videoUrl: "/videos/sk3.mp4", image: "/sk3.jpg" },
     { id: 17, nameTH: "หอพักบุญทรง", nameEN: "Boonsong", type: "หญิง", air: "ปรับอากาศ", cap: "3 คน", gps: "https://maps.app.goo.gl/eLWD815Zwmxmvx88A", videoUrl: "/videos/bs.mp4", image: "/bs.jpeg" , tour360Url: "/BoonsongWebGL/index.html"
     },
     { id: 18, nameTH: "หอพักประเสริฐ", nameEN: "Prasert", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/oc9qWcV6rpBwW2Fs6", videoUrl: "/videos/ps.mp4", image: "/ps.jpg" },
-    { id: 19, nameTH: "หอพักพล.ต.อ.เภาฯ", nameEN:"Pol.Gen.Phao", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/xxxx23", videoUrl: "/videos/pp.mp4", image: "/nana.jpg" },
+    { id: 19, nameTH: "หอพักพล.ต.อ.เภาฯ", nameEN:"Pol.Gen.Phao", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/xxxx23", videoUrl: "/videos/nana.mp4", image: "/nana.jpg" },
   ];
 const checkMatch = (dorm, currentFilters) => {
     const filtersWithoutVDO = currentFilters.filter(f => f !== 'VDO');
