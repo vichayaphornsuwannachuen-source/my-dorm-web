@@ -33,7 +33,7 @@ function App() {
     { id: 14, nameTH: "หอพักสักทอง 1", nameEN: "Sakthong 1", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/yu5DyqudiV6zqbJs6", videoUrl: "/videos/sk1.mp4", image: "/sk1.jpg"},
     { id: 15, nameTH: "หอพักสักทอง 2", nameEN: "Sakthong 2", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/xxxx19", videoUrl: "/videos/sk2.mp4", image: "/sk2.jpg"},
     { id: 16, nameTH: "หอพักสักทอง 3", nameEN: "Sakthong 3", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/YdtoPXqvVmdLK4ev5",videoUrl: "/videos/sk3.mp4", image: "/sk3.jpg"},
-    { id: 17, nameTH: "หอพักบุญทรง", nameEN: "Boonsong", type: "หญิง", air: "ปรับอากาศ", cap: "3 คน", gps: "https://maps.app.goo.gl/eLWD815Zwmxmvx88A", videoUrl: "/videos/bs.mp4", image: "/bs.jpeg", tour360Url : "/BoonsongWebGL/index.html" },
+    { id: 17, nameTH: "หอพักบุญทรง", nameEN: "Boonsong", type: "หญิง", air: "ปรับอากาศ", cap: "3 คน", gps: "https://maps.app.goo.gl/eLWD815Zwmxmvx88A", videoUrl: "6Y-Mf9-A_VA", image: "/bs.jpeg", tour360Url : "/BoonsongWebGL/index.html" },
     { id: 18, nameTH: "หอพักประเสริฐ", nameEN: "Prasert", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/oc9qWcV6rpBwW2Fs6", videoUrl: "/videos/ps.mp4", image: "/ps.jpg" },
     { id: 19, nameTH: "หอพักพล.ต.อ.เภาฯ", nameEN:"Pol.Gen.Phao", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/xxxx23", videoUrl: "/videos/nana.mp4", image: "/nana.jpg" },
   ];
@@ -153,23 +153,36 @@ function App() {
                   <h4 style={{ color: '#1A2B4C', marginBottom: '10px' }}>
                     {lang === 'TH' ? '1. หน้าตึก → หน้าห้อง' : '1. Building → Door'}
                   </h4>
-                  <video controls autoPlay key={`${selectedDorm.id}-1`} style={{ width: '100%', borderRadius: '20px', maxHeight: '450px', background: '#000' }}>
-                    <source src={process.env.PUBLIC_URL + selectedDorm.videoUrl} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                  <iframe
+                    width="100%"
+                    height="400"
+                    src={`https://www.youtube.com/embed/${selectedDorm.videoUrl}`}
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    style={{ borderRadius: '20px' }}
+                  ></iframe>
                 </div>
 
                 <div style={{ textAlign: 'center' }}>
                   <h4 style={{ color: '#1A2B4C', marginBottom: '10px' }}>
                     {lang === 'TH' ? '2. หน้าห้อง → ในห้อง' : '2. Door → Inside'}
                   </h4>
-                  <video controls key={`${selectedDorm.id}-2`} style={{ width: '100%', borderRadius: '20px', maxHeight: '450px', background: '#000' }}>
-                    <source src={process.env.PUBLIC_URL + (selectedDorm.videoUrl2 || selectedDorm.videoUrl)} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                  <iframe
+                    width="100%"
+                    height="400"
+                    src={`https://www.youtube.com/embed/${selectedDorm.videoUrl2 || selectedDorm.videoUrl}`}
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    style={{ borderRadius: '20px' }}
+                  ></iframe>
                 </div>
               </div>
             ) : selectedDorm.tour360Url ? (
+              
               /* กรอบ 360 ขนาดใหญ่พิเศษ */
               <div 
                 className="tour-360-wrapper" 
