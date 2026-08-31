@@ -13,7 +13,7 @@ function App() {
   const [selectedDorm, setSelectedDorm] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  
+
   // ข้อมูลหอพัก (ไม่ต้องแก้จุดนี้ครับโมจิ)
   const dorms = [
     { id: 1, nameTH: "หอพักลำดวน 1", nameEN: "Lamduan 1", type: "ชาย", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/FMvNZ9VAhdbZoBBn7", videoUrl: "/videos/l1.mp4", image: "/l1.jpg"},
@@ -32,15 +32,8 @@ function App() {
     { id: 14, nameTH: "หอพักสักทอง 1", nameEN: "Sakthong 1", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/yu5DyqudiV6zqbJs6", videoUrl: "/videos/s1.mp4", image: "/sk1.jpg" },
     { id: 15, nameTH: "หอพักสักทอง 2", nameEN: "Sakthong 2", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/xxxx19", videoUrl: "/videos/s2.mp4" , image: "/sk2.jpg"},
     { id: 16, nameTH: "หอพักสักทอง 3", nameEN: "Sakthong 3", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/YdtoPXqvVmdLK4ev5", videoUrl: "/videos/s3.mp4", image: "/sk3.jpg" },
-    { id: 17, nameTH: "หอพักบุญทรง", nameEN: "Boonsong", type: "หญิง", air: "ปรับอากาศ", cap: "3 คน", gps: "https://maps.app.goo.gl/eLWD815Zwmxmvx88A", videoUrl: "/videos/bs.mp4", image: "/bs.jpeg",
-      rooms360: [
-        { labelTH: "ห้องนอน", labelEN: "Bedroom", path: "/boonsong_gallery/room.jpg" },
-        { labelTH: "ห้องน้ำ", labelEN: "Bathroom", path: "/boonsong_gallery/bathroom.jpg" },
-        { labelTH: "ห้องสุขา", labelEN: "Toilet", path: "/boonsong_gallery/toilet.jpg" },
-        { labelTH: "ซิงค์ล้างจาน", labelEN: "Sink", path: "/boonsong_gallery/sink.jpg" },
-        { labelTH: "ระเบียง", labelEN: "Balcony", path: "/boonsong_gallery/balcony.jpg" },
-        { labelTH: "หน้าห้อง", labelEN: "In Front", path: "/boonsong_gallery/in-front.jpg" }
-      ] },
+    { id: 17, nameTH: "หอพักบุญทรง", nameEN: "Boonsong", type: "หญิง", air: "ปรับอากาศ", cap: "3 คน", gps: "https://maps.app.goo.gl/eLWD815Zwmxmvx88A", videoUrl: "/videos/bs.mp4", image: "/bs.jpeg" , tour360Url: "/BoonsongWebGL/index.html"
+    },
     { id: 18, nameTH: "หอพักประเสริฐ", nameEN: "Prasert", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/oc9qWcV6rpBwW2Fs6", videoUrl: "/videos/ps.mp4", image: "/ps.jpg" },
     { id: 19, nameTH: "หอพักพล.ต.อ.เภาฯ", nameEN:"Pol.Gen.Phao", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/xxxx23", videoUrl: "/videos/pp.mp4", image: "/nana.jpg" },
   ];
