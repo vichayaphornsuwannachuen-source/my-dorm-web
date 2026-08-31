@@ -166,18 +166,37 @@ const checkMatch = (dorm, currentFilters) => {
                   </video>
                 </div>
               </div>
-            ) : selectedDorm.tour360Url ? (
-              /* แสดง Unity WebGL Scene ขยายใหญ่เต็มความกว้าง */
-              <div className="tour-360-wrapper" style={{ width: '100%', maxWidth: '1100px', margin: '0 auto 25px', borderRadius: '25px', overflow: 'hidden', border: '2px solid #1A2B4C', boxShadow: '0 10px 30px rgba(0,0,0,0.15)', background: '#000' }}>
-                <iframe 
-                  title="Unity 360 Virtual Tour"
-                  src={selectedDorm.tour360Url} 
-                  style={{ width: '100%', height: '600px', border: 'none', display: 'block', overflow: 'hidden' }}
-                  scrolling="no"
-                  allowFullScreen
-                />
-              </div>
-            ) : (
+           ) : selectedDorm.tour360Url ? (
+            /* กรอบ 360 ขนาดใหญ่พิเศษ (Large Viewer) */
+            <div 
+              className="tour-360-wrapper" 
+              style={{ 
+                width: '100%', 
+                maxWidth: '1200px', 
+                margin: '0 auto 30px', 
+                borderRadius: '24px', 
+                overflow: 'hidden', 
+                border: '3px solid #1A2B4C', 
+                boxShadow: '0 12px 35px rgba(0,0,0,0.2)', 
+                background: '#000',
+                position: 'relative'
+              }}
+            >
+              <iframe 
+                title="Unity 360 Virtual Tour"
+                src={selectedDorm.tour360Url} 
+                style={{ 
+                  width: '100%', 
+                  height: '700px', 
+                  border: 'none', 
+                  display: 'block', 
+                  overflow: 'hidden' 
+                }}
+                scrolling="no"
+                allowFullScreen
+              />
+            </div>
+          ) : (
               <div className="room-frame" style={{ maxWidth: '850px', margin: '0 auto 20px' }}>
                 <img 
                   src={selectedDorm.image || "/image.jpeg"} 
