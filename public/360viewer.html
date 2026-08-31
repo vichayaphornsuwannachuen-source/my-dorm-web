@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+    <style>
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; }
+        #panorama { width: 100%; height: 100%; }
+        /* ซ่อนปุ่ม fullscreen ขยะถ้าไม่จำเป็น */
+        .pnm-fullscreen-toggle { display: block; }
+    </style>
+</head>
+<body>
+    <div id="panorama"></div>
+
+    <script>
+        // ระบบ Tour 360 แบบ Google Street View สำหรับหอบุญทรง (มีจุด Hotspot เดินเชื่อมกันได้)
+        pannellum.viewer('panorama', {
+            "default": {
+                "firstScene": "room",
+                "author": "MFU Dorm Project",
+                "sceneFadeDuration": 1000,
+                "autoLoad": true,
+                "showZoomCtrl": false
+            },
+
+            "scenes": {
+                // 1. ฉากห้องนอน
+                "room": {
+                    "title": "ห้องนอน (Bedroom)",
+                    "type": "equirectangular",
+                    "panorama": "/boonsong_gallery/room.jpg",
+                    "hotSpots": [
+                        {
+                            "pitch": -5,
+                            "yaw": 110,
+                            "type": "scene",
+                            "text": "ไปที่ ซิงค์ล้างจาน",
+                            "sceneId": "sink"
+                        },
+                        {
+                            "pitch": -10,
+                            "yaw": -150,
+                            "type": "scene",
+                            "text": "ออกไป หน้าห้อง",
+                            "sceneId": "infront"
+                        }
+                    ]
+                },
+
+                // 2. ฉากซิงค์ล้างจาน
+                "sink": {
+                    "title": "ซิงค์ล้างจาน (Sink)",
+                    "type": "equirectangular",
+                    "panorama": "/boonsong_gallery/sink.jpg",
+                    "hotSpots": [
+                        {
+                            "pitch": -5,
+                            "yaw": -70,
+                            "type": "scene",
+                            "text": "กลับเข้า ห้องนอน",
+                            "sceneId": "room"
+                        },
+                        {
+                            "pitch": -5,
+                            "yaw": 30,
+                            "type": "scene",
+                            "text": "เข้า ห้องสุขา",
+                            "sceneId": "toilet"
+                        },
+                        {
+                            "pitch": -5,
+                            "yaw": 80,
+                            "type": "scene",
+                            "text": "เข้า ห้องน้ำ",
+                            "sceneId": "bathroom"
+                        },
+                        {
+                            "pitch": -5,
+                            "yaw": 160,
+                            "type": "scene",
+                            "text": "ออกไป ระเบียง",
+                            "sceneId": "balcony"
+                        }
+                    ]
+                },
+
+                // 3. ฉากห้องสุขา
+                "toilet": {
+                    "title": "ห้องสุขา (Toilet)",
+                    "type": "equirectangular",
+                    "panorama": "/boonsong_gallery/toilet.jpg",
+                    "hotSpots": [
+                        {
+                            "pitch": -10,
+                            "yaw": 180,
+                            "type": "scene",
+                            "text": "ออกมา โซนซิงค์",
+                            "sceneId": "sink"
+                        }
+                    ]
+                },
+
+                // 4. ฉากห้องน้ำ
+                "bathroom": {
+                    "title": "ห้องน้ำ (Bathroom)",
+                    "type": "equirectangular",
+                    "panorama": "/boonsong_gallery/bathroom.jpg",
+                    "hotSpots": [
+                        {
+                            "pitch": -10,
+                            "yaw": 180,
+                            "type": "scene",
+                            "text": "ออกมา โซนซิงค์",
+                            "sceneId": "sink"
+                        }
+                    ]
+                },
+
+                // 5. ฉากระเบียง
+                "balcony": {
+                    "title": "ระเบียง (Balcony)",
+                    "type": "equirectangular",
+                    "panorama": "/boonsong_gallery/balcony.jpg",
+                    "hotSpots": [
+                        {
+                            "pitch": -5,
+                            "yaw": 0,
+                            "type": "scene",
+                            "text": "กลับเข้า โซนซิงค์",
+                            "sceneId": "sink"
+                        }
+                    ]
+                },
+
+                // 6. ฉากหน้าห้อง
+                "infront": {
+                    "title": "หน้าห้อง (In Front)",
+                    "type": "equirectangular",
+                    "panorama": "/boonsong_gallery/in-front.jpg",
+                    "hotSpots": [
+                        {
+                            "pitch": -5,
+                            "yaw": 0,
+                            "type": "scene",
+                            "text": "เข้า ห้องนอน",
+                            "sceneId": "room"
+                        }
+                    ]
+                }
+            }
+        });
+    </script>
+</body>
+</html>
