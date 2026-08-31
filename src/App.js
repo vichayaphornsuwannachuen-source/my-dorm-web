@@ -13,7 +13,7 @@ function App() {
   const [selectedDorm, setSelectedDorm] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-
+  
   // ข้อมูลหอพัก (ไม่ต้องแก้จุดนี้ครับโมจิ)
   const dorms = [
     { id: 1, nameTH: "หอพักลำดวน 1", nameEN: "Lamduan 1", type: "ชาย", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/FMvNZ9VAhdbZoBBn7", videoUrl: "/videos/l1.mp4", image: "/l1.jpg"},
@@ -45,7 +45,7 @@ function App() {
     { id: 19, nameTH: "หอพักพล.ต.อ.เภาฯ", nameEN:"Pol.Gen.Phao", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/xxxx23", videoUrl: "/videos/pp.mp4", image: "/nana.jpg" },
   ];
 
-  const checkMatch = (dorm, currentFilters) => {
+ const checkMatch = (dorm, currentFilters) => {
     const filtersWithoutVDO = currentFilters.filter(f => f !== 'VDO');
     if (filtersWithoutVDO.length === 0) return true;
 
@@ -84,7 +84,7 @@ function App() {
 
   return (
     <div className="App">
-      {/* Navbar & Side Menu (ไม่ต้องแก้ครับโมจิ) */}
+      {/* Navbar & Side Menu */}
       <nav className="nav-bar">
         <div className="logo-section" onClick={() => {setSelectedDorm(null); setFilters([]);}} style={{ cursor: 'pointer' }}>
           <img src="/logo.png" alt="Logo" className="mfu-logo" /><span className="home-text">Home Page</span>
@@ -114,7 +114,7 @@ function App() {
               <div className="hero-overlay"><h1>{lang === 'TH' ? 'สำรวจหอพักนักศึกษา' : 'Explore Dorms'}</h1></div>
             </header>
 
-            {/* จุดที่ 1: Filter Bar ในหน้าแรก (อยู่ใต้ Banner) */}
+            {/* Filter Bar หน้าแรก */}
             <div className="filter-bar" style={{ margin: '30px 0', textAlign: 'center' }}>
               {filterNames[lang].map((btn, i) => {
                 const val = filterNames['TH'][i];
@@ -128,26 +128,24 @@ function App() {
             </div>
             
             <div className="dorm-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '30px', marginBottom: '60px' }}>
-            {filteredDorms.map(dorm => (
-              <div key={dorm.id} className="dorm-card" onClick={() => setSelectedDorm(dorm)}>
-
-                {/* ✅ อันใหม่: ดึงรูปภาพตามที่ระบุไว้ใน dorm.image ของแต่ละหอ */}
-                <img 
-                  src={dorm.image || "/image.jpeg"} 
-                  alt={dorm.nameTH} 
-                  className="dorm-card-img" 
-                  style={{ width: '100%', height: '250px', objectFit: 'cover' }} 
-                />
-                <div className="dorm-card-info">
-                  <h3>{lang === 'TH' ? dorm.nameTH : dorm.nameEN}</h3>
-                  <p>{dorm.type} | {dorm.air} | {dorm.cap}</p>
+              {filteredDorms.map(dorm => (
+                <div key={dorm.id} className="dorm-card" onClick={() => setSelectedDorm(dorm)}>
+                  <img 
+                    src={dorm.image || "/image.jpeg"} 
+                    alt={dorm.nameTH} 
+                    className="dorm-card-img" 
+                    style={{ width: '100%', height: '250px', objectFit: 'cover' }} 
+                  />
+                  <div className="dorm-card-info">
+                    <h3>{lang === 'TH' ? dorm.nameTH : dorm.nameEN}</h3>
+                    <p>{dorm.type} | {dorm.air} | {dorm.cap}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
           </>
         ) : (
-     <div className="detail-page">
+          <div className="detail-page">
             {/* ปุ่มย้อนกลับหน้าหลัก */}
             <button className="back-btn" onClick={() => setSelectedDorm(null)}>
               {lang === 'TH' ? '← ย้อนกลับหน้าหลัก' : '← Back to Main'}
@@ -155,14 +153,14 @@ function App() {
             
             <h2 className="detail-name">{lang === 'TH' ? selectedDorm.nameTH : selectedDorm.nameEN}</h2>
             
-            {/* แสดงวิดีโอ 2 คลิปคู่กัน หรือแสดง Google Maps / รูปปกติ */}
+            {/* แสดงเนื้อหาหลัก: VDO Review หรือ 360 Tour Interactive หรือ รูปภาพ */}
             {filters.includes('VDO') ? (
               <div className="video-review-container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px', margin: '20px 0' }}>
                 <div style={{ textAlign: 'center' }}>
                   <h4 style={{ color: '#1A2B4C', marginBottom: '10px' }}>
                     {lang === 'TH' ? '1. หน้าตึก → หน้าห้อง' : '1. Building → Door'}
                   </h4>
-                  <video controls autoPlay key={`${selectedDorm.id}-1`} style={{ width: '100%', borderRadius: '20px', maxHeight: '500px' }}>
+                  <video controls autoPlay key={`${selectedDorm.id}-1`} style={{ width: '100%', borderRadius: '20px', maxHeight: '450px' }}>
                     <source src={`${window.location.origin}${selectedDorm.videoUrl}`} type="video/mp4" />
                   </video>
                 </div>
@@ -171,24 +169,20 @@ function App() {
                   <h4 style={{ color: '#1A2B4C', marginBottom: '10px' }}>
                     {lang === 'TH' ? '2. หน้าห้อง → ในห้อง' : '2. Door → Inside'}
                   </h4>
-                  <video controls key={`${selectedDorm.id}-2`} style={{ width: '100%', borderRadius: '20px', maxHeight: '500px' }}>
+                  <video controls key={`${selectedDorm.id}-2`} style={{ width: '100%', borderRadius: '20px', maxHeight: '450px' }}>
                     <source src={`${window.location.origin}${selectedDorm.videoUrl2 || selectedDorm.videoUrl}`} type="video/mp4" />
                   </video>
                 </div>
               </div>
-            ) : selectedDorm.rooms360 ? (
-              <div className="detail-360-container" style={{ maxWidth: '850px', margin: '0 auto 20px' }}>
-                <div style={{ width: '100%', height: '450px', borderRadius: '25px', overflow: 'hidden', boxShadow: '0 6px 20px rgba(0,0,0,0.15)', border: '2px solid #1A2B4C' }}>
-                  <iframe
-                    title="Google Maps Location"
-                    src={`https://maps.google.com/maps?q=${encodeURIComponent(selectedDorm.nameTH + " มหาวิทยาลัยแม่ฟ้าหลวง")}&output=embed`}
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen=""
-                    loading="lazy"
-                  />
-                </div>
+            ) : selectedDorm.tour360Url ? (
+              /* แสดงผลระบบ 360 Interactive Viewer (หมุนคลิกลากดูได้เลย + เดินตามจุดลูกศรได้) */
+              <div className="tour-360-wrapper" style={{ maxWidth: '950px', margin: '0 auto 20px', borderRadius: '25px', overflow: 'hidden', border: '2px solid #1A2B4C', boxShadow: '0 8px 25px rgba(0,0,0,0.15)' }}>
+                <iframe 
+                  title="360 Virtual Tour"
+                  src={selectedDorm.tour360Url} 
+                  style={{ width: '100%', height: '520px', border: 'none', display: 'block' }}
+                  allowFullScreen
+                />
               </div>
             ) : (
               <div className="room-frame" style={{ maxWidth: '850px', margin: '0 auto 20px' }}>
@@ -196,12 +190,12 @@ function App() {
                   src={selectedDorm.image || "/image.jpeg"} 
                   alt="Room" 
                   className="room-img" 
-                  style={{ width: '100%', borderRadius: '20px' }} 
+                  style={{ width: '100%', maxHeight: '450px', objectFit: 'cover', borderRadius: '20px' }} 
                 />
               </div>
             )}
 
-            {/* จุดที่ 2: Filter Bar ในหน้า Detail */}
+            {/* Filter Bar หน้า Detail */}
             <div className="filter-bar" style={{ margin: '30px 0', textAlign: 'center' }}>
               {filterNames[lang].map((btn, i) => {
                 const val = filterNames['TH'][i];
@@ -217,7 +211,7 @@ function App() {
               })}
             </div>
 
-            {/* ส่วนสิ่งอำนวยความสะดวก */}
+            {/* สิ่งอำนวยความสะดวก */}
             <div className="fac-tag" style={{ background: '#1A2B4C', color: 'white', padding: '12px 35px', borderRadius: '12px', display: 'inline-block', fontSize: '22px', marginBottom: '25px', fontWeight: '600' }}>
               {lang === 'TH' ? 'สิ่งอำนวยความสะดวก' : 'Facilities'}
             </div>
@@ -248,7 +242,7 @@ function App() {
               </div>
             </div>
 
-            {/* ส่วน GPS Location */}
+            {/* GPS Location */}
             {!filters.includes('VDO') && (
               <div className="gps-section">
                 <div className="gps-label" style={{ background: '#1A2B4C', color: 'white', padding: '10px 30px', borderRadius: '10px', display: 'inline-block', fontWeight: 'bold', marginBottom: '15px' }}>GPS Location</div>
