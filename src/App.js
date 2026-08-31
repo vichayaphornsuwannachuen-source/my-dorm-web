@@ -146,7 +146,7 @@ function App() {
             
             <h2 className="detail-name">{lang === 'TH' ? selectedDorm.nameTH : selectedDorm.nameEN}</h2>
             
-            {/* แสดงเนื้อหาหลัก: VDO Review หรือ 360 Tour Interactive หรือ รูปภาพ */}
+            {/* ส่วนแสดงวิดีโอ / 360 Tour / รูปภาพปกติ */}
             {filters.includes('VDO') ? (
               <div className="video-review-container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px', margin: '20px 0' }}>
                 <div style={{ textAlign: 'center' }}>
@@ -168,12 +168,12 @@ function App() {
                 </div>
               </div>
             ) : selectedDorm.tour360Url ? (
-              /* แสดงผลระบบ 360 Interactive Viewer (หมุนคลิกลากดูได้เลย + เดินตามจุดลูกศรได้) */
-              <div className="tour-360-wrapper" style={{ maxWidth: '950px', margin: '0 auto 20px', borderRadius: '25px', overflow: 'hidden', border: '2px solid #1A2B4C', boxShadow: '0 8px 25px rgba(0,0,0,0.15)' }}>
+              /* แสดงผล 360 Interactive Viewer */
+              <div className="tour-360-wrapper" style={{ maxWidth: '850px', margin: '0 auto 20px', borderRadius: '25px', overflow: 'hidden', border: '2px solid #1A2B4C', boxShadow: '0 8px 25px rgba(0,0,0,0.15)' }}>
                 <iframe 
                   title="360 Virtual Tour"
                   src={selectedDorm.tour360Url} 
-                  style={{ width: '100%', height: '520px', border: 'none', display: 'block' }}
+                  style={{ width: '100%', height: '480px', border: 'none', display: 'block' }}
                   allowFullScreen
                 />
               </div>
