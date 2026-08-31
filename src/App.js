@@ -13,6 +13,7 @@ function App() {
   const [selectedDorm, setSelectedDorm] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const [viewMode, setViewMode] = useState('360');
 
   // ข้อมูลหอพัก (ไม่ต้องแก้จุดนี้ครับโมจิ)
   const dorms = [
@@ -29,16 +30,15 @@ function App() {
     { id: 11, nameTH: "หอพัก F4", nameEN: "Dorm F4", type: "ชาย", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/AdxsmwS6mw7bB4NUA", videoUrl: "/videos/f4.mp4", image: "/f4.jpg" },
     { id: 12, nameTH: "หอพัก F5", nameEN: "Dorm F5", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/2Scm791aSiEKYUQb6", videoUrl: "/videos/f5.mp4", image: "/f5.jpg" },
     { id: 13, nameTH: "หอพัก F6", nameEN: "Dorm F6", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/eLWD815Zwmxmvx88A", videoUrl: "/videos/f6.mp4", image: "/f6.jpg" },
-    { id: 14, nameTH: "หอพักสักทอง 1", nameEN: "Sakthong 1", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/yu5DyqudiV6zqbJs6", videoUrl: "/videos/sk1.mp4", image: "/sk1.jpg" },
-    { id: 15, nameTH: "หอพักสักทอง 2", nameEN: "Sakthong 2", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/xxxx19", videoUrl: "/videos/sk2.mp4" , image: "/sk2.jpg"},
-    { id: 16, nameTH: "หอพักสักทอง 3", nameEN: "Sakthong 3", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/YdtoPXqvVmdLK4ev5", videoUrl: "/videos/sk3.mp4", image: "/sk3.jpg" },
-    { id: 17, nameTH: "หอพักบุญทรง", nameEN: "Boonsong", type: "หญิง", air: "ปรับอากาศ", cap: "3 คน", gps: "https://maps.app.goo.gl/eLWD815Zwmxmvx88A", videoUrl: "/videos/bs.mp4", image: "/bs.jpeg" , tour360Url: "/BoonsongWebGL/index.html"
-    },
+    { id: 14, nameTH: "หอพักสักทอง 1", nameEN: "Sakthong 1", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/yu5DyqudiV6zqbJs6", videoUrl: "/videos/sk1.mp4", image: "/sk1.jpg"},
+    { id: 15, nameTH: "หอพักสักทอง 2", nameEN: "Sakthong 2", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/xxxx19", videoUrl: "/videos/sk2.mp4", image: "/sk2.jpg"},
+    { id: 16, nameTH: "หอพักสักทอง 3", nameEN: "Sakthong 3", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/YdtoPXqvVmdLK4ev5",videoUrl: "/videos/sk3.mp4", image: "/sk3.jpg"},
+    { id: 17, nameTH: "หอพักบุญทรง", nameEN: "Boonsong", type: "หญิง", air: "ปรับอากาศ", cap: "3 คน", gps: "https://maps.app.goo.gl/eLWD815Zwmxmvx88A", videoUrl: "/videos/bs.mp4", image: "/bs.jpg"}, tour360Url : "/BoonsongWebGL/index.html" },
     { id: 18, nameTH: "หอพักประเสริฐ", nameEN: "Prasert", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/oc9qWcV6rpBwW2Fs6", videoUrl: "/videos/ps.mp4", image: "/ps.jpg" },
     { id: 19, nameTH: "หอพักพล.ต.อ.เภาฯ", nameEN:"Pol.Gen.Phao", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/xxxx23", videoUrl: "/videos/nana.mp4", image: "/nana.jpg" },
   ];
 
-  const checkMatch = (dorm, currentFilters) => {
+    const checkMatch = (dorm, currentFilters) => {
     const filtersWithoutVDO = currentFilters.filter(f => f !== 'VDO');
     if (filtersWithoutVDO.length === 0) return true;
 
@@ -79,7 +79,7 @@ function App() {
     <div className="App">
       {/* Navbar & Side Menu */}
       <nav className="nav-bar">
-        <div className="logo-section" onClick={() => {setSelectedDorm(null); setFilters([]);}} style={{ cursor: 'pointer' }}>
+        <div className="logo-section" onClick={() => {setSelectedDorm(null); setFilters([]); setViewMode('360');}} style={{ cursor: 'pointer' }}>
           <img src="/logo.png" alt="Logo" className="mfu-logo" /><span className="home-text">Home Page</span>
         </div>
         <div className="nav-right">
@@ -122,7 +122,7 @@ function App() {
             
             <div className="dorm-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '30px', marginBottom: '60px' }}>
               {filteredDorms.map(dorm => (
-                <div key={dorm.id} className="dorm-card" onClick={() => setSelectedDorm(dorm)}>
+                <div key={dorm.id} className="dorm-card" onClick={() => { setSelectedDorm(dorm); setViewMode('360'); }}>
                   <img 
                     src={dorm.image || "/image.jpeg"} 
                     alt={dorm.nameTH} 
@@ -140,14 +140,14 @@ function App() {
         ) : (
           <div className="detail-page">
             {/* ปุ่มย้อนกลับหน้าหลัก */}
-            <button className="back-btn" onClick={() => setSelectedDorm(null)}>
+            <button className="back-btn" onClick={() => { setSelectedDorm(null); setViewMode('360'); }}>
               {lang === 'TH' ? '← ย้อนกลับหน้าหลัก' : '← Back to Main'}
             </button>
             
             <h2 className="detail-name">{lang === 'TH' ? selectedDorm.nameTH : selectedDorm.nameEN}</h2>
             
-            {/* ส่วนแสดง Unity WebGL 360 Scene / วิดีโอ / รูปภาพ */}
-            {filters.includes('VDO') ? (
+            {/* 🌟 ส่วนแสดงผลสื่อ (สลับระหว่าง VDO กับ 360 / รูปภาพ) */}
+            {viewMode === 'vdo' ? (
               <div className="video-review-container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px', margin: '20px 0' }}>
                 <div style={{ textAlign: 'center' }}>
                   <h4 style={{ color: '#1A2B4C', marginBottom: '10px' }}>
@@ -155,6 +155,7 @@ function App() {
                   </h4>
                   <video controls autoPlay key={`${selectedDorm.id}-1`} style={{ width: '100%', borderRadius: '20px', maxHeight: '450px', background: '#000' }}>
                     <source src={selectedDorm.videoUrl} type="video/mp4" />
+                    Your browser does not support the video tag.
                   </video>
                 </div>
 
@@ -164,40 +165,41 @@ function App() {
                   </h4>
                   <video controls key={`${selectedDorm.id}-2`} style={{ width: '100%', borderRadius: '20px', maxHeight: '450px', background: '#000' }}>
                     <source src={selectedDorm.videoUrl2 || selectedDorm.videoUrl} type="video/mp4" />
+                    Your browser does not support the video tag.
                   </video>
                 </div>
               </div>
             ) : selectedDorm.tour360Url ? (
-            /* กรอบ 360 ขนาดใหญ่พิเศษ (Large Viewer) */
-            <div 
-              className="tour-360-wrapper" 
-              style={{ 
-                width: '100%', 
-                maxWidth: '1200px', 
-                margin: '0 auto 30px', 
-                borderRadius: '24px', 
-                overflow: 'hidden', 
-                border: '3px solid #1A2B4C', 
-                boxShadow: '0 12px 35px rgba(0,0,0,0.2)', 
-                background: '#000',
-                position: 'relative'
-              }}
-            >
-              <iframe 
-                title="Unity 360 Virtual Tour"
-                src={selectedDorm.tour360Url} 
+              /* กรอบ 360 ขนาดใหญ่พิเศษ */
+              <div 
+                className="tour-360-wrapper" 
                 style={{ 
                   width: '100%', 
-                  height: '700px', 
-                  border: 'none', 
-                  display: 'block', 
-                  overflow: 'hidden' 
+                  maxWidth: '1200px', 
+                  margin: '0 auto 30px', 
+                  borderRadius: '24px', 
+                  overflow: 'hidden', 
+                  border: '3px solid #1A2B4C', 
+                  boxShadow: '0 12px 35px rgba(0,0,0,0.2)', 
+                  background: '#000',
+                  position: 'relative'
                 }}
-                scrolling="no"
-                allowFullScreen
-              />
-            </div>
-          ) : (
+              >
+                <iframe 
+                  title="Unity 360 Virtual Tour"
+                  src={selectedDorm.tour360Url} 
+                  style={{ 
+                    width: '100%', 
+                    height: '700px', 
+                    border: 'none', 
+                    display: 'block', 
+                    overflow: 'hidden' 
+                  }}
+                  scrolling="no"
+                  allowFullScreen
+                />
+              </div>
+            ) : (
               <div className="room-frame" style={{ maxWidth: '850px', margin: '0 auto 20px' }}>
                 <img 
                   src={selectedDorm.image || "/image.jpeg"} 
@@ -208,26 +210,22 @@ function App() {
               </div>
             )}
 
-            {/* Filter Bar หน้า Detail */}
+            {/* 🌟 ปุ่มสลับโหมดการมองเห็นเฉพาะในหน้ารายละเอียดหอ (ไม่เด้งกลับหน้าแรก) */}
             <div className="filter-bar" style={{ margin: '30px 0', textAlign: 'center' }}>
-              {filterNames[lang].map((btn, i) => {
-                const val = filterNames['TH'][i];
-                const active = val === 'หอพักทั้งหมด' ? filters.length === 0 : filters.includes(val);
-                const disabled = isFilterDisabled(val);
-                return (
-                  <button key={val} className={`${active ? 'active' : ''} ${disabled ? 'disabled-btn' : ''}`} 
-                    onClick={() => {
-                      if (!disabled) {
-                        if (val === 'หอพักทั้งหมด' || val === 'All Dorms') {
-                          setSelectedDorm(null);
-                          setFilters([]);
-                        } else {
-                          toggleFilter(val);
-                        }
-                      }
-                    }}>{btn}</button>
-                );
-              })}
+              <button 
+                className={viewMode === '360' ? 'active' : ''} 
+                onClick={() => setViewMode('360')}
+                style={{ margin: '0 10px', padding: '10px 20px', cursor: 'pointer' }}
+              >
+                {lang === 'TH' ? '🖼️ มุมมอง 360° / รูปภาพ' : '🖼️ 360° / Photos'}
+              </button>
+              <button 
+                className={viewMode === 'vdo' ? 'active' : ''} 
+                onClick={() => setViewMode('vdo')}
+                style={{ margin: '0 10px', padding: '10px 20px', cursor: 'pointer' }}
+              >
+                {lang === 'TH' ? '🎥 วิดีโอรีวิว (VDO)' : '🎥 VDO Walkthrough'}
+              </button>
             </div>
 
             {/* สิ่งอำนวยความสะดวก */}
@@ -262,14 +260,12 @@ function App() {
             </div>
 
             {/* GPS Location */}
-            {!filters.includes('VDO') && (
-              <div className="gps-section">
-                <div className="gps-label" style={{ background: '#1A2B4C', color: 'white', padding: '10px 30px', borderRadius: '10px', display: 'inline-block', fontWeight: 'bold', marginBottom: '15px' }}>GPS Location</div>
-                <div className="map-container" style={{ borderRadius: '25px', overflow: 'hidden', border: '2px solid #1A2B4C', margin: '15px 0' }}>
-                  <iframe title="map" src={`https://maps.google.com/maps?q=${encodeURIComponent(selectedDorm.nameTH + " มหาวิทยาลัยแม่ฟ้าหลวง")}&output=embed`} width="100%" height="450" style={{ border: 0 }} allowFullScreen="" loading="lazy"></iframe>
-                </div>
+            <div className="gps-section">
+              <div className="gps-label" style={{ background: '#1A2B4C', color: 'white', padding: '10px 30px', borderRadius: '10px', display: 'inline-block', fontWeight: 'bold', marginBottom: '15px' }}>GPS Location</div>
+              <div className="map-container" style={{ borderRadius: '25px', overflow: 'hidden', border: '2px solid #1A2B4C', margin: '15px 0' }}>
+                <iframe title="map" src={`https://maps.google.com/maps?q=${encodeURIComponent(selectedDorm.nameTH + " มหาวิทยาลัยแม่ฟ้าหลวง")}&output=embed`} width="100%" height="450" style={{ border: 0 }} allowFullScreen="" loading="lazy"></iframe>
               </div>
-            )}
+            </div>
           </div>
         )}
       </div>
