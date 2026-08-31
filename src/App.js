@@ -37,7 +37,8 @@ function App() {
     { id: 18, nameTH: "หอพักประเสริฐ", nameEN: "Prasert", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/oc9qWcV6rpBwW2Fs6", videoUrl: "/videos/ps.mp4", image: "/ps.jpg" },
     { id: 19, nameTH: "หอพักพล.ต.อ.เภาฯ", nameEN:"Pol.Gen.Phao", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/xxxx23", videoUrl: "/videos/nana.mp4", image: "/nana.jpg" },
   ];
-const checkMatch = (dorm, currentFilters) => {
+
+  const checkMatch = (dorm, currentFilters) => {
     const filtersWithoutVDO = currentFilters.filter(f => f !== 'VDO');
     if (filtersWithoutVDO.length === 0) return true;
 
@@ -152,8 +153,8 @@ const checkMatch = (dorm, currentFilters) => {
                   <h4 style={{ color: '#1A2B4C', marginBottom: '10px' }}>
                     {lang === 'TH' ? '1. หน้าตึก → หน้าห้อง' : '1. Building → Door'}
                   </h4>
-                  <video controls autoPlay key={`${selectedDorm.id}-1`} style={{ width: '100%', borderRadius: '20px', maxHeight: '450px' }}>
-                    <source src={`${window.location.origin}${selectedDorm.videoUrl}`} type="video/mp4" />
+                  <video controls autoPlay key={`${selectedDorm.id}-1`} style={{ width: '100%', borderRadius: '20px', maxHeight: '450px', background: '#000' }}>
+                    <source src={selectedDorm.videoUrl} type="video/mp4" />
                   </video>
                 </div>
 
@@ -161,12 +162,12 @@ const checkMatch = (dorm, currentFilters) => {
                   <h4 style={{ color: '#1A2B4C', marginBottom: '10px' }}>
                     {lang === 'TH' ? '2. หน้าห้อง → ในห้อง' : '2. Door → Inside'}
                   </h4>
-                  <video controls key={`${selectedDorm.id}-2`} style={{ width: '100%', borderRadius: '20px', maxHeight: '450px' }}>
-                    <source src={`${window.location.origin}${selectedDorm.videoUrl2 || selectedDorm.videoUrl}`} type="video/mp4" />
+                  <video controls key={`${selectedDorm.id}-2`} style={{ width: '100%', borderRadius: '20px', maxHeight: '450px', background: '#000' }}>
+                    <source src={selectedDorm.videoUrl2 || selectedDorm.videoUrl} type="video/mp4" />
                   </video>
                 </div>
               </div>
-           ) : selectedDorm.tour360Url ? (
+            ) : selectedDorm.tour360Url ? (
             /* กรอบ 360 ขนาดใหญ่พิเศษ (Large Viewer) */
             <div 
               className="tour-360-wrapper" 
@@ -216,8 +217,14 @@ const checkMatch = (dorm, currentFilters) => {
                 return (
                   <button key={val} className={`${active ? 'active' : ''} ${disabled ? 'disabled-btn' : ''}`} 
                     onClick={() => {
-                      !disabled && toggleFilter(val);
-                      setSelectedDorm(null);
+                      if (!disabled) {
+                        if (val === 'หอพักทั้งหมด' || val === 'All Dorms') {
+                          setSelectedDorm(null);
+                          setFilters([]);
+                        } else {
+                          toggleFilter(val);
+                        }
+                      }
                     }}>{btn}</button>
                 );
               })}
