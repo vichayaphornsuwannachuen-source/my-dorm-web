@@ -37,8 +37,7 @@ function App() {
     { id: 18, nameTH: "หอพักประเสริฐ", nameEN: "Prasert", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/oc9qWcV6rpBwW2Fs6", videoUrl: "/videos/ps.mp4", image: "/ps.jpg" },
     { id: 19, nameTH: "หอพักพล.ต.อ.เภาฯ", nameEN:"Pol.Gen.Phao", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/xxxx23", videoUrl: "/videos/pp.mp4", image: "/nana.jpg" },
   ];
-
- const checkMatch = (dorm, currentFilters) => {
+const checkMatch = (dorm, currentFilters) => {
     const filtersWithoutVDO = currentFilters.filter(f => f !== 'VDO');
     if (filtersWithoutVDO.length === 0) return true;
 
@@ -146,7 +145,7 @@ function App() {
             
             <h2 className="detail-name">{lang === 'TH' ? selectedDorm.nameTH : selectedDorm.nameEN}</h2>
             
-            {/* ส่วนแสดงวิดีโอ / 360 Tour / รูปภาพปกติ */}
+            {/* ส่วนแสดง Unity WebGL 360 Scene / วิดีโอ / รูปภาพ */}
             {filters.includes('VDO') ? (
               <div className="video-review-container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px', margin: '20px 0' }}>
                 <div style={{ textAlign: 'center' }}>
@@ -168,12 +167,13 @@ function App() {
                 </div>
               </div>
             ) : selectedDorm.tour360Url ? (
-              /* แสดงผล 360 Interactive Viewer */
-              <div className="tour-360-wrapper" style={{ maxWidth: '850px', margin: '0 auto 20px', borderRadius: '25px', overflow: 'hidden', border: '2px solid #1A2B4C', boxShadow: '0 8px 25px rgba(0,0,0,0.15)' }}>
+              /* แสดง Unity WebGL Scene แบบพอดี ไร้ Scrollbar */
+              <div className="tour-360-wrapper" style={{ maxWidth: '900px', margin: '0 auto 20px', borderRadius: '25px', overflow: 'hidden', border: '2px solid #1A2B4C', boxShadow: '0 8px 25px rgba(0,0,0,0.15)', background: '#000' }}>
                 <iframe 
-                  title="360 Virtual Tour"
+                  title="Unity 360 Virtual Tour"
                   src={selectedDorm.tour360Url} 
-                  style={{ width: '100%', height: '480px', border: 'none', display: 'block' }}
+                  style={{ width: '100%', height: '520px', border: 'none', display: 'block', overflow: 'hidden' }}
+                  scrolling="no"
                   allowFullScreen
                 />
               </div>
