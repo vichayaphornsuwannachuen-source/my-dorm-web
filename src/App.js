@@ -146,43 +146,61 @@ function App() {
             
             <h2 className="detail-name">{lang === 'TH' ? selectedDorm.nameTH : selectedDorm.nameEN}</h2>
             
-            {/* 🌟 ส่วนแสดงผลสื่อ (สลับระหว่าง VDO กับ 360 / รูปภาพ) */}
+          {/* 🌟 ส่วนแสดงผลสื่อ YouTube (ปรับแนวเรียงซ้าย-ขวา + ป้ายชื่ออ่านง่าย) */}
             {viewMode === 'vdo' ? (
-              <div className="video-review-container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px', margin: '20px 0' }}>
+              <div className="video-review-container" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '25px', margin: '30px 0', width: '100%' }}>
                 <div style={{ textAlign: 'center' }}>
-                  <h4 style={{ color: '#1A2B4C', marginBottom: '10px' }}>
+                  <div style={{ 
+                    background: '#1A2B4C', 
+                    color: '#FFFFFF', 
+                    padding: '10px 20px', 
+                    borderRadius: '12px', 
+                    fontSize: '18px', 
+                    fontWeight: 'bold', 
+                    marginBottom: '15px',
+                    boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
+                  }}>
                     {lang === 'TH' ? '1. หน้าตึก → หน้าห้อง' : '1. Building → Door'}
-                  </h4>
+                  </div>
                   <iframe
                     width="100%"
                     height="400"
                     src={`https://www.youtube.com/embed/${selectedDorm.videoUrl}`}
-                    title="YouTube video player"
+                    title="YouTube video player 1"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
-                    style={{ borderRadius: '20px' }}
+                    style={{ borderRadius: '20px', boxShadow: '0 8px 20px rgba(0,0,0,0.15)' }}
                   ></iframe>
                 </div>
 
                 <div style={{ textAlign: 'center' }}>
-                  <h4 style={{ color: '#1A2B4C', marginBottom: '10px' }}>
+                  <div style={{ 
+                    background: '#1A2B4C', 
+                    color: '#FFFFFF', 
+                    padding: '10px 20px', 
+                    borderRadius: '12px', 
+                    fontSize: '18px', 
+                    fontWeight: 'bold', 
+                    marginBottom: '15px',
+                    boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
+                  }}>
                     {lang === 'TH' ? '2. หน้าห้อง → ในห้อง' : '2. Door → Inside'}
-                  </h4>
+                  </div>
                   <iframe
                     width="100%"
                     height="400"
                     src={`https://www.youtube.com/embed/${selectedDorm.videoUrl2 || selectedDorm.videoUrl}`}
-                    title="YouTube video player"
+                    title="YouTube video player 2"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
-                    style={{ borderRadius: '20px' }}
+                    style={{ borderRadius: '20px', boxShadow: '0 8px 20px rgba(0,0,0,0.15)' }}
                   ></iframe>
                 </div>
               </div>
             ) : selectedDorm.tour360Url ? (
-
+              
               /* กรอบ 360 ขนาดใหญ่พิเศษ */
               <div 
                 className="tour-360-wrapper" 
