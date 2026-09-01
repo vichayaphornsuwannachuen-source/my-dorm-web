@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import './App.css';
 
 const filterNames = {
-  TH: ['หอพักทั้งหมด', 'หอพักชาย', 'หอพักหญิง', 'หอพักพัดลม', 'หอพักปรับอากาศ', 'จำนวน 2 คน', 'จำนวน 3 คน', 'จำนวน 4 คน', 'VDO'],
-  EN: ['All Dorms', 'Male', 'Female', 'Fan', 'Air Con', '2 Persons', '3 Persons', '4 Persons', 'VDO']
+  TH: ['หอพักทั้งหมด', 'หอพักชาย', 'หอพักหญิง', 'หอพักพัดลม', 'หอพักปรับอากาศ', 'จำนวน 2 คน', 'จำนวน 3 คน', 'จำนวน 4 คน'],
+  EN: ['All Dorms', 'Male', 'Female', 'Fan', 'Air Con', '2 Persons', '3 Persons', '4 Persons']
 };
 
 
