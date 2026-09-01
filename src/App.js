@@ -146,23 +146,23 @@ function App() {
             
             <h2 className="detail-name">{lang === 'TH' ? selectedDorm.nameTH : selectedDorm.nameEN}</h2>
             
-          {/* 🌟 ส่วนแสดงผลสื่อ YouTube (แนวนอน ซ้าย-ขวา สัดส่วน 16:9 พอดีๆ) */}
+          {/* 🌟 แสดงผลแบบ ซ้าย-ขวา ข้างกัน 100% ไม่ตกลงมาบน-ล่าง */}
             {viewMode === 'vdo' ? (
-              <div className="video-review-container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '30px', margin: '30px 0', width: '100%' }}>
-                <div style={{ textAlign: 'center' }}>
+              <div className="video-review-container" style={{ display: 'flex', flexDirection: 'row', gap: '20px', margin: '30px 0', width: '100%' }}>
+                <div style={{ flex: '1', width: '50%', textAlign: 'center' }}>
                   <div style={{ 
                     background: '#1A2B4C', 
                     color: '#FFFFFF', 
-                    padding: '10px 20px', 
+                    padding: '10px 15px', 
                     borderRadius: '12px', 
-                    fontSize: '18px', 
+                    fontSize: '16px', 
                     fontWeight: 'bold', 
-                    marginBottom: '15px',
+                    marginBottom: '12px',
                     boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
                   }}>
                     {lang === 'TH' ? '1. หน้าตึก → หน้าห้อง' : '1. Building → Door'}
                   </div>
-                  <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', borderRadius: '20px', overflow: 'hidden', boxShadow: '0 8px 20px rgba(0,0,0,0.15)' }}>
+                  <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 8px 20px rgba(0,0,0,0.15)' }}>
                     <iframe
                       width="100%"
                       height="100%"
@@ -176,20 +176,20 @@ function App() {
                   </div>
                 </div>
 
-                <div style={{ textAlign: 'center' }}>
+                <div style={{ flex: '1', width: '50%', textAlign: 'center' }}>
                   <div style={{ 
                     background: '#1A2B4C', 
                     color: '#FFFFFF', 
-                    padding: '10px 20px', 
+                    padding: '10px 15px', 
                     borderRadius: '12px', 
-                    fontSize: '18px', 
+                    fontSize: '16px', 
                     fontWeight: 'bold', 
-                    marginBottom: '15px',
+                    marginBottom: '12px',
                     boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
                   }}>
                     {lang === 'TH' ? '2. หน้าห้อง → ในห้อง' : '2. Door → Inside'}
                   </div>
-                  <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', borderRadius: '20px', overflow: 'hidden', boxShadow: '0 8px 20px rgba(0,0,0,0.15)' }}>
+                  <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 8px 20px rgba(0,0,0,0.15)' }}>
                     <iframe
                       width="100%"
                       height="100%"
