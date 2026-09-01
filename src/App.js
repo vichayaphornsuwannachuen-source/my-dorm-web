@@ -148,130 +148,45 @@ function App() {
               {lang === 'TH' ? selectedDorm.nameTH : selectedDorm.nameEN}
             </h2>
 
-            {/* 🌟 1. ส่วนแสดงผลสื่อ (Unity 360 / VDO) อยู่บนสุด */}
+            {/* 1. สื่อหลัก (Unity 360 / VDO) */}
             {viewMode === 'vdo' ? (
               <div style={{ 
                 display: 'flex', 
                 flexDirection: 'row', 
                 gap: '30px', 
-                margin: '0 auto 30px', 
+                margin: '0 auto 25px', 
                 width: '100%', 
                 maxWidth: '1200px' 
               }}>
-                {/* คลิปที่ 1 */}
                 <div style={{ flex: '1', textAlign: 'center' }}>
-                  <div style={{ 
-                    background: '#1A2B4C', 
-                    color: '#FFFFFF', 
-                    padding: '12px 20px', 
-                    borderRadius: '14px', 
-                    fontSize: '18px', 
-                    fontWeight: 'bold', 
-                    marginBottom: '15px',
-                    boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
-                  }}>
+                  <div style={{ background: '#1A2B4C', color: '#FFFFFF', padding: '12px 20px', borderRadius: '14px', fontSize: '18px', fontWeight: 'bold', marginBottom: '15px' }}>
                     {lang === 'TH' ? 'หน้าตึก → หน้าห้อง' : 'Building → Door'}
                   </div>
-                  <div style={{ 
-                    position: 'relative', 
-                    width: '100%', 
-                    aspectRatio: '16/9', 
-                    borderRadius: '20px', 
-                    overflow: 'hidden', 
-                    boxShadow: '0 8px 25px rgba(0,0,0,0.15)' 
-                  }}>
-                    <iframe
-                      width="100%"
-                      height="100%"
-                      src={`https://www.youtube.com/embed/${selectedDorm.videoUrl}`}
-                      title="YouTube video player 1"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      style={{ border: 'none', display: 'block' }}
-                    ></iframe>
+                  <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', borderRadius: '20px', overflow: 'hidden', boxShadow: '0 8px 25px rgba(0,0,0,0.15)' }}>
+                    <iframe width="100%" height="100%" src={`https://www.youtube.com/embed/${selectedDorm.videoUrl}`} title="YouTube video 1" frameBorder="0" allowFullScreen style={{ border: 'none', display: 'block' }}></iframe>
                   </div>
                 </div>
 
-                {/* คลิปที่ 2 */}
                 <div style={{ flex: '1', textAlign: 'center' }}>
-                  <div style={{ 
-                    background: '#1A2B4C', 
-                    color: '#FFFFFF', 
-                    padding: '12px 20px', 
-                    borderRadius: '14px', 
-                    fontSize: '18px', 
-                    fontWeight: 'bold', 
-                    marginBottom: '15px',
-                    boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
-                  }}>
+                  <div style={{ background: '#1A2B4C', color: '#FFFFFF', padding: '12px 20px', borderRadius: '14px', fontSize: '18px', fontWeight: 'bold', marginBottom: '15px' }}>
                     {lang === 'TH' ? 'หน้าห้อง → ในห้อง' : 'Door → Inside'}
                   </div>
-                  <div style={{ 
-                    position: 'relative', 
-                    width: '100%', 
-                    aspectRatio: '16/9', 
-                    borderRadius: '20px', 
-                    overflow: 'hidden', 
-                    boxShadow: '0 8px 25px rgba(0,0,0,0.15)' 
-                  }}>
-                    <iframe
-                      width="100%"
-                      height="100%"
-                      src={`https://www.youtube.com/embed/${selectedDorm.videoUrl2 || selectedDorm.videoUrl}`}
-                      title="YouTube video player 2"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      style={{ border: 'none', display: 'block' }}
-                    ></iframe>
+                  <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', borderRadius: '20px', overflow: 'hidden', boxShadow: '0 8px 25px rgba(0,0,0,0.15)' }}>
+                    <iframe width="100%" height="100%" src={`https://www.youtube.com/embed/${selectedDorm.videoUrl2 || selectedDorm.videoUrl}`} title="YouTube video 2" frameBorder="0" allowFullScreen style={{ border: 'none', display: 'block' }}></iframe>
                   </div>
                 </div>
               </div>
             ) : selectedDorm.tour360Url ? (
-
-              /* กรอบ Unity 360 */
-              <div 
-                className="tour-360-wrapper" 
-                style={{ 
-                  width: '100%', 
-                  maxWidth: '1200px', 
-                  margin: '0 auto 30px', 
-                  borderRadius: '24px', 
-                  overflow: 'hidden', 
-                  border: '3px solid #1A2B4C', 
-                  boxShadow: '0 12px 35px rgba(0,0,0,0.2)', 
-                  background: '#000',
-                  position: 'relative'
-                }}
-              >
-                <iframe 
-                  title="Unity 360 Virtual Tour"
-                  src={selectedDorm.tour360Url} 
-                  style={{ 
-                    width: '100%', 
-                    height: '700px', 
-                    border: 'none', 
-                    display: 'block', 
-                    overflow: 'hidden' 
-                  }}
-                  scrolling="no"
-                  allowFullScreen
-                />
+              <div className="tour-360-wrapper" style={{ width: '100%', maxWidth: '1200px', margin: '0 auto 25px', borderRadius: '24px', overflow: 'hidden', border: '3px solid #1A2B4C', boxShadow: '0 12px 35px rgba(0,0,0,0.2)', background: '#000' }}>
+                <iframe title="Unity 360 Virtual Tour" src={selectedDorm.tour360Url} style={{ width: '100%', height: '700px', border: 'none', display: 'block' }} scrolling="no" allowFullScreen />
               </div>
             ) : (
-
-              <div className="room-frame" style={{ maxWidth: '850px', margin: '0 auto 30px' }}>
-                <img 
-                  src={selectedDorm.image || "/cover.jpg"} 
-                  alt="Room" 
-                  className="room-img" 
-                  style={{ width: '100%', maxHeight: '450px', objectFit: 'cover', borderRadius: '20px' }} 
-                />
+              <div className="room-frame" style={{ maxWidth: '850px', margin: '0 auto 25px' }}>
+                <img src={selectedDorm.image || "/cover.jpg"} alt="Room" className="room-img" style={{ width: '100%', maxHeight: '450px', objectFit: 'cover', borderRadius: '20px' }} />
               </div>
             )}
 
-            {/* 🌟 2. ปุ่มสลับโหมด 2 ปุ่ม (ย้ายลงมาอยู่ใต้สื่อ) */}
+            {/* 2. ปุ่มสลับสื่อ 2 ปุ่ม ใต้กรอบสื่อ */}
             <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', marginBottom: '25px' }}>
               <button 
                 onClick={() => setViewMode('360')}
@@ -284,7 +199,6 @@ function App() {
                   border: '2px solid #1A2B4C',
                   background: viewMode === '360' ? '#1A2B4C' : '#FFFFFF',
                   color: viewMode === '360' ? '#FFFFFF' : '#1A2B4C',
-                  transition: 'all 0.3s ease',
                   boxShadow: '0 4px 12px rgba(0,0,0,0.08)'
                 }}
               >
@@ -301,7 +215,6 @@ function App() {
                   border: '2px solid #1A2B4C',
                   background: viewMode === 'vdo' ? '#1A2B4C' : '#FFFFFF',
                   color: viewMode === 'vdo' ? '#FFFFFF' : '#1A2B4C',
-                  transition: 'all 0.3s ease',
                   boxShadow: '0 4px 12px rgba(0,0,0,0.08)'
                 }}
               >
@@ -309,8 +222,8 @@ function App() {
               </button>
             </div>
 
-            {/* 🌟 3. แถบฟิลเตอร์ 8 ปุ่ม (ตัดปุ่ม VDO ออก) */}
-            <div className="filter-bar" style={{ margin: '15px 0 30px', textAlign: 'center', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px' }}>
+            {/* 3. แถบฟิลเตอร์ 8 ปุ่ม (ลบ VDO ออก) */}
+            <div className="filter-bar" style={{ margin: '15px 0 20px', textAlign: 'center', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px' }}>
               {filterNames[lang]
                 .filter((_, i) => filterNames['TH'][i] !== 'VDO')
                 .map((btn) => {
@@ -329,6 +242,39 @@ function App() {
                     </button>
                   );
                 })}
+            </div>
+
+            {/* 4. แถบการ์ดเลือกหอพักอื่นๆ ตามฟิลเตอร์ (กดเปลี่ยนหอได้ทันที) */}
+            <div style={{ margin: '20px auto 40px', maxWidth: '1200px' }}>
+              <div style={{ fontSize: '16px', fontWeight: 'bold', color: '#1A2B4C', marginBottom: '12px', textAlign: 'center' }}>
+                {lang === 'TH' ? 'เลือกดูหอพักอื่นตามฟิลเตอร์:' : 'Select other dorms matching filter:'}
+              </div>
+              <div style={{ display: 'flex', gap: '12px', overflowX: 'auto', paddingBottom: '10px', justifyContent: filteredDorms.length < 5 ? 'center' : 'flex-start' }}>
+                {filteredDorms.map((dorm) => (
+                  <button
+                    key={dorm.id}
+                    onClick={() => {
+                      setSelectedDorm(dorm);
+                      setViewMode('360');
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    style={{
+                      flex: '0 0 auto',
+                      padding: '10px 18px',
+                      borderRadius: '16px',
+                      border: dorm.id === selectedDorm.id ? '2px solid #1A2B4C' : '1px solid #D0E0F0',
+                      background: dorm.id === selectedDorm.id ? '#EBF3FF' : '#FFFFFF',
+                      color: '#1A2B4C',
+                      fontWeight: dorm.id === selectedDorm.id ? 'bold' : 'normal',
+                      cursor: 'pointer',
+                      fontSize: '14px',
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
+                    }}
+                  >
+                    {lang === 'TH' ? dorm.nameTH : dorm.nameEN}
+                  </button>
+                ))}
+              </div>
             </div>
 
             <hr style={{ border: 'none', borderTop: '1px solid #E1EDFF', margin: '30px 0' }} />
