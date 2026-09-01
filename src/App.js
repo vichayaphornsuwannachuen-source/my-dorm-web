@@ -146,9 +146,9 @@ function App() {
             
             <h2 className="detail-name">{lang === 'TH' ? selectedDorm.nameTH : selectedDorm.nameEN}</h2>
             
-          {/* 🌟 ส่วนแสดงผลสื่อ YouTube (ปรับแนวเรียงซ้าย-ขวา + ป้ายชื่ออ่านง่าย) */}
+          {/* 🌟 ส่วนแสดงผลสื่อ YouTube (แนวนอน ซ้าย-ขวา สัดส่วน 16:9 พอดีๆ) */}
             {viewMode === 'vdo' ? (
-              <div className="video-review-container" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '25px', margin: '30px 0', width: '100%' }}>
+              <div className="video-review-container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '30px', margin: '30px 0', width: '100%' }}>
                 <div style={{ textAlign: 'center' }}>
                   <div style={{ 
                     background: '#1A2B4C', 
@@ -162,16 +162,18 @@ function App() {
                   }}>
                     {lang === 'TH' ? '1. หน้าตึก → หน้าห้อง' : '1. Building → Door'}
                   </div>
-                  <iframe
-                    width="100%"
-                    height="400"
-                    src={`https://www.youtube.com/embed/${selectedDorm.videoUrl}`}
-                    title="YouTube video player 1"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    style={{ borderRadius: '20px', boxShadow: '0 8px 20px rgba(0,0,0,0.15)' }}
-                  ></iframe>
+                  <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', borderRadius: '20px', overflow: 'hidden', boxShadow: '0 8px 20px rgba(0,0,0,0.15)' }}>
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src={`https://www.youtube.com/embed/${selectedDorm.videoUrl}`}
+                      title="YouTube video player 1"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      style={{ border: 'none', display: 'block' }}
+                    ></iframe>
+                  </div>
                 </div>
 
                 <div style={{ textAlign: 'center' }}>
@@ -187,20 +189,22 @@ function App() {
                   }}>
                     {lang === 'TH' ? '2. หน้าห้อง → ในห้อง' : '2. Door → Inside'}
                   </div>
-                  <iframe
-                    width="100%"
-                    height="400"
-                    src={`https://www.youtube.com/embed/${selectedDorm.videoUrl2 || selectedDorm.videoUrl}`}
-                    title="YouTube video player 2"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    style={{ borderRadius: '20px', boxShadow: '0 8px 20px rgba(0,0,0,0.15)' }}
-                  ></iframe>
+                  <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', borderRadius: '20px', overflow: 'hidden', boxShadow: '0 8px 20px rgba(0,0,0,0.15)' }}>
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src={`https://www.youtube.com/embed/${selectedDorm.videoUrl2 || selectedDorm.videoUrl}`}
+                      title="YouTube video player 2"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      style={{ border: 'none', display: 'block' }}
+                    ></iframe>
+                  </div>
                 </div>
               </div>
             ) : selectedDorm.tour360Url ? (
-              
+
               /* กรอบ 360 ขนาดใหญ่พิเศษ */
               <div 
                 className="tour-360-wrapper" 
