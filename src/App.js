@@ -103,7 +103,7 @@ function App() {
       <div className="container">
         {!selectedDorm ? (
           <>
-            <header className="hero-banner" style={{ backgroundImage: "url('/image.jpeg')" }}>
+            <header className="hero-banner" style={{ backgroundImage: "url('/cover.jpg')" }}>
               <div className="hero-overlay"><h1>{lang === 'TH' ? 'สำรวจหอพักนักศึกษา' : 'Explore Dorms'}</h1></div>
             </header>
 
