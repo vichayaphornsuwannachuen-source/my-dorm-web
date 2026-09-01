@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import './App.css';
 
 const filterNames = {
-  TH: ['หอพักทั้งหมด', 'หอพักชาย', 'หอพักหญิง', 'หอพักพัดลม', 'หอพักปรับอากาศ', 'จำนวน 2 คน', 'จำนวน 3 คน', 'จำนวน 4 คน'],
-  EN: ['All Dorms', 'Male', 'Female', 'Fan', 'Air Con', '2 Persons', '3 Persons', '4 Persons']
-};
+    TH: ['หอพักทั้งหมด', 'หอพักชาย', 'หอพักหญิง', 'หอพักพัดลม', 'หอพักปรับอากาศ', 'จำนวน 2 คน', 'จำนวน 3 คน', 'จำนวน 4 คน'],
+    EN: ['All Dorms', 'Male Dorm', 'Female Dorm', 'Fan Dorm', 'Air Dorm', '2 Persons', '3 Persons', '4 Persons']
+  };
 
 
 function App() {
@@ -108,17 +108,22 @@ function App() {
             </header>
 
             {/* Filter Bar หน้าแรก */}
-            <div className="filter-bar" style={{ margin: '30px 0', textAlign: 'center' }}>
-              {filterNames[lang].map((btn, i) => {
-                const val = filterNames['TH'][i];
-                const active = val === 'หอพักทั้งหมด' ? filters.length === 0 : filters.includes(val);
-                const disabled = isFilterDisabled(val);
-                return (
-                  <button key={val} className={`${active ? 'active' : ''} ${disabled ? 'disabled-btn' : ''}`} 
-                    onClick={() => !disabled && toggleFilter(val)}>{btn}</button>
-                );
-              })}
-            </div>
+            <div className="filter-bar">
+        {filterNames[lang].map((btn, i) => {
+          const val = filterNames['TH'][i];
+          const active = val === 'หอพักทั้งหมด' ? filters.length === 0 : filters.includes(val);
+          const disabled = isFilterDisabled(val);
+          return (
+            <button 
+              key={val} 
+              className={`${active ? 'active' : ''} ${disabled ? 'disabled-btn' : ''}`} 
+              onClick={() => !disabled && toggleFilter(val)}
+            >
+              {btn}
+            </button>
+          );
+        })}
+      </div>
             
             <div className="dorm-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '30px', marginBottom: '60px' }}>
               {filteredDorms.map(dorm => (
