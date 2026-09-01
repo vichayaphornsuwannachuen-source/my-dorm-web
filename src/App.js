@@ -137,62 +137,24 @@ function App() {
               ))}
             </div>
           </>
-       ) : (
+  ) : (
           <div className="detail-page">
             {/* ปุ่มย้อนกลับหน้าหลัก */}
             <button className="back-btn" onClick={() => { setSelectedDorm(null); setViewMode('360'); }} style={{ marginBottom: '20px', padding: '10px 20px', borderRadius: '10px', cursor: 'pointer' }}>
               {lang === 'TH' ? '← ย้อนกลับหน้าหลัก' : '← Back to Main'}
             </button>
             
-            <h2 className="detail-name" style={{ fontSize: '32px', color: '#1A2B4C', marginBottom: '20px' }}>
+            <h2 className="detail-name" style={{ fontSize: '32px', color: '#1A2B4C', marginBottom: '25px' }}>
               {lang === 'TH' ? selectedDorm.nameTH : selectedDorm.nameEN}
             </h2>
 
-            {/* 🌟 1. ปุ่มสลับโหมดสื่อ 2 ปุ่ม (อยู่บนสุด เหนือสื่อ) */}
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', marginBottom: '25px' }}>
-              <button 
-                className={viewMode === '360' ? 'active' : ''} 
-                onClick={() => setViewMode('360')}
-                style={{ 
-                  padding: '12px 28px', 
-                  borderRadius: '30px', 
-                  fontSize: '16px', 
-                  fontWeight: 'bold', 
-                  cursor: 'pointer',
-                  border: '2px solid #1A2B4C',
-                  background: viewMode === '360' ? '#1A2B4C' : '#FFFFFF',
-                  color: viewMode === '360' ? '#FFFFFF' : '#1A2B4C',
-                  transition: 'all 0.3s ease'
-                }}
-              >
-                {lang === 'TH' ? '🖼️ มุมมอง 360° / รูปภาพ' : '🖼️ 360° / Photos'}
-              </button>
-              <button 
-                className={viewMode === 'vdo' ? 'active' : ''} 
-                onClick={() => setViewMode('vdo')}
-                style={{ 
-                  padding: '12px 28px', 
-                  borderRadius: '30px', 
-                  fontSize: '16px', 
-                  fontWeight: 'bold', 
-                  cursor: 'pointer',
-                  border: '2px solid #1A2B4C',
-                  background: viewMode === 'vdo' ? '#1A2B4C' : '#FFFFFF',
-                  color: viewMode === 'vdo' ? '#FFFFFF' : '#1A2B4C',
-                  transition: 'all 0.3s ease'
-                }}
-              >
-                {lang === 'TH' ? '🎥 วิดีโอรีวิว (VDO)' : '🎥 VDO Walkthrough'}
-              </button>
-            </div>
-
-            {/* 🌟 2. ส่วนแสดงผลสื่อ (Unity 360 / VDO) */}
+            {/* 🌟 1. ส่วนแสดงผลสื่อหลัก (Unity 360 / VDO) วางไว้ด้านบนสุด */}
             {viewMode === 'vdo' ? (
               <div style={{ 
                 display: 'flex', 
                 flexDirection: 'row', 
                 gap: '30px', 
-                margin: '0 auto 30px', 
+                margin: '0 auto 25px', 
                 width: '100%', 
                 maxWidth: '1200px' 
               }}>
@@ -274,7 +236,7 @@ function App() {
                 style={{ 
                   width: '100%', 
                   maxWidth: '1200px', 
-                  margin: '0 auto 30px', 
+                  margin: '0 auto 25px', 
                   borderRadius: '24px', 
                   overflow: 'hidden', 
                   border: '3px solid #1A2B4C', 
@@ -299,7 +261,7 @@ function App() {
               </div>
             ) : (
 
-              <div className="room-frame" style={{ maxWidth: '850px', margin: '0 auto 30px' }}>
+              <div className="room-frame" style={{ maxWidth: '850px', margin: '0 auto 25px' }}>
                 <img 
                   src={selectedDorm.image || "/cover.jpg"} 
                   alt="Room" 
@@ -309,8 +271,50 @@ function App() {
               </div>
             )}
 
-            {/* 🌟 3. แถบฟิลเตอร์ 9 ปุ่ม (ย้ายมาไว้ข้างล่างสื่อ) */}
-            <div className="filter-bar" style={{ margin: '20px 0 30px', textAlign: 'center', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px' }}>
+            {/* 🌟 2. ปุ่มสลับโหมด 2 ปุ่ม (ย้ายลงมาอยู่ใต้สื่อ เชื่อมต่อสถานะกับฟิลเตอร์ VDO) */}
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', marginBottom: '20px' }}>
+              <button 
+                onClick={() => {
+                  setViewMode('360');
+                  if (filters.includes('VDO')) toggleFilter('VDO');
+                }}
+                style={{ 
+                  padding: '10px 24px', 
+                  borderRadius: '30px', 
+                  fontSize: '15px', 
+                  fontWeight: 'bold', 
+                  cursor: 'pointer',
+                  border: '2px solid #1A2B4C',
+                  background: viewMode === '360' ? '#1A2B4C' : '#FFFFFF',
+                  color: viewMode === '360' ? '#FFFFFF' : '#1A2B4C',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                {lang === 'TH' ? '🖼️ มุมมอง 360° / รูปภาพ' : '🖼️ 360° / Photos'}
+              </button>
+              <button 
+                onClick={() => {
+                  setViewMode('vdo');
+                  if (!filters.includes('VDO')) toggleFilter('VDO');
+                }}
+                style={{ 
+                  padding: '10px 24px', 
+                  borderRadius: '30px', 
+                  fontSize: '15px', 
+                  fontWeight: 'bold', 
+                  cursor: 'pointer',
+                  border: '2px solid #1A2B4C',
+                  background: viewMode === 'vdo' ? '#1A2B4C' : '#FFFFFF',
+                  color: viewMode === 'vdo' ? '#FFFFFF' : '#1A2B4C',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                {lang === 'TH' ? '🎥 วิดีโอรีวิว (VDO)' : '🎥 VDO Walkthrough'}
+              </button>
+            </div>
+
+            {/* 🌟 3. แถบฟิลเตอร์ 9 ปุ่ม (เชื่อมต่อกับ viewMode เมื่อกดปุ่ม VDO) */}
+            <div className="filter-bar" style={{ margin: '15px 0 30px', textAlign: 'center', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px' }}>
               {filterNames[lang].map((btn, i) => {
                 const val = filterNames['TH'][i];
                 const active = val === 'หอพักทั้งหมด' ? filters.length === 0 : filters.includes(val);
@@ -319,7 +323,13 @@ function App() {
                   <button 
                     key={val} 
                     className={`${active ? 'active' : ''} ${disabled ? 'disabled-btn' : ''}`} 
-                    onClick={() => !disabled && toggleFilter(val)}
+                    onClick={() => {
+                      if (disabled) return;
+                      toggleFilter(val);
+                      if (val === 'VDO') {
+                        setViewMode(filters.includes('VDO') ? '360' : 'vdo');
+                      }
+                    }}
                     style={{ opacity: disabled ? 0.5 : 1, cursor: disabled ? 'not-allowed' : 'pointer' }}
                   >
                     {btn}
