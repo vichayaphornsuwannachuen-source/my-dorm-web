@@ -137,7 +137,7 @@ function App() {
               ))}
             </div>
           </>
-  ) : (
+) : (
           <div className="detail-page">
             {/* ปุ่มย้อนกลับหน้าหลัก */}
             <button className="back-btn" onClick={() => { setSelectedDorm(null); setViewMode('360'); }} style={{ marginBottom: '20px', padding: '10px 20px', borderRadius: '10px', cursor: 'pointer' }}>
@@ -148,13 +148,13 @@ function App() {
               {lang === 'TH' ? selectedDorm.nameTH : selectedDorm.nameEN}
             </h2>
 
-            {/* 🌟 1. ส่วนแสดงผลสื่อหลัก (Unity 360 / VDO) วางไว้ด้านบนสุด */}
+            {/* 🌟 1. ส่วนแสดงผลสื่อ (Unity 360 / VDO) อยู่บนสุด */}
             {viewMode === 'vdo' ? (
               <div style={{ 
                 display: 'flex', 
                 flexDirection: 'row', 
                 gap: '30px', 
-                margin: '0 auto 25px', 
+                margin: '0 auto 30px', 
                 width: '100%', 
                 maxWidth: '1200px' 
               }}>
@@ -236,7 +236,7 @@ function App() {
                 style={{ 
                   width: '100%', 
                   maxWidth: '1200px', 
-                  margin: '0 auto 25px', 
+                  margin: '0 auto 30px', 
                   borderRadius: '24px', 
                   overflow: 'hidden', 
                   border: '3px solid #1A2B4C', 
@@ -261,7 +261,7 @@ function App() {
               </div>
             ) : (
 
-              <div className="room-frame" style={{ maxWidth: '850px', margin: '0 auto 25px' }}>
+              <div className="room-frame" style={{ maxWidth: '850px', margin: '0 auto 30px' }}>
                 <img 
                   src={selectedDorm.image || "/cover.jpg"} 
                   alt="Room" 
@@ -271,71 +271,64 @@ function App() {
               </div>
             )}
 
-            {/* 🌟 2. ปุ่มสลับโหมด 2 ปุ่ม (ย้ายลงมาอยู่ใต้สื่อ เชื่อมต่อสถานะกับฟิลเตอร์ VDO) */}
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', marginBottom: '20px' }}>
+            {/* 🌟 2. ปุ่มสลับโหมด 2 ปุ่ม (ย้ายลงมาอยู่ใต้สื่อ) */}
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', marginBottom: '25px' }}>
               <button 
-                onClick={() => {
-                  setViewMode('360');
-                  if (filters.includes('VDO')) toggleFilter('VDO');
-                }}
+                onClick={() => setViewMode('360')}
                 style={{ 
-                  padding: '10px 24px', 
+                  padding: '12px 28px', 
                   borderRadius: '30px', 
-                  fontSize: '15px', 
+                  fontSize: '16px', 
                   fontWeight: 'bold', 
                   cursor: 'pointer',
                   border: '2px solid #1A2B4C',
                   background: viewMode === '360' ? '#1A2B4C' : '#FFFFFF',
                   color: viewMode === '360' ? '#FFFFFF' : '#1A2B4C',
-                  transition: 'all 0.3s ease'
+                  transition: 'all 0.3s ease',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.08)'
                 }}
               >
                 {lang === 'TH' ? '🖼️ มุมมอง 360° / รูปภาพ' : '🖼️ 360° / Photos'}
               </button>
               <button 
-                onClick={() => {
-                  setViewMode('vdo');
-                  if (!filters.includes('VDO')) toggleFilter('VDO');
-                }}
+                onClick={() => setViewMode('vdo')}
                 style={{ 
-                  padding: '10px 24px', 
+                  padding: '12px 28px', 
                   borderRadius: '30px', 
-                  fontSize: '15px', 
+                  fontSize: '16px', 
                   fontWeight: 'bold', 
                   cursor: 'pointer',
                   border: '2px solid #1A2B4C',
                   background: viewMode === 'vdo' ? '#1A2B4C' : '#FFFFFF',
                   color: viewMode === 'vdo' ? '#FFFFFF' : '#1A2B4C',
-                  transition: 'all 0.3s ease'
+                  transition: 'all 0.3s ease',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.08)'
                 }}
               >
                 {lang === 'TH' ? '🎥 วิดีโอรีวิว (VDO)' : '🎥 VDO Walkthrough'}
               </button>
             </div>
 
-            {/* 🌟 3. แถบฟิลเตอร์ 9 ปุ่ม (เชื่อมต่อกับ viewMode เมื่อกดปุ่ม VDO) */}
+            {/* 🌟 3. แถบฟิลเตอร์ 8 ปุ่ม (ตัดปุ่ม VDO ออก) */}
             <div className="filter-bar" style={{ margin: '15px 0 30px', textAlign: 'center', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px' }}>
-              {filterNames[lang].map((btn, i) => {
-                const val = filterNames['TH'][i];
-                const active = val === 'หอพักทั้งหมด' ? filters.length === 0 : filters.includes(val);
-                const disabled = isFilterDisabled(val);
-                return (
-                  <button 
-                    key={val} 
-                    className={`${active ? 'active' : ''} ${disabled ? 'disabled-btn' : ''}`} 
-                    onClick={() => {
-                      if (disabled) return;
-                      toggleFilter(val);
-                      if (val === 'VDO') {
-                        setViewMode(filters.includes('VDO') ? '360' : 'vdo');
-                      }
-                    }}
-                    style={{ opacity: disabled ? 0.5 : 1, cursor: disabled ? 'not-allowed' : 'pointer' }}
-                  >
-                    {btn}
-                  </button>
-                );
-              })}
+              {filterNames[lang]
+                .filter((_, i) => filterNames['TH'][i] !== 'VDO')
+                .map((btn) => {
+                  const originalIndex = filterNames[lang].indexOf(btn);
+                  const val = filterNames['TH'][originalIndex];
+                  const active = val === 'หอพักทั้งหมด' ? filters.length === 0 : filters.includes(val);
+                  const disabled = isFilterDisabled(val);
+                  return (
+                    <button 
+                      key={val} 
+                      className={`${active ? 'active' : ''} ${disabled ? 'disabled-btn' : ''}`} 
+                      onClick={() => !disabled && toggleFilter(val)}
+                      style={{ opacity: disabled ? 0.5 : 1, cursor: disabled ? 'not-allowed' : 'pointer' }}
+                    >
+                      {btn}
+                    </button>
+                  );
+                })}
             </div>
 
             <hr style={{ border: 'none', borderTop: '1px solid #E1EDFF', margin: '30px 0' }} />
