@@ -146,23 +146,38 @@ function App() {
             
             <h2 className="detail-name">{lang === 'TH' ? selectedDorm.nameTH : selectedDorm.nameEN}</h2>
             
-          {/* 🌟 แสดงผลแบบ ซ้าย-ขวา ข้างกัน 100% ไม่ตกลงมาบน-ล่าง */}
+          {/* 🌟 แสดงผลแบบ ซ้าย-ขวา ขยายใหญ่ ไม่มีกรอบดำครอบรวม */}
             {viewMode === 'vdo' ? (
-              <div className="video-review-container" style={{ display: 'flex', flexDirection: 'row', gap: '20px', margin: '30px 0', width: '100%' }}>
-                <div style={{ flex: '1', width: '50%', textAlign: 'center' }}>
+              <div style={{ 
+                display: 'flex', 
+                flexDirection: 'row', 
+                gap: '30px', 
+                margin: '30px auto', 
+                width: '100%', 
+                maxWidth: '1200px' 
+              }}>
+                {/* วิดีโอที่ 1 */}
+                <div style={{ flex: '1', textAlign: 'center' }}>
                   <div style={{ 
                     background: '#1A2B4C', 
                     color: '#FFFFFF', 
-                    padding: '10px 15px', 
-                    borderRadius: '12px', 
-                    fontSize: '16px', 
+                    padding: '12px 20px', 
+                    borderRadius: '14px', 
+                    fontSize: '18px', 
                     fontWeight: 'bold', 
-                    marginBottom: '12px',
+                    marginBottom: '15px',
                     boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
                   }}>
                     {lang === 'TH' ? '1. หน้าตึก → หน้าห้อง' : '1. Building → Door'}
                   </div>
-                  <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 8px 20px rgba(0,0,0,0.15)' }}>
+                  <div style={{ 
+                    position: 'relative', 
+                    width: '100%', 
+                    aspectRatio: '16/9', 
+                    borderRadius: '20px', 
+                    overflow: 'hidden', 
+                    boxShadow: '0 8px 25px rgba(0,0,0,0.15)' 
+                  }}>
                     <iframe
                       width="100%"
                       height="100%"
@@ -176,20 +191,28 @@ function App() {
                   </div>
                 </div>
 
-                <div style={{ flex: '1', width: '50%', textAlign: 'center' }}>
+                {/* วิดีโอที่ 2 */}
+                <div style={{ flex: '1', textAlign: 'center' }}>
                   <div style={{ 
                     background: '#1A2B4C', 
                     color: '#FFFFFF', 
-                    padding: '10px 15px', 
-                    borderRadius: '12px', 
-                    fontSize: '16px', 
+                    padding: '12px 20px', 
+                    borderRadius: '14px', 
+                    fontSize: '18px', 
                     fontWeight: 'bold', 
-                    marginBottom: '12px',
+                    marginBottom: '15px',
                     boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
                   }}>
                     {lang === 'TH' ? '2. หน้าห้อง → ในห้อง' : '2. Door → Inside'}
                   </div>
-                  <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 8px 20px rgba(0,0,0,0.15)' }}>
+                  <div style={{ 
+                    position: 'relative', 
+                    width: '100%', 
+                    aspectRatio: '16/9', 
+                    borderRadius: '20px', 
+                    overflow: 'hidden', 
+                    boxShadow: '0 8px 25px rgba(0,0,0,0.15)' 
+                  }}>
                     <iframe
                       width="100%"
                       height="100%"
