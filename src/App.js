@@ -137,26 +137,87 @@ function App() {
               ))}
             </div>
           </>
-        ) : (
+       ) : (
           <div className="detail-page">
             {/* ปุ่มย้อนกลับหน้าหลัก */}
-            <button className="back-btn" onClick={() => { setSelectedDorm(null); setViewMode('360'); }}>
+            <button className="back-btn" onClick={() => { setSelectedDorm(null); setViewMode('360'); }} style={{ marginBottom: '20px', padding: '10px 20px', borderRadius: '10px', cursor: 'pointer' }}>
               {lang === 'TH' ? '← ย้อนกลับหน้าหลัก' : '← Back to Main'}
             </button>
             
-            <h2 className="detail-name">{lang === 'TH' ? selectedDorm.nameTH : selectedDorm.nameEN}</h2>
-            
-          {/* 🌟 แสดงผลแบบ ซ้าย-ขวา ขยายใหญ่ ไม่มีกรอบดำครอบรวม */}
+            <h2 className="detail-name" style={{ fontSize: '32px', color: '#1A2B4C', marginBottom: '20px' }}>
+              {lang === 'TH' ? selectedDorm.nameTH : selectedDorm.nameEN}
+            </h2>
+
+            {/* 🌟 1. แถบฟิลเตอร์ 9 ปุ่ม (ดึงมาไว้หน้ารายละเอียด) */}
+            <div className="filter-bar" style={{ margin: '15px 0 25px', textAlign: 'center', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px' }}>
+              {filterNames[lang].map((btn, i) => {
+                const val = filterNames['TH'][i];
+                const active = val === 'หอพักทั้งหมด' ? filters.length === 0 : filters.includes(val);
+                const disabled = isFilterDisabled(val);
+                return (
+                  <button 
+                    key={val} 
+                    className={`${active ? 'active' : ''} ${disabled ? 'disabled-btn' : ''}`} 
+                    onClick={() => !disabled && toggleFilter(val)}
+                    style={{ opacity: disabled ? 0.5 : 1, cursor: disabled ? 'not-allowed' : 'pointer' }}
+                  >
+                    {btn}
+                  </button>
+                );
+              })}
+            </div>
+
+            <hr style={{ border: 'none', borderTop: '1px solid #E1EDFF', margin: '20px 0 30px' }} />
+
+            {/* 🌟 2. ปุ่มสลับโหมดสื่อ 2 ปุ่ม (วางกึ่งกลาง เหนือวิดีโอ/360) */}
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', marginBottom: '25px' }}>
+              <button 
+                className={viewMode === '360' ? 'active' : ''} 
+                onClick={() => setViewMode('360')}
+                style={{ 
+                  padding: '12px 28px', 
+                  borderRadius: '30px', 
+                  fontSize: '16px', 
+                  fontWeight: 'bold', 
+                  cursor: 'pointer',
+                  border: '2px solid #1A2B4C',
+                  background: viewMode === '360' ? '#1A2B4C' : '#FFFFFF',
+                  color: viewMode === '360' ? '#FFFFFF' : '#1A2B4C',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                {lang === 'TH' ? '🖼️ มุมมอง 360° / รูปภาพ' : '🖼️ 360° / Photos'}
+              </button>
+              <button 
+                className={viewMode === 'vdo' ? 'active' : ''} 
+                onClick={() => setViewMode('vdo')}
+                style={{ 
+                  padding: '12px 28px', 
+                  borderRadius: '30px', 
+                  fontSize: '16px', 
+                  fontWeight: 'bold', 
+                  cursor: 'pointer',
+                  border: '2px solid #1A2B4C',
+                  background: viewMode === 'vdo' ? '#1A2B4C' : '#FFFFFF',
+                  color: viewMode === 'vdo' ? '#FFFFFF' : '#1A2B4C',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                {lang === 'TH' ? '🎥 วิดีโอรีวิว (VDO)' : '🎥 VDO Walkthrough'}
+              </button>
+            </div>
+
+            {/* 🌟 3. ส่วนแสดงผลสื่อ (VDO / 360° / รูปภาพ) */}
             {viewMode === 'vdo' ? (
               <div style={{ 
                 display: 'flex', 
                 flexDirection: 'row', 
                 gap: '30px', 
-                margin: '30px auto', 
+                margin: '20px auto 30px', 
                 width: '100%', 
                 maxWidth: '1200px' 
               }}>
-                {/* วิดีโอที่ 1 */}
+                {/* คลิปที่ 1 */}
                 <div style={{ flex: '1', textAlign: 'center' }}>
                   <div style={{ 
                     background: '#1A2B4C', 
@@ -168,7 +229,7 @@ function App() {
                     marginBottom: '15px',
                     boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
                   }}>
-                    {lang === 'TH' ? ' หน้าตึก → หน้าห้อง' : ' Building → Door'}
+                    {lang === 'TH' ? 'หน้าตึก → หน้าห้อง' : 'Building → Door'}
                   </div>
                   <div style={{ 
                     position: 'relative', 
@@ -191,7 +252,7 @@ function App() {
                   </div>
                 </div>
 
-                {/* วิดีโอที่ 2 */}
+                {/* คลิปที่ 2 */}
                 <div style={{ flex: '1', textAlign: 'center' }}>
                   <div style={{ 
                     background: '#1A2B4C', 
@@ -203,7 +264,7 @@ function App() {
                     marginBottom: '15px',
                     boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
                   }}>
-                    {lang === 'TH' ? ' หน้าห้อง → ในห้อง' : ' Door → Inside'}
+                    {lang === 'TH' ? 'หน้าห้อง → ในห้อง' : 'Door → Inside'}
                   </div>
                   <div style={{ 
                     position: 'relative', 
@@ -228,7 +289,7 @@ function App() {
               </div>
             ) : selectedDorm.tour360Url ? (
 
-              /* กรอบ 360 ขนาดใหญ่พิเศษ */
+              /* กรอบ 360 ขนาดใหญ่ */
               <div 
                 className="tour-360-wrapper" 
                 style={{ 
@@ -259,7 +320,7 @@ function App() {
               </div>
             ) : (
 
-              <div className="room-frame" style={{ maxWidth: '850px', margin: '0 auto 20px' }}>
+              <div className="room-frame" style={{ maxWidth: '850px', margin: '0 auto 30px' }}>
                 <img 
                   src={selectedDorm.image || "/image.jpeg"} 
                   alt="Room" 
@@ -268,24 +329,6 @@ function App() {
                 />
               </div>
             )}
-
-            {/* 🌟 ปุ่มสลับโหมดการมองเห็นเฉพาะในหน้ารายละเอียดหอ (ไม่เด้งกลับหน้าแรก) */}
-            <div className="filter-bar" style={{ margin: '30px 0', textAlign: 'center' }}>
-              <button 
-                className={viewMode === '360' ? 'active' : ''} 
-                onClick={() => setViewMode('360')}
-                style={{ margin: '0 10px', padding: '10px 20px', cursor: 'pointer' }}
-              >
-                {lang === 'TH' ? '🖼️ มุมมอง 360° / รูปภาพ' : '🖼️ 360° / Photos'}
-              </button>
-              <button 
-                className={viewMode === 'vdo' ? 'active' : ''} 
-                onClick={() => setViewMode('vdo')}
-                style={{ margin: '0 10px', padding: '10px 20px', cursor: 'pointer' }}
-              >
-                {lang === 'TH' ? '🎥 วิดีโอรีวิว (VDO)' : '🎥 VDO Walkthrough'}
-              </button>
-            </div>
 
             {/* สิ่งอำนวยความสะดวก */}
             <div className="fac-tag" style={{ background: '#1A2B4C', color: 'white', padding: '12px 35px', borderRadius: '12px', display: 'inline-block', fontSize: '22px', marginBottom: '25px', fontWeight: '600' }}>
