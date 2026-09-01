@@ -148,28 +148,7 @@ function App() {
               {lang === 'TH' ? selectedDorm.nameTH : selectedDorm.nameEN}
             </h2>
 
-            {/* 🌟 1. แถบฟิลเตอร์ 9 ปุ่ม (ดึงมาไว้หน้ารายละเอียด) */}
-            <div className="filter-bar" style={{ margin: '15px 0 25px', textAlign: 'center', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px' }}>
-              {filterNames[lang].map((btn, i) => {
-                const val = filterNames['TH'][i];
-                const active = val === 'หอพักทั้งหมด' ? filters.length === 0 : filters.includes(val);
-                const disabled = isFilterDisabled(val);
-                return (
-                  <button 
-                    key={val} 
-                    className={`${active ? 'active' : ''} ${disabled ? 'disabled-btn' : ''}`} 
-                    onClick={() => !disabled && toggleFilter(val)}
-                    style={{ opacity: disabled ? 0.5 : 1, cursor: disabled ? 'not-allowed' : 'pointer' }}
-                  >
-                    {btn}
-                  </button>
-                );
-              })}
-            </div>
-
-            <hr style={{ border: 'none', borderTop: '1px solid #E1EDFF', margin: '20px 0 30px' }} />
-
-            {/* 🌟 2. ปุ่มสลับโหมดสื่อ 2 ปุ่ม (วางกึ่งกลาง เหนือวิดีโอ/360) */}
+            {/* 🌟 1. ปุ่มสลับโหมดสื่อ 2 ปุ่ม (อยู่บนสุด เหนือสื่อ) */}
             <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', marginBottom: '25px' }}>
               <button 
                 className={viewMode === '360' ? 'active' : ''} 
@@ -207,13 +186,13 @@ function App() {
               </button>
             </div>
 
-            {/* 🌟 3. ส่วนแสดงผลสื่อ (VDO / 360° / รูปภาพ) */}
+            {/* 🌟 2. ส่วนแสดงผลสื่อ (Unity 360 / VDO) */}
             {viewMode === 'vdo' ? (
               <div style={{ 
                 display: 'flex', 
                 flexDirection: 'row', 
                 gap: '30px', 
-                margin: '20px auto 30px', 
+                margin: '0 auto 30px', 
                 width: '100%', 
                 maxWidth: '1200px' 
               }}>
@@ -289,7 +268,7 @@ function App() {
               </div>
             ) : selectedDorm.tour360Url ? (
 
-              /* กรอบ 360 ขนาดใหญ่ */
+              /* กรอบ Unity 360 */
               <div 
                 className="tour-360-wrapper" 
                 style={{ 
@@ -322,13 +301,34 @@ function App() {
 
               <div className="room-frame" style={{ maxWidth: '850px', margin: '0 auto 30px' }}>
                 <img 
-                  src={selectedDorm.image || "/image.jpeg"} 
+                  src={selectedDorm.image || "/cover.jpg"} 
                   alt="Room" 
                   className="room-img" 
                   style={{ width: '100%', maxHeight: '450px', objectFit: 'cover', borderRadius: '20px' }} 
                 />
               </div>
             )}
+
+            {/* 🌟 3. แถบฟิลเตอร์ 9 ปุ่ม (ย้ายมาไว้ข้างล่างสื่อ) */}
+            <div className="filter-bar" style={{ margin: '20px 0 30px', textAlign: 'center', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px' }}>
+              {filterNames[lang].map((btn, i) => {
+                const val = filterNames['TH'][i];
+                const active = val === 'หอพักทั้งหมด' ? filters.length === 0 : filters.includes(val);
+                const disabled = isFilterDisabled(val);
+                return (
+                  <button 
+                    key={val} 
+                    className={`${active ? 'active' : ''} ${disabled ? 'disabled-btn' : ''}`} 
+                    onClick={() => !disabled && toggleFilter(val)}
+                    style={{ opacity: disabled ? 0.5 : 1, cursor: disabled ? 'not-allowed' : 'pointer' }}
+                  >
+                    {btn}
+                  </button>
+                );
+              })}
+            </div>
+
+            <hr style={{ border: 'none', borderTop: '1px solid #E1EDFF', margin: '30px 0' }} />
 
             {/* สิ่งอำนวยความสะดวก */}
             <div className="fac-tag" style={{ background: '#1A2B4C', color: 'white', padding: '12px 35px', borderRadius: '12px', display: 'inline-block', fontSize: '22px', marginBottom: '25px', fontWeight: '600' }}>
