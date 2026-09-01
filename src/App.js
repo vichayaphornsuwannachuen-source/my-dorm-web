@@ -168,7 +168,7 @@ function App() {
                     marginBottom: '15px',
                     boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
                   }}>
-                    {lang === 'TH' ? '1. หน้าตึก → หน้าห้อง' : '1. Building → Door'}
+                    {lang === 'TH' ? ' หน้าตึก → หน้าห้อง' : ' Building → Door'}
                   </div>
                   <div style={{ 
                     position: 'relative', 
@@ -203,7 +203,7 @@ function App() {
                     marginBottom: '15px',
                     boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
                   }}>
-                    {lang === 'TH' ? '2. หน้าห้อง → ในห้อง' : '2. Door → Inside'}
+                    {lang === 'TH' ? ' หน้าห้อง → ในห้อง' : ' Door → Inside'}
                   </div>
                   <div style={{ 
                     position: 'relative', 
