@@ -18,7 +18,7 @@ function App() {
   // ข้อมูลหอพัก (ไม่ต้องแก้จุดนี้ครับโมจิ)
   const dorms = [
     { id: 1, nameTH: "หอพักลำดวน 1", nameEN: "Lamduan 1", type: "ชาย", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/FMvNZ9VAhdbZoBBn7", videoUrl: "c83wIDJAulY", videoUrl2: "y2WOY5ZD2JY", image: "/l1.jpg"},
-    { id: 2, nameTH: "หอพักลำดวน 2", nameEN: "Lamduan 2", type: "ชาย", air: "พัดลม", cap: "4 คน", gps: "", videoUrl: "adBy_LhDNFk", videoUrl2: "gYRiyrY5eXY", image: "/l2.jpg" },
+    { id: 2, nameTH: "หอพักลำดวน 2", nameEN: "Lamduan 2", type: "ชาย", air: "พัดลม", cap: "4 คน", gps: "", videoUrl: "adBy_LhDNFk", videoUrl2: "LKBnhgooV9s", image: "/l2.jpg" },
     { id: 3, nameTH: "หอพักลำดวน 3", nameEN: "Lamduan 3", type: "ชาย", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/w7Pd9LGRBPyakJ5S9",  videoUrl: "", videoUrl2: "",image: "/l3.jpg"},
     { id: 4, nameTH: "หอพักลำดวน 4", nameEN: "Lamduan 4", type: "ชาย", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/mFb1v18Xo8N6Bkqe6", videoUrl: "", videoUrl2: "", image: "/l4.jpg" },
     { id: 5, nameTH: "หอพักลำดวน 5", nameEN: "Lamduan 5", type: "ชาย", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/WJBTMbxnZBFoPxn78", videoUrl: "", videoUrl2: "", image: "/l5.jpg"},
