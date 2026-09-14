@@ -26,7 +26,7 @@ function App() {
     { id: 7, nameTH: "หอพักลำดวน 7", nameEN: "Lamduan 7", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/cJP3Gh92MPNBKdjD7",videoUrl: "bfyCzX0e1y4", videoUrl2: "pEDmizScPO0", image: "/l7.jpg" },
     { id: 8, nameTH: "หอพัก F1", nameEN: "Dorm F1", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/JY7VbfxykiiCSgaM9", videoUrl: "rGE6J_3kkzs", videoUrl2: "VPXZ_bDyH-o", image: "/f1.jpg"},
     { id: 9, nameTH: "หอพัก F2", nameEN: "Dorm F2", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/REtk2znMin5zwpj99", videoUrl: "L-UQOpQavCo", videoUrl2: "O2s0waA2JQY", image: "/f2.jpg"},
-    { id: 10, nameTH: "หอพัก F3", nameEN: "Dorm F3", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/ZLCvWtj1sYQbJzot9", videoUrl: "2bVpgKXNlaE", videoUrl2: "", image: "/f3.jpg" },
+    { id: 10, nameTH: "หอพัก F3", nameEN: "Dorm F3", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/ZLCvWtj1sYQbJzot9", videoUrl: "2bVpgKXNlaE",  image: "/f3.jpg" },
     { id: 11, nameTH: "หอพัก F4", nameEN: "Dorm F4", type: "ชาย", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/AdxsmwS6mw7bB4NUA", videoUrl: "okWuaFANYeU", videoUrl2: "UHsDxgSaXoo", image: "/f4.jpg" },
     { id: 12, nameTH: "หอพัก F5", nameEN: "Dorm F5", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/2Scm791aSiEKYUQb6", videoUrl: "Eh-dGqtZRGw", videoUrl2: "QZO_UqV0Grk", image: "/f5.jpg" },
     { id: 13, nameTH: "หอพัก F6", nameEN: "Dorm F6", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/eLWD815Zwmxmvx88A", videoUrl: "MVmN_R7hFj4", videoUrl2: "8VsFaJWkrhw", image: "/f6.jpg" },
@@ -163,6 +163,7 @@ function App() {
                 width: '100%', 
                 maxWidth: '1200px' 
               }}>
+              {/* คลิปที่ 1: หน้าตึก → หน้าห้อง (แสดงเสมอ) */}
                 <div style={{ flex: '1', textAlign: 'center' }}>
                   <div style={{ background: '#1A2B4C', color: '#FFFFFF', padding: '12px 20px', borderRadius: '14px', fontSize: '18px', fontWeight: 'bold', marginBottom: '15px' }}>
                     {lang === 'TH' ? 'หน้าตึก → หน้าห้อง' : 'Building → Door'}
@@ -172,14 +173,17 @@ function App() {
                   </div>
                 </div>
 
-                <div style={{ flex: '1', textAlign: 'center' }}>
-                  <div style={{ background: '#1A2B4C', color: '#FFFFFF', padding: '12px 20px', borderRadius: '14px', fontSize: '18px', fontWeight: 'bold', marginBottom: '15px' }}>
-                    {lang === 'TH' ? 'หน้าห้อง → ในห้อง' : 'Door → Inside'}
+                {/* คลิปที่ 2: หน้าห้อง → ในห้อง (จะแสดงเฉพาะหอที่มีคลิปที่ 2 เท่านั้น) */}
+                {selectedDorm.videoUrl2 && (
+                  <div style={{ flex: '1', textAlign: 'center' }}>
+                    <div style={{ background: '#1A2B4C', color: '#FFFFFF', padding: '12px 20px', borderRadius: '14px', fontSize: '18px', fontWeight: 'bold', marginBottom: '15px' }}>
+                      {lang === 'TH' ? 'หน้าห้อง → ในห้อง' : 'Door → Inside'}
+                    </div>
+                    <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', borderRadius: '20px', overflow: 'hidden', boxShadow: '0 8px 25px rgba(0,0,0,0.15)' }}>
+                      <iframe width="100%" height="100%" src={`https://www.youtube.com/embed/${selectedDorm.videoUrl2}`} title="YouTube video 2" frameBorder="0" allowFullScreen style={{ border: 'none', display: 'block' }}></iframe>
+                    </div>
                   </div>
-                  <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', borderRadius: '20px', overflow: 'hidden', boxShadow: '0 8px 25px rgba(0,0,0,0.15)' }}>
-                    <iframe width="100%" height="100%" src={`https://www.youtube.com/embed/${selectedDorm.videoUrl2 || selectedDorm.videoUrl}`} title="YouTube video 2" frameBorder="0" allowFullScreen style={{ border: 'none', display: 'block' }}></iframe>
-                  </div>
-                </div>
+                )}
               </div>
             ) : selectedDorm.tour360Url ? (
               <div className="tour-360-wrapper" style={{ width: '100%', maxWidth: '1200px', margin: '0 auto 25px', borderRadius: '24px', overflow: 'hidden', border: '3px solid #1A2B4C', boxShadow: '0 12px 35px rgba(0,0,0,0.2)', background: '#000' }}>
