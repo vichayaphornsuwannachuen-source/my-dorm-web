@@ -9,7 +9,7 @@ body { margin: 0; font-family: 'Kanit', sans-serif; background-color: #fff; }
 .home-text { font-size: 22px; color: #555; }
 
 .nav-right { display: flex; align-items: center; gap: 20px; }
-.lang-switch button { background: #E1EDFF; border: none; padding: 10px 20px; margin-left: 5px; cursor: pointer; font-weight: bold; border-radius: 4px; }
+.lang-switch button { background: #E1EDFF; border: none; padding: 10px 20px; margin-left: 5px; cursor: pointer; font-weight: bold; border-radius: 4px; font-family: 'Kanit', sans-serif; transition: 0.2s; }
 .lang-switch button.active { background: #1A2B4C; color: white; }
 
 .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; }
@@ -23,23 +23,23 @@ body { margin: 0; font-family: 'Kanit', sans-serif; background-color: #fff; }
 
 /* Filter Bar */
 .filter-bar { display: flex; gap: 12px; justify-content: center; margin: 30px 0; flex-wrap: wrap; }
-.filter-bar button { background-color: #E1EDFF; color: #1A2B4C; border: none; padding: 10px 22px; border-radius: 30px; cursor: pointer; font-size: 16px; transition: 0.3s; }
+.filter-bar button { background-color: #E1EDFF; color: #1A2B4C; border: none; padding: 10px 22px; border-radius: 30px; cursor: pointer; font-size: 16px; font-family: 'Kanit', sans-serif; transition: 0.3s; }
 .filter-bar button.active { background-color: #1A2B4C; color: white; }
 
 /* Smart Filter: ปุ่มที่กดไม่ได้ */
 .disabled-btn {
-    background-color: #f5f5f5 !important;
-    color: #d0d0d0 !important;
-    cursor: not-allowed !important;
-    pointer-events: none;
+  background-color: #f5f5f5 !important;
+  color: #d0d0d0 !important;
+  cursor: not-allowed !important;
+  pointer-events: none;
 }
 
-/* Dorm Card - ขยายขนาดตามคำขอโมจิ */
+/* Dorm Card */
 .dorm-grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
-    gap: 30px; 
-    margin-bottom: 60px;
+  display: grid; 
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
+  gap: 30px; 
+  margin-bottom: 60px;
 }
 .dorm-card { border-radius: 20px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); cursor: pointer; transition: 0.3s; background: #fff; border: 1px solid #f0f0f0; }
 .dorm-card:hover { transform: translateY(-8px); }
@@ -50,9 +50,9 @@ body { margin: 0; font-family: 'Kanit', sans-serif; background-color: #fff; }
 
 /* Detail Page & Back Button */
 .back-btn {
-    background: #f0f4f8; border: 1px solid #1A2B4C; color: #1A2B4C; padding: 10px 20px;
-    border-radius: 50px; cursor: pointer; font-family: 'Kanit', sans-serif;
-    margin-bottom: 20px; font-weight: 600; transition: 0.3s;
+  background: #f0f4f8; border: 1px solid #1A2B4C; color: #1A2B4C; padding: 10px 20px;
+  border-radius: 50px; cursor: pointer; font-family: 'Kanit', sans-serif;
+  margin-bottom: 20px; font-weight: 600; transition: 0.3s;
 }
 .back-btn:hover { background: #1A2B4C; color: white; }
 
@@ -60,10 +60,22 @@ body { margin: 0; font-family: 'Kanit', sans-serif; background-color: #fff; }
 .room-frame { border-radius: 25px; overflow: hidden; margin-bottom: 35px; border: 1px solid #3498db; }
 .room-img { width: 100%; display: block; }
 
+/* Unity 360 Wrapper */
+.tour-360-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 25px;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 3px solid #1A2B4C;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+  background: #000;
+}
+
 /* Video Container (TikTok Style) */
 .video-review-container { 
-    width: 100%; max-width: 500px; margin: 0 auto 30px; 
-    border-radius: 20px; overflow: hidden; background: #000;
+  width: 100%; max-width: 500px; margin: 0 auto 30px; 
+  border-radius: 20px; overflow: hidden; background: #000;
 }
 .video-review-container video { width: 100%; display: block; }
 
@@ -75,3 +87,11 @@ body { margin: 0; font-family: 'Kanit', sans-serif; background-color: #fff; }
 .profile-img-box { width: 150px; height: 150px; border-radius: 50%; overflow: hidden; margin: 0 auto 20px; border: 4px solid #E1EDFF; }
 .creator-img { width: 100%; height: 100%; object-fit: cover; }
 .menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 999; }
+
+/* Responsive สำหรับหน้าจอขนาดเล็ก/มือถือ */
+@media (max-width: 768px) {
+  .hero-banner { height: 200px; padding: 20px; border-radius: 25px; }
+  .hero-overlay h1 { font-size: 26px; }
+  .fac-box-container { grid-template-columns: 1fr !important; padding: 20px !important; gap: 20px !important; }
+  .tour-360-wrapper iframe { height: 450px !important; }
+}

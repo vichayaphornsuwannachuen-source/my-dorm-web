@@ -1,44 +1,72 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 const filterNames = {
-    TH: ['หอพักทั้งหมด', 'หอพักชาย', 'หอพักหญิง', 'หอพักพัดลม', 'หอพักปรับอากาศ', 'จำนวน 2 คน', 'จำนวน 3 คน', 'จำนวน 4 คน'],
-    EN: ['All Dorms', 'Male Dorm', 'Female Dorm', 'Fan Dorm', 'Air Dorm', '2 Persons', '3 Persons', '4 Persons']
-  };
-
+  TH: ['หอพักทั้งหมด', 'หอพักชาย', 'หอพักหญิง', 'หอพักพัดลม', 'หอพักปรับอากาศ', 'จำนวน 2 คน', 'จำนวน 3 คน', 'จำนวน 4 คน'],
+  EN: ['All Dorms', 'Male Dorm', 'Female Dorm', 'Fan Dorm', 'Air Dorm', '2 Persons', '3 Persons', '4 Persons']
+};
 
 function App() {
   const [lang, setLang] = useState('TH');
   const [filters, setFilters] = useState([]);
   const [selectedDorm, setSelectedDorm] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const [viewMode, setViewMode] = useState('360');
 
-  // ข้อมูลหอพัก (ไม่ต้องแก้จุดนี้ครับโมจิ)
+  // ข้อมูลหอพัก
   const dorms = [
     { id: 1, nameTH: "หอพักลำดวน 1", nameEN: "Lamduan 1", type: "ชาย", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/FMvNZ9VAhdbZoBBn7", videoUrl: "c83wIDJAulY", videoUrl2: "y2WOY5ZD2JY", image: "/l1.jpg"},
     { id: 2, nameTH: "หอพักลำดวน 2", nameEN: "Lamduan 2", type: "ชาย", air: "พัดลม", cap: "4 คน", gps: "", videoUrl: "adBy_LhDNFk", videoUrl2: "LKBnhgooV9s", image: "/l2.jpg" },
-    { id: 3, nameTH: "หอพักลำดวน 3", nameEN: "Lamduan 3", type: "ชาย", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/w7Pd9LGRBPyakJ5S9",  videoUrl: "vWi9TEGzyqE", videoUrl2: "6Sv27ce7d-0",image: "/l3.jpg"},
+    { id: 3, nameTH: "หอพักลำดวน 3", nameEN: "Lamduan 3", type: "ชาย", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/w7Pd9LGRBPyakJ5S9", videoUrl: "vWi9TEGzyqE", videoUrl2: "6Sv27ce7d-0", image: "/l3.jpg"},
     { id: 4, nameTH: "หอพักลำดวน 4", nameEN: "Lamduan 4", type: "ชาย", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/mFb1v18Xo8N6Bkqe6", videoUrl: "DYtkO99Yin8", videoUrl2: "xDZx5DXJlIg", image: "/l4.jpg" },
     { id: 5, nameTH: "หอพักลำดวน 5", nameEN: "Lamduan 5", type: "ชาย", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/WJBTMbxnZBFoPxn78", videoUrl: "bqeFDHDg54M", videoUrl2: "UNSp-t9aZtE", image: "/l5.jpg"},
-    { id: 6, nameTH: "หอพักลำดวน 6", nameEN: "Lamduan 6", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/d2esT7tLTb2FdAKV9", videoUrl: "Omc5_QTpdAU", videoUrl2: "iZ3v9HeHPqc",image: "/l6.jpg"},
-    { id: 7, nameTH: "หอพักลำดวน 7", nameEN: "Lamduan 7", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/cJP3Gh92MPNBKdjD7",videoUrl: "bfyCzX0e1y4", videoUrl2: "pEDmizScPO0", image: "/l7.jpg" },
-    { id: 8, nameTH: "หอพัก F1", nameEN: "Dorm F1", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/JY7VbfxykiiCSgaM9", videoUrl: "rGE6J_3kkzs", videoUrl2: "VPXZ_bDyH-o", image: "/f1.jpg"},
-    { id: 9, nameTH: "หอพัก F2", nameEN: "Dorm F2", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/REtk2znMin5zwpj99", videoUrl: "L-UQOpQavCo", videoUrl2: "O2s0waA2JQY", image: "/f2.jpg"},
-    { id: 10, nameTH: "หอพัก F3", nameEN: "Dorm F3", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/ZLCvWtj1sYQbJzot9", videoUrl: "2bVpgKXNlaE",  image: "/f3.jpg" },
+    { id: 6, nameTH: "หอพักลำดวน 6", nameEN: "Lamduan 6", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/d2esT7tLTb2FdAKV9", videoUrl: "Omc5_QTpdAU", videoUrl2: "iZ3v9HeHPqc", image: "/l6.jpg"},
+    { id: 7, nameTH: "หอพักลำดวน 7", nameEN: "Lamduan 7", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/cJP3Gh92MPNBKdjD7", videoUrl: "bfyCzX0e1y4", videoUrl2: "pEDmizScPO0", image: "/l7.jpg" },
+    { id: 8, nameTH: "หอพัก F1", nameEN: "Dorm F1", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/JY7VbfxykiiCSgaM9", videoUrl: "rGE6J_3kkzs", videoUrl2: "VPXZ_bDyH-o", image: "/f1.jpg", tour360Url: "/testf1-2/index.html"},
+    { id: 9, nameTH: "หอพัก F2", nameEN: "Dorm F2", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/REtk2znMin5zwpj99", videoUrl: "L-UQOpQavCo", videoUrl2: "O2s0waA2JQY", image: "/f2.jpg", tour360Url: "/testf1-2/index.html"},
+    { id: 10, nameTH: "หอพัก F3", nameEN: "Dorm F3", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/ZLCvWtj1sYQbJzot9", videoUrl: "2bVpgKXNlaE", image: "/f3.jpg" },
     { id: 11, nameTH: "หอพัก F4", nameEN: "Dorm F4", type: "ชาย", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/AdxsmwS6mw7bB4NUA", videoUrl: "okWuaFANYeU", videoUrl2: "UHsDxgSaXoo", image: "/f4.jpg" },
     { id: 12, nameTH: "หอพัก F5", nameEN: "Dorm F5", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/2Scm791aSiEKYUQb6", videoUrl: "Eh-dGqtZRGw", videoUrl2: "QZO_UqV0Grk", image: "/f5.jpg" },
     { id: 13, nameTH: "หอพัก F6", nameEN: "Dorm F6", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/eLWD815Zwmxmvx88A", videoUrl: "MVmN_R7hFj4", videoUrl2: "8VsFaJWkrhw", image: "/f6.jpg" },
     { id: 14, nameTH: "หอพักสักทอง 1", nameEN: "Sakthong 1", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/yu5DyqudiV6zqbJs6", videoUrl: "suRcASJX8jw", videoUrl2: "iK8rZhhb3lY", image: "/sk1.jpg"},
     { id: 15, nameTH: "หอพักสักทอง 2", nameEN: "Sakthong 2", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/xxxx19", videoUrl: "SC_TH55_ml4", videoUrl2: "ir0N4hU9lyU", image: "/sk2.jpg"},
-    { id: 16, nameTH: "หอพักสักทอง 3", nameEN: "Sakthong 3", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/YdtoPXqvVmdLK4ev5",videoUrl: "Sh24ka-bJTU", videoUrl2: "o-G9wkIcEnI", image: "/sk3.jpg"},
-    { id: 17, nameTH: "หอพักบุญทรง", nameEN: "Boonsong", type: "หญิง", air: "ปรับอากาศ", cap: "3 คน", gps: "https://maps.app.goo.gl/eLWD815Zwmxmvx88A", videoUrl: "VuJgnJsSxEY", videoUrl2: "qG0kWAXMv3A", image: "/bs.jpeg", tour360Url : "/BoonsongWebGL/index.html" },
+    { id: 16, nameTH: "หอพักสักทอง 3", nameEN: "Sakthong 3", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/YdtoPXqvVmdLK4ev5", videoUrl: "Sh24ka-bJTU", videoUrl2: "o-G9wkIcEnI", image: "/sk3.jpg"},
+    { id: 17, nameTH: "หอพักบุญทรง", nameEN: "Boonsong", type: "หญิง", air: "ปรับอากาศ", cap: "3 คน", gps: "https://maps.app.goo.gl/eLWD815Zwmxmvx88A", videoUrl: "VuJgnJsSxEY", videoUrl2: "qG0kWAXMv3A", image: "/bs.jpeg", tour360Url: "/BoonsongWebGL/index.html" },
     { id: 18, nameTH: "หอพักประเสริฐ", nameEN: "Prasert", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/oc9qWcV6rpBwW2Fs6", videoUrl: "xzIjoF0wodw", videoUrl2: "OvDNQPW3Bbo", image: "/ps.jpg" },
     { id: 19, nameTH: "หอพักพล.ต.อ.เภาฯ", nameEN:"Pol.Gen.Phao", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/xxxx23", videoUrl: "Zky_CKvgG38", videoUrl2: "cbCi2DUdCpc", image: "/nana.jpg" },
   ];
 
-    const checkMatch = (dorm, currentFilters) => {
+  // 🌟 ฟังก์ชันส่งคำสั่งเข้าไปใน Unity iframe
+  const sendToUnity = (message) => {
+    const iframe = document.getElementById("unity-iframe");
+    if (!iframe || !iframe.contentWindow) {
+      console.error("Unity iframe ยังไม่พร้อมหรือหาไม่เจอ");
+      return;
+    }
+    iframe.contentWindow.postMessage({ type: "TO_UNITY", payload: message }, "*");
+    console.log("📤 React ส่งไป Unity:", message);
+  };
+
+  // ผูกไว้กับ window เพื่อใช้พิมพ์ทดสอบใน Console ได้เลย ไม่ต้องมีปุ่มบนจอ
+  window.sendToUnity = sendToUnity;
+
+  // 🌟 ดักฟังข้อความตอบกลับจาก Unity
+  useEffect(() => {
+    const handleUnityMessage = (event) => {
+      const msg = event.data?.payload || event.detail;
+      if (!msg || typeof msg !== "string") return;
+
+      console.log("📥 Unity ส่งกลับมา:", msg);
+      if (msg === "PONG") console.log("✅ เชื่อมต่อ Unity สำเร็จ");
+      if (msg === "RECEIVED:F1") console.log("✅ Unity รับคำสั่ง F1 แล้ว");
+      if (msg === "RECEIVED:F2") console.log("✅ Unity รับคำสั่ง F2 แล้ว");
+    };
+
+    window.addEventListener("message", handleUnityMessage);
+    return () => window.removeEventListener("message", handleUnityMessage);
+  }, []);
+
+  const checkMatch = (dorm, currentFilters) => {
     const filtersWithoutVDO = currentFilters.filter(f => f !== 'VDO');
     if (filtersWithoutVDO.length === 0) return true;
 
@@ -109,21 +137,21 @@ function App() {
 
             {/* Filter Bar หน้าแรก */}
             <div className="filter-bar">
-        {filterNames[lang].map((btn, i) => {
-          const val = filterNames['TH'][i];
-          const active = val === 'หอพักทั้งหมด' ? filters.length === 0 : filters.includes(val);
-          const disabled = isFilterDisabled(val);
-          return (
-            <button 
-              key={val} 
-              className={`${active ? 'active' : ''} ${disabled ? 'disabled-btn' : ''}`} 
-              onClick={() => !disabled && toggleFilter(val)}
-            >
-              {btn}
-            </button>
-          );
-        })}
-      </div>
+              {filterNames[lang].map((btn, i) => {
+                const val = filterNames['TH'][i];
+                const active = val === 'หอพักทั้งหมด' ? filters.length === 0 : filters.includes(val);
+                const disabled = isFilterDisabled(val);
+                return (
+                  <button 
+                    key={val} 
+                    className={`${active ? 'active' : ''} ${disabled ? 'disabled-btn' : ''}`} 
+                    onClick={() => !disabled && toggleFilter(val)}
+                  >
+                    {btn}
+                  </button>
+                );
+              })}
+            </div>
             
             <div className="dorm-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '30px', marginBottom: '60px' }}>
               {filteredDorms.map(dorm => (
@@ -142,7 +170,7 @@ function App() {
               ))}
             </div>
           </>
-) : (
+        ) : (
           <div className="detail-page">
             {/* ปุ่มย้อนกลับหน้าหลัก */}
             <button className="back-btn" onClick={() => { setSelectedDorm(null); setViewMode('360'); }} style={{ marginBottom: '20px', padding: '10px 20px', borderRadius: '10px', cursor: 'pointer' }}>
@@ -158,12 +186,13 @@ function App() {
               <div style={{ 
                 display: 'flex', 
                 flexDirection: 'row', 
+                justifyContent: 'center',
                 gap: '30px', 
                 margin: '0 auto 25px', 
                 width: '100%', 
-                maxWidth: '1200px' 
+                maxWidth: selectedDorm.videoUrl2 ? '1200px' : '750px' 
               }}>
-              {/* คลิปที่ 1: หน้าตึก → หน้าห้อง (แสดงเสมอ) */}
+                {/* คลิปที่ 1 */}
                 <div style={{ flex: '1', textAlign: 'center' }}>
                   <div style={{ background: '#1A2B4C', color: '#FFFFFF', padding: '12px 20px', borderRadius: '14px', fontSize: '18px', fontWeight: 'bold', marginBottom: '15px' }}>
                     {lang === 'TH' ? 'หน้าตึก → หน้าห้อง' : 'Building → Door'}
@@ -173,7 +202,7 @@ function App() {
                   </div>
                 </div>
 
-                {/* คลิปที่ 2: หน้าห้อง → ในห้อง (จะแสดงเฉพาะหอที่มีคลิปที่ 2 เท่านั้น) */}
+                {/* คลิปที่ 2 (ถ้ามี) */}
                 {selectedDorm.videoUrl2 && (
                   <div style={{ flex: '1', textAlign: 'center' }}>
                     <div style={{ background: '#1A2B4C', color: '#FFFFFF', padding: '12px 20px', borderRadius: '14px', fontSize: '18px', fontWeight: 'bold', marginBottom: '15px' }}>
@@ -187,7 +216,14 @@ function App() {
               </div>
             ) : selectedDorm.tour360Url ? (
               <div className="tour-360-wrapper" style={{ width: '100%', maxWidth: '1200px', margin: '0 auto 25px', borderRadius: '24px', overflow: 'hidden', border: '3px solid #1A2B4C', boxShadow: '0 12px 35px rgba(0,0,0,0.2)', background: '#000' }}>
-                <iframe title="Unity 360 Virtual Tour" src={selectedDorm.tour360Url} style={{ width: '100%', height: '700px', border: 'none', display: 'block' }} scrolling="no" allowFullScreen />
+                <iframe 
+                  id="unity-iframe" 
+                  title="Unity 360 Virtual Tour" 
+                  src={selectedDorm.tour360Url} 
+                  style={{ width: '100%', height: '700px', border: 'none', display: 'block', overflow: 'hidden' }} 
+                  scrolling="no" 
+                  allowFullScreen 
+                />
               </div>
             ) : (
               <div className="room-frame" style={{ maxWidth: '850px', margin: '0 auto 25px' }}>
@@ -195,7 +231,7 @@ function App() {
               </div>
             )}
 
-            {/* 2. ปุ่มสลับสื่อ 2 ปุ่ม ใต้กรอบสื่อ */}
+            {/* 2. ปุ่มสลับสื่อ 2 ปุ่ม */}
             <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', marginBottom: '25px' }}>
               <button 
                 onClick={() => setViewMode('360')}
@@ -231,29 +267,26 @@ function App() {
               </button>
             </div>
 
-            {/* 3. แถบฟิลเตอร์ 8 ปุ่ม (ลบ VDO ออก) */}
+            {/* 3. แถบฟิลเตอร์ 8 ปุ่ม */}
             <div className="filter-bar" style={{ margin: '15px 0 20px', textAlign: 'center', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px' }}>
-              {filterNames[lang]
-                .filter((_, i) => filterNames['TH'][i] !== 'VDO')
-                .map((btn) => {
-                  const originalIndex = filterNames[lang].indexOf(btn);
-                  const val = filterNames['TH'][originalIndex];
-                  const active = val === 'หอพักทั้งหมด' ? filters.length === 0 : filters.includes(val);
-                  const disabled = isFilterDisabled(val);
-                  return (
-                    <button 
-                      key={val} 
-                      className={`${active ? 'active' : ''} ${disabled ? 'disabled-btn' : ''}`} 
-                      onClick={() => !disabled && toggleFilter(val)}
-                      style={{ opacity: disabled ? 0.5 : 1, cursor: disabled ? 'not-allowed' : 'pointer' }}
-                    >
-                      {btn}
-                    </button>
-                  );
-                })}
+              {filterNames[lang].map((btn, i) => {
+                const val = filterNames['TH'][i];
+                const active = val === 'หอพักทั้งหมด' ? filters.length === 0 : filters.includes(val);
+                const disabled = isFilterDisabled(val);
+                return (
+                  <button 
+                    key={val} 
+                    className={`${active ? 'active' : ''} ${disabled ? 'disabled-btn' : ''}`} 
+                    onClick={() => !disabled && toggleFilter(val)}
+                    style={{ opacity: disabled ? 0.5 : 1, cursor: disabled ? 'not-allowed' : 'pointer' }}
+                  >
+                    {btn}
+                  </button>
+                );
+              })}
             </div>
 
-            {/* 4. แถบการ์ดเลือกหอพักอื่นๆ ตามฟิลเตอร์ (กดเปลี่ยนหอได้ทันที) */}
+            {/* 4. แถบการ์ดเลือกหอพักอื่นๆ ตามฟิลเตอร์ */}
             <div style={{ margin: '20px auto 40px', maxWidth: '1200px' }}>
               <div style={{ fontSize: '16px', fontWeight: 'bold', color: '#1A2B4C', marginBottom: '12px', textAlign: 'center' }}>
                 {lang === 'TH' ? 'เลือกดูหอพักอื่นตามฟิลเตอร์:' : 'Select other dorms matching filter:'}
