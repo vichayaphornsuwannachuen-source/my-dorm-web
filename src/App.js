@@ -15,40 +15,51 @@ function App() {
 
   // ข้อมูลหอพัก
   const dorms = [
-    { id: 1, nameTH: "หอพักลำดวน 1", nameEN: "Lamduan 1", type: "ชาย", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/FMvNZ9VAhdbZoBBn7", videoUrl: "c83wIDJAulY", videoUrl2: "y2WOY5ZD2JY", image: "/l1.jpg"},
-    { id: 2, nameTH: "หอพักลำดวน 2", nameEN: "Lamduan 2", type: "ชาย", air: "พัดลม", cap: "4 คน", gps: "", videoUrl: "adBy_LhDNFk", videoUrl2: "LKBnhgooV9s", image: "/l2.jpg" },
-    { id: 3, nameTH: "หอพักลำดวน 3", nameEN: "Lamduan 3", type: "ชาย", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/w7Pd9LGRBPyakJ5S9", videoUrl: "vWi9TEGzyqE", videoUrl2: "6Sv27ce7d-0", image: "/l3.jpg"},
-    { id: 4, nameTH: "หอพักลำดวน 4", nameEN: "Lamduan 4", type: "ชาย", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/mFb1v18Xo8N6Bkqe6", videoUrl: "DYtkO99Yin8", videoUrl2: "xDZx5DXJlIg", image: "/l4.jpg" },
-    { id: 5, nameTH: "หอพักลำดวน 5", nameEN: "Lamduan 5", type: "ชาย", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/WJBTMbxnZBFoPxn78", videoUrl: "bqeFDHDg54M", videoUrl2: "UNSp-t9aZtE", image: "/l5.jpg"},
-    { id: 6, nameTH: "หอพักลำดวน 6", nameEN: "Lamduan 6", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/d2esT7tLTb2FdAKV9", videoUrl: "Omc5_QTpdAU", videoUrl2: "iZ3v9HeHPqc", image: "/l6.jpg"},
-    { id: 7, nameTH: "หอพักลำดวน 7", nameEN: "Lamduan 7", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/cJP3Gh92MPNBKdjD7", videoUrl: "bfyCzX0e1y4", videoUrl2: "pEDmizScPO0", image: "/l7.jpg" },
-    { id: 8, nameTH: "หอพัก F1", nameEN: "Dorm F1", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/JY7VbfxykiiCSgaM9", videoUrl: "rGE6J_3kkzs", videoUrl2: "VPXZ_bDyH-o", image: "/f1.jpg", tour360Url: "/testf1-2/index.html"},
-    { id: 9, nameTH: "หอพัก F2", nameEN: "Dorm F2", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/REtk2znMin5zwpj99", videoUrl: "L-UQOpQavCo", videoUrl2: "O2s0waA2JQY", image: "/f2.jpg", tour360Url: "/testf1-2/index.html"},
-    { id: 10, nameTH: "หอพัก F3", nameEN: "Dorm F3", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/ZLCvWtj1sYQbJzot9", videoUrl: "2bVpgKXNlaE", image: "/f3.jpg" },
-    { id: 11, nameTH: "หอพัก F4", nameEN: "Dorm F4", type: "ชาย", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/AdxsmwS6mw7bB4NUA", videoUrl: "okWuaFANYeU", videoUrl2: "UHsDxgSaXoo", image: "/f4.jpg" },
-    { id: 12, nameTH: "หอพัก F5", nameEN: "Dorm F5", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/2Scm791aSiEKYUQb6", videoUrl: "Eh-dGqtZRGw", videoUrl2: "QZO_UqV0Grk", image: "/f5.jpg" },
-    { id: 13, nameTH: "หอพัก F6", nameEN: "Dorm F6", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/eLWD815Zwmxmvx88A", videoUrl: "MVmN_R7hFj4", videoUrl2: "8VsFaJWkrhw", image: "/f6.jpg" },
-    { id: 14, nameTH: "หอพักสักทอง 1", nameEN: "Sakthong 1", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/yu5DyqudiV6zqbJs6", videoUrl: "suRcASJX8jw", videoUrl2: "iK8rZhhb3lY", image: "/sk1.jpg"},
-    { id: 15, nameTH: "หอพักสักทอง 2", nameEN: "Sakthong 2", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/xxxx19", videoUrl: "SC_TH55_ml4", videoUrl2: "ir0N4hU9lyU", image: "/sk2.jpg"},
-    { id: 16, nameTH: "หอพักสักทอง 3", nameEN: "Sakthong 3", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/YdtoPXqvVmdLK4ev5", videoUrl: "Sh24ka-bJTU", videoUrl2: "o-G9wkIcEnI", image: "/sk3.jpg"},
-    { id: 17, nameTH: "หอพักบุญทรง", nameEN: "Boonsong", type: "หญิง", air: "ปรับอากาศ", cap: "3 คน", gps: "https://maps.app.goo.gl/eLWD815Zwmxmvx88A", videoUrl: "VuJgnJsSxEY", videoUrl2: "qG0kWAXMv3A", image: "/bs.jpeg", tour360Url: "/BoonsongWebGL/index.html" },
-    { id: 18, nameTH: "หอพักประเสริฐ", nameEN: "Prasert", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/oc9qWcV6rpBwW2Fs6", videoUrl: "xzIjoF0wodw", videoUrl2: "OvDNQPW3Bbo", image: "/ps.jpg" },
-    { id: 19, nameTH: "หอพักพล.ต.อ.เภาฯ", nameEN:"Pol.Gen.Phao", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/xxxx23", videoUrl: "Zky_CKvgG38", videoUrl2: "cbCi2DUdCpc", image: "/nana.jpg" },
+    { id: 1, dormCode: "L1", nameTH: "หอพักลำดวน 1", nameEN: "Lamduan 1", type: "ชาย", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/FMvNZ9VAhdbZoBBn7", videoUrl: "c83wIDJAulY", videoUrl2: "y2WOY5ZD2JY", image: "/l1.jpg"},
+    { id: 2, dormCode: "L2", nameTH: "หอพักลำดวน 2", nameEN: "Lamduan 2", type: "ชาย", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/w7Pd9LGRBPyakJ5S9", videoUrl: "vWi9TEGzyqE", videoUrl2: "6Sv27ce7d-0", image: "/l2.jpg"},
+    { id: 3, dormCode: "L3", nameTH: "หอพักลำดวน 3", nameEN: "Lamduan 3", type: "ชาย", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/w7Pd9LGRBPyakJ5S9", videoUrl: "vWi9TEGzyqE", videoUrl2: "6Sv27ce7d-0", image: "/l3.jpg"},
+    { id: 4, dormCode: "L4", nameTH: "หอพักลำดวน 4", nameEN: "Lamduan 4", type: "ชาย", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/mFb1v18Xo8N6Bkqe6", videoUrl: "DYtkO99Yin8", videoUrl2: "xDZx5DXJlIg", image: "/l4.jpg" },
+    { id: 5, dormCode: "L5", nameTH: "หอพักลำดวน 5", nameEN: "Lamduan 5", type: "ชาย", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/WJBTMbxnZBFoPxn78", videoUrl: "bqeFDHDg54M", videoUrl2: "UNSp-t9aZtE", image: "/l5.jpg"},
+    { id: 6, dormCode: "L6", nameTH: "หอพักลำดวน 6", nameEN: "Lamduan 6", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/d2esT7tLTb2FdAKV9", videoUrl: "Omc5_QTpdAU", videoUrl2: "iZ3v9HeHPqc", image: "/l6.jpg"},
+    { id: 7, dormCode: "L7", nameTH: "หอพักลำดวน 7", nameEN: "Lamduan 7", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/cJP3Gh92MPNBKdjD7", videoUrl: "bfyCzX0e1y4", videoUrl2: "pEDmizScPO0", image: "/l7.jpg" },
+    { id: 8, dormCode: "F1", nameTH: "หอพัก F1", nameEN: "Dorm F1", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/JY7VbfxykiiCSgaM9", videoUrl: "rGE6J_3kkzs", videoUrl2: "VPXZ_bDyH-o", image: "/f1.jpg", tour360Url: "/testf1-2/index.html"},
+    { id: 9, dormCode: "F2", nameTH: "หอพัก F2", nameEN: "Dorm F2", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/REtk2znMin5zwpj99", videoUrl: "L-UQOpQavCo", videoUrl2: "O2s0waA2JQY", image: "/f2.jpg", tour360Url: "/testf1-2/index.html"},
+    { id: 10, dormCode: "F3", nameTH: "หอพัก F3", nameEN: "Dorm F3", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/ZLCvWtj1sYQbJzot9", videoUrl: "2bVpgKXNlaE", image: "/f3.jpg" },
+    { id: 11, dormCode: "F4", nameTH: "หอพัก F4", nameEN: "Dorm F4", type: "ชาย", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/AdxsmwS6mw7bB4NUA", videoUrl: "okWuaFANYeU", videoUrl2: "UHsDxgSaXoo", image: "/f4.jpg" },
+    { id: 12, dormCode: "F5", nameTH: "หอพัก F5", nameEN: "Dorm F5", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/2Scm791aSiEKYUQb6", videoUrl: "Eh-dGqtZRGw", videoUrl2: "QZO_UqV0Grk", image: "/f5.jpg" },
+    { id: 13, dormCode: "F6", nameTH: "หอพัก F6", nameEN: "Dorm F6", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/eLWD815Zwmxmvx88A", videoUrl: "MVmN_R7hFj4", videoUrl2: "8VsFaJWkrhw", image: "/f6.jpg" },
+    { id: 14, dormCode: "SK1", nameTH: "หอพักสักทอง 1", nameEN: "Sakthong 1", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/yu5DyqudiV6zqbJs6", videoUrl: "suRcASJX8jw", videoUrl2: "iK8rZhhb3lY", image: "/sk1.jpg"},
+    { id: 15, dormCode: "SK2", nameTH: "หอพักสักทอง 2", nameEN: "Sakthong 2", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/xxxx19", videoUrl: "SC_TH55_ml4", videoUrl2: "ir0N4hU9lyU", image: "/sk2.jpg"},
+    { id: 16, dormCode: "SK3", nameTH: "หอพักสักทอง 3", nameEN: "Sakthong 3", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/YdtoPXqvVmdLK4ev5", videoUrl: "Sh24ka-bJTU", videoUrl2: "o-G9wkIcEnI", image: "/sk3.jpg"},
+    { id: 17, dormCode: "BS", nameTH: "หอพักบุญทรง", nameEN: "Boonsong", type: "หญิง", air: "ปรับอากาศ", cap: "3 คน", gps: "https://maps.app.goo.gl/xxxx20", videoUrl: "VuJgnJsSxEY", videoUrl2: "qG0kWAXMv3A", image: "/bs.jpeg", tour360Url: "/BoonsongWebGL/index.html"},
+    { id: 18, dormCode: "PS", nameTH: "หอพักประเสริฐ", nameEN: "Prasert", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/oc9qWcV6rpBwW2Fs6", videoUrl: "xzIjoF0wodw", videoUrl2: "OvDNQPW3Bbo", image: "/ps.jpg" },
+    { id: 19, dormCode: "NANA", nameTH: "หอพักพล.ต.อ.เภาฯ", nameEN: "Pol.Gen.Phao", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/xxxx23", videoUrl: "Zky_CKvgG38", videoUrl2: "cbCi2DUdCpc", image: "/nana.jpg" },
   ];
 
   // 🌟 ฟังก์ชันส่งคำสั่งเข้าไปใน Unity iframe
   const sendToUnity = (message) => {
     const iframe = document.getElementById("unity-iframe");
     if (!iframe || !iframe.contentWindow) {
-      console.error("Unity iframe ยังไม่พร้อมหรือหาไม่เจอ");
+      console.warn("Unity iframe ยังไม่พร้อมส่งคำสั่ง:", message);
       return;
     }
     iframe.contentWindow.postMessage({ type: "TO_UNITY", payload: message }, "*");
     console.log("📤 React ส่งไป Unity:", message);
   };
 
-  // ผูกไว้กับ window เพื่อใช้พิมพ์ทดสอบใน Console ได้เลย ไม่ต้องมีปุ่มบนจอ
+  // ผูกไว้กับ window เพื่อใช้พิมพ์ทดสอบใน Console
   window.sendToUnity = sendToUnity;
+
+  // 🌟 สั่งเปลี่ยนห้องใน Unity อัตโนมัติเมื่อเลือกหอหรือเปิดโหมด 360
+  useEffect(() => {
+    if (selectedDorm && selectedDorm.dormCode && viewMode === '360') {
+      const timer = setTimeout(() => {
+        sendToUnity(selectedDorm.dormCode);
+      }, 600);
+
+      return () => clearTimeout(timer);
+    }
+  }, [selectedDorm, viewMode]);
 
   // 🌟 ดักฟังข้อความตอบกลับจาก Unity
   useEffect(() => {
@@ -58,8 +69,7 @@ function App() {
 
       console.log("📥 Unity ส่งกลับมา:", msg);
       if (msg === "PONG") console.log("✅ เชื่อมต่อ Unity สำเร็จ");
-      if (msg === "RECEIVED:F1") console.log("✅ Unity รับคำสั่ง F1 แล้ว");
-      if (msg === "RECEIVED:F2") console.log("✅ Unity รับคำสั่ง F2 แล้ว");
+      if (msg.startsWith("RECEIVED:")) console.log(`✅ Unity รับคำสั่ง ${msg.replace("RECEIVED:", "")} แล้ว`);
     };
 
     window.addEventListener("message", handleUnityMessage);
@@ -107,7 +117,7 @@ function App() {
     <div className="App">
       {/* Navbar & Side Menu */}
       <nav className="nav-bar">
-        <div className="logo-section" onClick={() => {setSelectedDorm(null); setFilters([]); setViewMode('360');}} style={{ cursor: 'pointer' }}>
+        <div className="logo-section" onClick={() => { setSelectedDorm(null); setFilters([]); setViewMode('360'); }} style={{ cursor: 'pointer' }}>
           <img src="/logo.png" alt="Logo" className="mfu-logo" /><span className="home-text">Home Page</span>
         </div>
         <div className="nav-right">
@@ -192,7 +202,6 @@ function App() {
                 width: '100%', 
                 maxWidth: selectedDorm.videoUrl2 ? '1200px' : '750px' 
               }}>
-                {/* คลิปที่ 1 */}
                 <div style={{ flex: '1', textAlign: 'center' }}>
                   <div style={{ background: '#1A2B4C', color: '#FFFFFF', padding: '12px 20px', borderRadius: '14px', fontSize: '18px', fontWeight: 'bold', marginBottom: '15px' }}>
                     {lang === 'TH' ? 'หน้าตึก → หน้าห้อง' : 'Building → Door'}
@@ -202,7 +211,6 @@ function App() {
                   </div>
                 </div>
 
-                {/* คลิปที่ 2 (ถ้ามี) */}
                 {selectedDorm.videoUrl2 && (
                   <div style={{ flex: '1', textAlign: 'center' }}>
                     <div style={{ background: '#1A2B4C', color: '#FFFFFF', padding: '12px 20px', borderRadius: '14px', fontSize: '18px', fontWeight: 'bold', marginBottom: '15px' }}>
