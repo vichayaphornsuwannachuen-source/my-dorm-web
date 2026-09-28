@@ -26,6 +26,7 @@ function App() {
       },
       noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 9 พฤษภาคม 2569 อยู่ระหว่างรีโนเวท",
       noteEN: "Data & recorded on May 9, 2026 (Under renovation)"
+      isRenovating: true, //
     },
     {
       id: 2, dormCode: "L2", nameTH: "หอพักลำดวน 2", nameEN: "Lamduan 2", type: "ชาย", air: "พัดลม", cap: "4 คน",
@@ -136,6 +137,7 @@ function App() {
       },
       noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 13 พฤษภาคม 2569 อยู่ระหว่างรีโนเวท",
       noteEN: "Data & recorded on May 13, 2026 (Under renovation)"
+      isRenovating: true, //
     },
     {
       id: 11, dormCode: "F4", nameTH: "หอพัก F4", nameEN: "Dorm F4", type: "ชาย", air: "พัดลม", cap: "4 คน",
@@ -571,7 +573,7 @@ function App() {
               </div>
             </div>
 
-            {/* กล่องหมายเหตุดอกจันสีแดง (วันที่เก็บข้อมูล / สถานะรีโนเวท) */}
+           {/* กล่องหมายเหตุดอกจันสีแดง (วันที่เก็บข้อมูล / สถานะรีโนเวท) */}
             {selectedDorm.noteTH && (
               <div style={{ 
                 margin: '0 auto 40px', 
@@ -580,10 +582,17 @@ function App() {
                 borderLeft: '4px solid #E53E3E', 
                 borderRadius: '8px', 
                 color: '#C53030', 
-                fontSize: '15px', 
-                fontWeight: '500' 
+                fontSize: '15px' 
               }}>
-                📌 <strong>{lang === 'TH' ? 'สำคัญ:' : 'Important:'}</strong> {lang === 'TH' ? selectedDorm.noteTH : selectedDorm.noteEN}
+                📌 <strong>{lang === 'TH' ? 'สำคัญ:' : 'Important:'}</strong>{' '}
+                {lang === 'TH' ? selectedDorm.noteTH : selectedDorm.noteEN}
+                
+                {/* แสดงตัวหนาเน้นชัดๆ ถ้าหอนั้นอยู่ระหว่างรีโนเวท */}
+                {selectedDorm.isRenovating && (
+                  <strong style={{ marginLeft: '8px', textDecoration: 'underline' }}>
+                    {lang === 'TH' ? '(อยู่ระหว่างรีโนเวท)' : '(Under renovation)'}
+                  </strong>
+                )}
               </div>
             )}
 
