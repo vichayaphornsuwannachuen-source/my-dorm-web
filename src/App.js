@@ -577,38 +577,37 @@ function App() {
           {selectedDorm.noteTH && (
             <div style={{ 
               margin: '0 auto 40px', 
-              padding: '14px 24px', 
+              padding: '12px 24px', 
               background: '#FFF5F5', 
-              borderLeft: '6px solid #DC2626', 
+              borderLeft: '5px solid #E53E3E', 
               borderRadius: '10px', 
-              color: '#991B1B', 
+              color: '#C53030', 
               fontSize: '16px',
               display: 'flex',
               alignItems: 'center',
               flexWrap: 'wrap',
-              gap: '12px'
+              gap: '10px'
             }}>
               <span>
-                📌 <strong style={{ fontWeight: 800 }}>{lang === 'TH' ? 'สำคัญ:' : 'Important:'}</strong> {lang === 'TH' ? selectedDorm.noteTH : selectedDorm.noteEN}
+                📌 <strong style={{ textShadow: '0.6px 0px 0px currentColor' }}>
+                  {lang === 'TH' ? 'สำคัญ:' : 'Important:'}
+                </strong> {lang === 'TH' ? selectedDorm.noteTH : selectedDorm.noteEN}
               </span>
               
-              {/* ป้ายกล่องสีแดงพื้นทึบ อักษรขาว ชัดเจนแน่นอน ไม่ต้องง้อฟอนต์หนา */}
+              {/* สั่งทำตัวหนาด้วย Text-Shadow แบบขอบซ้อน หนาแน่นอน 100%! */}
               {selectedDorm.isRenovating && (
                 <span style={{ 
-                  backgroundColor: '#DC2626', 
-                  color: '#FFFFFF', 
-                  padding: '4px 12px', 
-                  borderRadius: '20px', 
-                  fontSize: '14px',
-                  fontWeight: 'bold',
-                  display: 'inline-block',
-                  boxShadow: '0 2px 6px rgba(220, 38, 38, 0.3)'
+                  color: '#991B1B',
+                  textShadow: '0.8px 0px 0px currentColor, -0.8px 0px 0px currentColor',
+                  textDecoration: 'underline',
+                  fontSize: '17px'
                 }}>
-                  {lang === 'TH' ? '⚠️ อยู่ระหว่างรีโนเวท' : '⚠️ Under Renovation'}
+                  {lang === 'TH' ? '(อยู่ระหว่างรีโนเวท)' : '(Under renovation)'}
                 </span>
               )}
             </div>
           )}
+
             {/* GPS Location */}
             <div className="gps-section">
               <div className="gps-label" style={{ background: '#1A2B4C', color: 'white', padding: '10px 30px', borderRadius: '10px', display: 'inline-block', fontWeight: 'bold', marginBottom: '15px' }}>GPS Location</div>
