@@ -57,11 +57,11 @@ function App() {
       facilities: {
         roomTH: ["พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
         roomEN: ["Ceiling Fan", "En-suite Bathroom", "Sink", "Water Heater", "Bunk Bed", "Desk & Chair", "Wardrobe"],
-        commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า", "ห้องส่วนกลาง"],
-        commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washing Machine", "Common Room"]
+        commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า", "ตู้แลกเหรียญ", "ห้องส่วนกลาง"],
+        commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washing Machine","Coin Exchange Machine", "Common Room"]
       },
-      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 9 พฤษภาคม 2569",
-      noteEN: "Data & recorded on May 9, 2026"
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 10 พฤษภาคม 2569",
+      noteEN: "Data & recorded on May 10, 2026"
     },
     {
       id: 5, dormCode: "L5", nameTH: "หอพักลำดวน 5", nameEN: "Lamduan 5", type: "หญิง", air: "พัดลม", cap: "4 คน",
@@ -93,8 +93,8 @@ function App() {
       facilities: {
         roomTH: ["เครื่องปรับอากาศ (Air)", "พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "ตู้เย็นมินิ", "เครื่องทำน้ำอุ่น", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
         roomEN: ["Air Conditioner", "Ceiling Fan", "En-suite Bathroom", "Sink", "Mini Refrigerator", "Water Heater", "Bunk Bed", "Desk & Chair", "Wardrobe"],
-        commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า", "ห้องส่วนกลาง"],
-        commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washing Machine", "Common Room"]
+        commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า", "ตู้แลกเหรียญ", "ห้องส่วนกลาง"],
+        commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washing Machine", "Coin Exchange Machine", "Common Room"]
       },
       noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 10 พฤษภาคม 2569",
       noteEN: "Data & recorded on May 10, 2026"
