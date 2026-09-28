@@ -13,30 +13,242 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [viewMode, setViewMode] = useState('360');
 
-  // ข้อมูลหอพัก
+  // ข้อมูลหอพักพร้อมสิ่งอำนวยความสะดวกตามข้อมูลบันทึกจริง
   const dorms = [
-    { id: 1, dormCode: "L1", nameTH: "หอพักลำดวน 1", nameEN: "Lamduan 1", type: "ชาย", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/FMvNZ9VAhdbZoBBn7", videoUrl: "c83wIDJAulY", videoUrl2: "y2WOY5ZD2JY", image: "/l1.jpg"},
-    { id: 2, dormCode: "L2", nameTH: "หอพักลำดวน 2", nameEN: "Lamduan 2", type: "ชาย", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/w7Pd9LGRBPyakJ5S9", videoUrl: "vWi9TEGzyqE", videoUrl2: "6Sv27ce7d-0", image: "/l2.jpg"},
-    { id: 3, dormCode: "L3", nameTH: "หอพักลำดวน 3", nameEN: "Lamduan 3", type: "ชาย", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/w7Pd9LGRBPyakJ5S9", videoUrl: "vWi9TEGzyqE", videoUrl2: "6Sv27ce7d-0", image: "/l3.jpg"},
-    { id: 4, dormCode: "L4", nameTH: "หอพักลำดวน 4", nameEN: "Lamduan 4", type: "ชาย", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/mFb1v18Xo8N6Bkqe6", videoUrl: "DYtkO99Yin8", videoUrl2: "xDZx5DXJlIg", image: "/l4.jpg" },
-    { id: 5, dormCode: "L5", nameTH: "หอพักลำดวน 5", nameEN: "Lamduan 5", type: "ชาย", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/WJBTMbxnZBFoPxn78", videoUrl: "bqeFDHDg54M", videoUrl2: "UNSp-t9aZtE", image: "/l5.jpg"},
-    { id: 6, dormCode: "L6", nameTH: "หอพักลำดวน 6", nameEN: "Lamduan 6", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/d2esT7tLTb2FdAKV9", videoUrl: "Omc5_QTpdAU", videoUrl2: "iZ3v9HeHPqc", image: "/l6.jpg"},
-    { id: 7, dormCode: "L7", nameTH: "หอพักลำดวน 7", nameEN: "Lamduan 7", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/cJP3Gh92MPNBKdjD7", videoUrl: "bfyCzX0e1y4", videoUrl2: "pEDmizScPO0", image: "/l7.jpg" },
-    { id: 8, dormCode: "F1", nameTH: "หอพัก F1", nameEN: "Dorm F1", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/JY7VbfxykiiCSgaM9", videoUrl: "rGE6J_3kkzs", videoUrl2: "VPXZ_bDyH-o", image: "/f1.jpg", tour360Url: "/testf1-2/index.html"},
-    { id: 9, dormCode: "F2", nameTH: "หอพัก F2", nameEN: "Dorm F2", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/REtk2znMin5zwpj99", videoUrl: "L-UQOpQavCo", videoUrl2: "O2s0waA2JQY", image: "/f2.jpg", tour360Url: "/testf1-2/index.html"},
-    { id: 10, dormCode: "F3", nameTH: "หอพัก F3", nameEN: "Dorm F3", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/ZLCvWtj1sYQbJzot9", videoUrl: "2bVpgKXNlaE", image: "/f3.jpg" },
-    { id: 11, dormCode: "F4", nameTH: "หอพัก F4", nameEN: "Dorm F4", type: "ชาย", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/AdxsmwS6mw7bB4NUA", videoUrl: "okWuaFANYeU", videoUrl2: "UHsDxgSaXoo", image: "/f4.jpg" },
-    { id: 12, dormCode: "F5", nameTH: "หอพัก F5", nameEN: "Dorm F5", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/2Scm791aSiEKYUQb6", videoUrl: "Eh-dGqtZRGw", videoUrl2: "QZO_UqV0Grk", image: "/f5.jpg" },
-    { id: 13, dormCode: "F6", nameTH: "หอพัก F6", nameEN: "Dorm F6", type: "หญิง", air: "พัดลม", cap: "4 คน", gps: "https://maps.app.goo.gl/eLWD815Zwmxmvx88A", videoUrl: "MVmN_R7hFj4", videoUrl2: "8VsFaJWkrhw", image: "/f6.jpg" },
-    { id: 14, dormCode: "SK1", nameTH: "หอพักสักทอง 1", nameEN: "Sakthong 1", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/yu5DyqudiV6zqbJs6", videoUrl: "suRcASJX8jw", videoUrl2: "iK8rZhhb3lY", image: "/sk1.jpg"},
-    { id: 15, dormCode: "SK2", nameTH: "หอพักสักทอง 2", nameEN: "Sakthong 2", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน", gps: "https://maps.app.goo.gl/xxxx19", videoUrl: "SC_TH55_ml4", videoUrl2: "ir0N4hU9lyU", image: "/sk2.jpg"},
-    { id: 16, dormCode: "SK3", nameTH: "หอพักสักทอง 3", nameEN: "Sakthong 3", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/YdtoPXqvVmdLK4ev5", videoUrl: "Sh24ka-bJTU", videoUrl2: "o-G9wkIcEnI", image: "/sk3.jpg"},
-    { id: 17, dormCode: "BS", nameTH: "หอพักบุญทรง", nameEN: "Boonsong", type: "หญิง", air: "ปรับอากาศ", cap: "3 คน", gps: "https://maps.app.goo.gl/xxxx20", videoUrl: "VuJgnJsSxEY", videoUrl2: "qG0kWAXMv3A", image: "/bs.jpeg", tour360Url: "/BoonsongWebGL/index.html"},
-    { id: 18, dormCode: "PS", nameTH: "หอพักประเสริฐ", nameEN: "Prasert", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/oc9qWcV6rpBwW2Fs6", videoUrl: "xzIjoF0wodw", videoUrl2: "OvDNQPW3Bbo", image: "/ps.jpg" },
-    { id: 19, dormCode: "NANA", nameTH: "หอพักพล.ต.อ.เภาฯ", nameEN: "Pol.Gen.Phao", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน", gps: "https://maps.app.goo.gl/xxxx23", videoUrl: "Zky_CKvgG38", videoUrl2: "cbCi2DUdCpc", image: "/nana.jpg" },
+    {
+      id: 1, dormCode: "L1", nameTH: "หอพักลำดวน 1", nameEN: "Lamduan 1", type: "ชาย", air: "ปรับอากาศ", cap: "4 คน",
+      gps: "https://maps.app.goo.gl/FMvNZ9VAhdbZoBBn7", videoUrl: "c83wIDJAulY", videoUrl2: "y2WOY5ZD2JY", image: "/l1.jpg",
+      facilities: {
+        roomTH: ["เครื่องปรับอากาศ (Air)", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น"],
+        roomEN: ["Air Conditioner", "En-suite Bathroom", "Sink", "Water Heater"],
+        commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า", "ห้องส่วนกลาง"],
+        commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washing Machine", "Common Room"]
+      },
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 9 พฤษภาคม 2567 อยู่ระหว่างรีโนเวท",
+      noteEN: "Data & recorded on May 9, 2024 (Under renovation)"
+    },
+    {
+      id: 2, dormCode: "L2", nameTH: "หอพักลำดวน 2", nameEN: "Lamduan 2", type: "ชาย", air: "พัดลม", cap: "4 คน",
+      gps: "", videoUrl: "adBy_LhDNFk", videoUrl2: "LKBnhgooV9s", image: "/l2.jpg",
+      facilities: {
+        roomTH: ["พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
+        roomEN: ["Ceiling Fan", "En-suite Bathroom", "Sink", "Water Heater", "Bunk Bed", "Desk & Chair", "Wardrobe"],
+        commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า", "ห้องส่วนกลาง"],
+        commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washing Machine", "Common Room"]
+      },
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 9 พฤษภาคม 2567",
+      noteEN: "Data & recorded on May 9, 2024"
+    },
+    {
+      id: 3, dormCode: "L3", nameTH: "หอพักลำดวน 3", nameEN: "Lamduan 3", type: "ชาย", air: "ปรับอากาศ", cap: "4 คน",
+      gps: "https://maps.app.goo.gl/w7Pd9LGRBPyakJ5S9", videoUrl: "vWi9TEGzyqE", videoUrl2: "6Sv27ce7d-0", image: "/l3.jpg",
+      facilities: {
+        roomTH: ["เครื่องปรับอากาศ (Air)", "พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
+        roomEN: ["Air Conditioner", "Ceiling Fan", "En-suite Bathroom", "Sink", "Water Heater", "Bunk Bed", "Desk & Chair", "Wardrobe"],
+        commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า", "ห้องส่วนกลาง"],
+        commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washing Machine", "Common Room"]
+      },
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 9 พฤษภาคม 2567",
+      noteEN: "Data & recorded on May 9, 2024"
+    },
+    {
+      id: 4, dormCode: "L4", nameTH: "หอพักลำดวน 4", nameEN: "Lamduan 4", type: "ชาย", air: "พัดลม", cap: "4 คน",
+      gps: "https://maps.app.goo.gl/mFb1v18Xo8N6Bkqe6", videoUrl: "DYtkO99Yin8", videoUrl2: "xDZx5DXJlIg", image: "/l4.jpg",
+      facilities: {
+        roomTH: ["พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
+        roomEN: ["Ceiling Fan", "En-suite Bathroom", "Sink", "Water Heater", "Bunk Bed", "Desk & Chair", "Wardrobe"],
+        commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า", "ห้องส่วนกลาง"],
+        commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washing Machine", "Common Room"]
+      },
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 9 พฤษภาคม 2567",
+      noteEN: "Data & recorded on May 9, 2024"
+    },
+    {
+      id: 5, dormCode: "L5", nameTH: "หอพักลำดวน 5", nameEN: "Lamduan 5", type: "ชาย", air: "พัดลม", cap: "4 คน",
+      gps: "https://maps.app.goo.gl/WJBTMbxnZBFoPxn78", videoUrl: "bqeFDHDg54M", videoUrl2: "UNSp-t9aZtE", image: "/l5.jpg",
+      facilities: {
+        roomTH: ["พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
+        roomEN: ["Ceiling Fan", "En-suite Bathroom", "Sink", "Water Heater", "Bunk Bed", "Desk & Chair", "Wardrobe"],
+        commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า", "ห้องส่วนกลาง"],
+        commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washing Machine", "Common Room"]
+      },
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 10 พฤษภาคม 2567",
+      noteEN: "Data & recorded on May 10, 2024"
+    },
+    {
+      id: 6, dormCode: "L6", nameTH: "หอพักลำดวน 6", nameEN: "Lamduan 6", type: "หญิง", air: "พัดลม", cap: "4 คน",
+      gps: "https://maps.app.goo.gl/d2esT7tLTb2FdAKV9", videoUrl: "Omc5_QTpdAU", videoUrl2: "iZ3v9HeHPqc", image: "/l6.jpg",
+      facilities: {
+        roomTH: ["พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
+        roomEN: ["Ceiling Fan", "En-suite Bathroom", "Sink", "Water Heater", "Bunk Bed", "Desk & Chair", "Wardrobe"],
+        commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า", "ห้องส่วนกลาง"],
+        commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washing Machine", "Common Room"]
+      },
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 10 พฤษภาคม 2567",
+      noteEN: "Data & recorded on May 10, 2024"
+    },
+    {
+      id: 7, dormCode: "L7", nameTH: "หอพักลำดวน 7", nameEN: "Lamduan 7", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน",
+      gps: "https://maps.app.goo.gl/cJP3Gh92MPNBKdjD7", videoUrl: "bfyCzX0e1y4", videoUrl2: "pEDmizScPO0", image: "/l7.jpg",
+      facilities: {
+        roomTH: ["เครื่องปรับอากาศ (Air)", "พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "ตู้เย็นมินิ", "เครื่องทำน้ำอุ่น", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
+        roomEN: ["Air Conditioner", "Ceiling Fan", "En-suite Bathroom", "Sink", "Mini Refrigerator", "Water Heater", "Bunk Bed", "Desk & Chair", "Wardrobe"],
+        commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า", "ห้องส่วนกลาง"],
+        commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washing Machine", "Common Room"]
+      },
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 10 พฤษภาคม 2567",
+      noteEN: "Data & recorded on May 10, 2024"
+    },
+    {
+      id: 8, dormCode: "F1", nameTH: "หอพัก F1", nameEN: "Dorm F1", type: "หญิง", air: "พัดลม", cap: "4 คน",
+      gps: "https://maps.app.goo.gl/JY7VbfxykiiCSgaM9", videoUrl: "rGE6J_3kkzs", videoUrl2: "VPXZ_bDyH-o", image: "/f1.jpg",
+      tour360Url: "/testf1-2/index.html",
+      facilities: {
+        roomTH: ["พัดลมเพดาน", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
+        roomEN: ["Ceiling Fan", "Bunk Bed", "Desk & Chair", "Wardrobe"],
+        commonTH: ["ห้องน้ำส่วนรวม", "ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า-อบผ้า", "ห้องกลาง"],
+        commonEN: ["Shared Bathroom", "Refrigerator", "Water Dispenser", "Microwave", "Washer & Dryer", "Common Hall"]
+      },
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 13 พฤษภาคม 2567",
+      noteEN: "Data & recorded on May 13, 2024"
+    },
+    {
+      id: 9, dormCode: "F2", nameTH: "หอพัก F2", nameEN: "Dorm F2", type: "หญิง", air: "พัดลม", cap: "4 คน",
+      gps: "https://maps.app.goo.gl/REtk2znMin5zwpj99", videoUrl: "L-UQOpQavCo", videoUrl2: "O2s0waA2JQY", image: "/f2.jpg",
+      tour360Url: "/testf1-2/index.html",
+      facilities: {
+        roomTH: ["พัดลมเพดาน", "เตียงเดี่ยว", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
+        roomEN: ["Ceiling Fan", "Single Bed", "Desk & Chair", "Wardrobe"],
+        commonTH: ["ห้องน้ำส่วนรวม", "ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า-อบผ้า", "ตู้แลกเหรียญ", "ห้องกลาง"],
+        commonEN: ["Shared Bathroom", "Refrigerator", "Water Dispenser", "Microwave", "Washer & Dryer", "Coin Exchange Machine", "Common Hall"]
+      },
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 13 พฤษภาคม 2567",
+      noteEN: "Data & recorded on May 13, 2024"
+    },
+    {
+      id: 10, dormCode: "F3", nameTH: "หอพัก F3", nameEN: "Dorm F3", type: "หญิง", air: "พัดลม", cap: "4 คน",
+      gps: "https://maps.app.goo.gl/ZLCvWtj1sYQbJzot9", videoUrl: "2bVpgKXNlaE", image: "/f3.jpg",
+      facilities: {
+        roomTH: ["พัดลมเพดาน"],
+        roomEN: ["Ceiling Fan"],
+        commonTH: ["ห้องน้ำส่วนรวม"],
+        commonEN: ["Shared Bathroom"]
+      },
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 13 พฤษภาคม 2567 อยู่ระหว่างรีโนเวท",
+      noteEN: "Data & recorded on May 13, 2024 (Under renovation)"
+    },
+    {
+      id: 11, dormCode: "F4", nameTH: "หอพัก F4", nameEN: "Dorm F4", type: "ชาย", air: "พัดลม", cap: "4 คน",
+      gps: "https://maps.app.goo.gl/AdxsmwS6mw7bB4NUA", videoUrl: "okWuaFANYeU", videoUrl2: "UHsDxgSaXoo", image: "/f4.jpg",
+      facilities: {
+        roomTH: ["พัดลมเพดาน", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
+        roomEN: ["Ceiling Fan", "Bunk Bed", "Desk & Chair", "Wardrobe"],
+        commonTH: ["ห้องน้ำส่วนรวม", "ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า-อบผ้า", "ห้องกลาง"],
+        commonEN: ["Shared Bathroom", "Refrigerator", "Water Dispenser", "Microwave", "Washer & Dryer", "Common Hall"]
+      },
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 14 พฤษภาคม 2567",
+      noteEN: "Data & recorded on May 14, 2024"
+    },
+    {
+      id: 12, dormCode: "F5", nameTH: "หอพัก F5", nameEN: "Dorm F5", type: "หญิง", air: "พัดลม", cap: "4 คน",
+      gps: "https://maps.app.goo.gl/2Scm791aSiEKYUQb6", videoUrl: "Eh-dGqtZRGw", videoUrl2: "QZO_UqV0Grk", image: "/f5.jpg",
+      facilities: {
+        roomTH: ["พัดลมเพดาน", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
+        roomEN: ["Ceiling Fan", "Bunk Bed", "Desk & Chair", "Wardrobe"],
+        commonTH: ["ห้องน้ำส่วนรวม", "ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า-อบผ้า", "ห้องกลาง"],
+        commonEN: ["Shared Bathroom", "Refrigerator", "Water Dispenser", "Microwave", "Washer & Dryer", "Common Hall"]
+      },
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 14 พฤษภาคม 2567",
+      noteEN: "Data & recorded on May 14, 2024"
+    },
+    {
+      id: 13, dormCode: "F6", nameTH: "หอพัก F6", nameEN: "Dorm F6", type: "หญิง", air: "พัดลม", cap: "4 คน",
+      gps: "https://maps.app.goo.gl/eLWD815Zwmxmvx88A", videoUrl: "MVmN_R7hFj4", videoUrl2: "8VsFaJWkrhw", image: "/f6.jpg",
+      facilities: {
+        roomTH: ["พัดลมเพดาน", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
+        roomEN: ["Ceiling Fan", "Bunk Bed", "Desk & Chair", "Wardrobe"],
+        commonTH: ["ห้องน้ำส่วนรวม", "ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า-อบผ้า", "ห้องกลาง"],
+        commonEN: ["Shared Bathroom", "Refrigerator", "Water Dispenser", "Microwave", "Washer & Dryer", "Common Hall"]
+      },
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 14 พฤษภาคม 2567",
+      noteEN: "Data & recorded on May 14, 2024"
+    },
+    {
+      id: 14, dormCode: "SK1", nameTH: "หอพักสักทอง 1", nameEN: "Sakthong 1", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน",
+      gps: "https://maps.app.goo.gl/yu5DyqudiV6zqbJs6", videoUrl: "suRcASJX8jw", videoUrl2: "iK8rZhhb3lY", image: "/sk1.jpg",
+      facilities: {
+        roomTH: ["เครื่องปรับอากาศ (Air)", "พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
+        roomEN: ["Air Conditioner", "Ceiling Fan", "En-suite Bathroom", "Sink", "Water Heater", "Bunk Bed", "Desk & Chair", "Wardrobe"],
+        commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า-อบผ้า", "ตู้แลกเหรียญ", "ห้องส่วนกลาง"],
+        commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washer & Dryer", "Coin Exchange Machine", "Common Room"]
+      },
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 12 พฤษภาคม 2567",
+      noteEN: "Data & recorded on May 12, 2024"
+    },
+    {
+      id: 15, dormCode: "SK2", nameTH: "หอพักสักทอง 2", nameEN: "Sakthong 2", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน",
+      gps: "https://maps.app.goo.gl/xxxx19", videoUrl: "SC_TH55_ml4", videoUrl2: "ir0N4hU9lyU", image: "/sk2.jpg",
+      facilities: {
+        roomTH: ["เครื่องปรับอากาศ (Air)", "พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
+        roomEN: ["Air Conditioner", "Ceiling Fan", "En-suite Bathroom", "Sink", "Water Heater", "Bunk Bed", "Desk & Chair", "Wardrobe"],
+        commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า-อบผ้า", "ตู้แลกเหรียญ", "ห้องส่วนกลาง"],
+        commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washer & Dryer", "Coin Exchange Machine", "Common Room"]
+      },
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 12 พฤษภาคม 2567",
+      noteEN: "Data & recorded on May 12, 2024"
+    },
+    {
+      id: 16, dormCode: "SK3", nameTH: "หอพักสักทอง 3", nameEN: "Sakthong 3", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน",
+      gps: "https://maps.app.goo.gl/YdtoPXqvVmdLK4ev5", videoUrl: "Sh24ka-bJTU", videoUrl2: "o-G9wkIcEnI", image: "/sk3.jpg",
+      facilities: {
+        roomTH: ["เครื่องปรับอากาศ (Air)", "พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียงเดี่ยว", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
+        roomEN: ["Air Conditioner", "Ceiling Fan", "En-suite Bathroom", "Sink", "Water Heater", "Single Bed", "Desk & Chair", "Wardrobe"],
+        commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า-อบผ้า", "ตู้แลกเหรียญ", "ห้องส่วนกลาง"],
+        commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washer & Dryer", "Coin Exchange Machine", "Common Room"]
+      },
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 12 พฤษภาคม 2567",
+      noteEN: "Data & recorded on May 12, 2024"
+    },
+    {
+      id: 17, dormCode: "BS", nameTH: "หอพักบุญทรง", nameEN: "Boonsong", type: "หญิง", air: "ปรับอากาศ", cap: "3 คน",
+      gps: "https://maps.app.goo.gl/eLWD815Zwmxmvx88A", videoUrl: "VuJgnJsSxEY", videoUrl2: "qG0kWAXMv3A", image: "/bs.jpeg",
+      tour360Url: "/BoonsongWebGL/index.html",
+      facilities: {
+        roomTH: ["เครื่องปรับอากาศ (Air)", "พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียงเดี่ยว", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
+        roomEN: ["Air Conditioner", "Ceiling Fan", "En-suite Bathroom", "Sink", "Water Heater", "Single Bed", "Desk & Chair", "Wardrobe"],
+        commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า-อบผ้า", "ห้องส่วนกลาง"],
+        commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washer & Dryer", "Common Room"]
+      },
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 11 พฤษภาคม 2567",
+      noteEN: "Data & recorded on May 11, 2024"
+    },
+    {
+      id: 18, dormCode: "PS", nameTH: "หอพักประเสริฐ", nameEN: "Prasert", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน",
+      gps: "https://maps.app.goo.gl/oc9qWcV6rpBwW2Fs6", videoUrl: "xzIjoF0wodw", videoUrl2: "OvDNQPW3Bbo", image: "/ps.jpg",
+      facilities: {
+        roomTH: ["เครื่องปรับอากาศ (Air)", "พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียงเดี่ยว", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
+        roomEN: ["Air Conditioner", "Ceiling Fan", "En-suite Bathroom", "Sink", "Water Heater", "Single Bed", "Desk & Chair", "Wardrobe"],
+        commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า-อบผ้า", "ห้องส่วนกลาง"],
+        commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washer & Dryer", "Common Room"]
+      },
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 11 พฤษภาคม 2567",
+      noteEN: "Data & recorded on May 11, 2024"
+    },
+    {
+      id: 19, dormCode: "NANA", nameTH: "หอพักพล.ต.อ.เภาฯ", nameEN: "Pol.Gen.Phao", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน",
+      gps: "https://maps.app.goo.gl/xxxx23", videoUrl: "Zky_CKvgG38", videoUrl2: "cbCi2DUdCpc", image: "/nana.jpg",
+      facilities: {
+        roomTH: ["เครื่องปรับอากาศ (Air)", "พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียงเดี่ยว", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
+        roomEN: ["Air Conditioner", "Ceiling Fan", "En-suite Bathroom", "Sink", "Water Heater", "Single Bed", "Desk & Chair", "Wardrobe"],
+        commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า-อบผ้า", "ตู้แลกเหรียญ", "ห้องส่วนกลาง"],
+        commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washer & Dryer", "Coin Exchange Machine", "Common Room"]
+      },
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 11 พฤษภาคม 2567",
+      noteEN: "Data & recorded on May 11, 2024"
+    }
   ];
 
-  // 🌟 ฟังก์ชันส่งคำสั่งเข้าไปใน Unity iframe
+  // ฟังก์ชันส่งคำสั่งเข้าไปใน Unity iframe
   const sendToUnity = (message) => {
     const iframe = document.getElementById("unity-iframe");
     if (!iframe || !iframe.contentWindow) {
@@ -47,10 +259,9 @@ function App() {
     console.log("📤 React ส่งไป Unity:", message);
   };
 
-  // ผูกไว้กับ window เพื่อใช้พิมพ์ทดสอบใน Console
   window.sendToUnity = sendToUnity;
 
-  // 🌟 สั่งเปลี่ยนห้องใน Unity อัตโนมัติเมื่อเลือกหอหรือเปิดโหมด 360
+  // สั่งเปลี่ยนห้องใน Unity อัตโนมัติเมื่อเลือกหอหรือเปิดโหมด 360
   useEffect(() => {
     if (selectedDorm && selectedDorm.dormCode && viewMode === '360') {
       const timer = setTimeout(() => {
@@ -61,7 +272,7 @@ function App() {
     }
   }, [selectedDorm, viewMode]);
 
-  // 🌟 ดักฟังข้อความตอบกลับจาก Unity
+  // ดักฟังข้อความตอบกลับจาก Unity
   useEffect(() => {
     const handleUnityMessage = (event) => {
       const msg = event.data?.payload || event.detail;
@@ -329,36 +540,52 @@ function App() {
 
             <hr style={{ border: 'none', borderTop: '1px solid #E1EDFF', margin: '30px 0' }} />
 
-            {/* สิ่งอำนวยความสะดวก */}
+            {/* 🌟 5. สิ่งอำนวยความสะดวก (ดึงตามข้อมูลจริงแต่ละหอ) */}
             <div className="fac-tag" style={{ background: '#1A2B4C', color: 'white', padding: '12px 35px', borderRadius: '12px', display: 'inline-block', fontSize: '22px', marginBottom: '25px', fontWeight: '600' }}>
               {lang === 'TH' ? 'สิ่งอำนวยความสะดวก' : 'Facilities'}
             </div>
             
-            <div className="fac-box-container" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px', border: '2px solid #E1EDFF', borderRadius: '30px', padding: '40px', marginBottom: '40px', background: '#fcfcfc' }}>
+            <div className="fac-box-container" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px', border: '2px solid #E1EDFF', borderRadius: '30px', padding: '40px', marginBottom: '25px', background: '#fcfcfc' }}>
+              {/* สิ่งอำนวยความสะดวก: ภายในห้อง */}
               <div className="fac-col">
-                <h4 style={{ color: '#1A2B4C', borderBottom: '2px solid #E1EDFF', paddingBottom: '10px', fontSize: '24px', marginTop: '0' }}>{lang === 'TH' ? 'ภายในห้อง' : 'In Room'}</h4>
+                <h4 style={{ color: '#1A2B4C', borderBottom: '2px solid #E1EDFF', paddingBottom: '10px', fontSize: '24px', marginTop: '0' }}>
+                  {lang === 'TH' ? 'ภายในห้อง (ส่วนตัว)' : 'In Room (Private)'}
+                </h4>
                 <ul style={{ listStyle: 'none', padding: '0', fontSize: '18px', lineHeight: '2.2', color: '#444' }}>
-                  <li>• {lang === 'TH' ? 'เตียง' : 'Bed'}</li>
-                  <li>• {lang === 'TH' ? 'โต๊ะ-เก้าอี้' : 'Table & Chair'}</li>
-                  <li>• {lang === 'TH' ? 'ตู้เสื้อผ้า' : 'Wardrobe'}</li>
-                  <li>• {lang === 'TH' ? 'พัดลม' : 'Fan'}</li>
-                  {selectedDorm.air === 'ปรับอากาศ' && <li>• {lang === 'TH' ? 'เครื่องปรับอากาศ' : 'Air Conditioner'}</li>}
-                  <li>• {lang === 'TH' ? 'ห้องน้ำ' : 'Toilet'}</li>
-                  <li>• {lang === 'TH' ? 'เครื่องทำน้ำอุ่น' : 'Water Heater'}</li>
-                  <li>• {lang === 'TH' ? 'ที่ล้างจาน' : 'Sink'}</li>
+                  {selectedDorm.facilities && (lang === 'TH' ? selectedDorm.facilities.roomTH : selectedDorm.facilities.roomEN)?.map((item, idx) => (
+                    <li key={idx}>• {item}</li>
+                  ))}
                 </ul>
               </div>
+
+              {/* สิ่งอำนวยความสะดวก: ส่วนรวม */}
               <div className="fac-col">
-                <h4 style={{ color: '#1A2B4C', borderBottom: '2px solid #E1EDFF', paddingBottom: '10px', fontSize: '24px', marginTop: '0' }}>{lang === 'TH' ? 'ส่วนรวม' : 'Common Area'}</h4>
+                <h4 style={{ color: '#1A2B4C', borderBottom: '2px solid #E1EDFF', paddingBottom: '10px', fontSize: '24px', marginTop: '0' }}>
+                  {lang === 'TH' ? 'ส่วนรวม' : 'Common Area'}
+                </h4>
                 <ul style={{ listStyle: 'none', padding: '0', fontSize: '18px', lineHeight: '2.2', color: '#444' }}>
-                  <li>• {lang === 'TH' ? 'ไมโครเวฟ' : 'Microwave'}</li>
-                  <li>• {lang === 'TH' ? 'ตู้เย็น' : 'Refrigerator'}</li>
-                  <li>• {lang === 'TH' ? 'เครื่องซักผ้า - อบผ้า' : 'Washing Machine'}</li>
-                  <li>• {lang === 'TH' ? 'เครื่องกดน้ำ' : 'Water Dispenser'}</li>
-                  <li>• {lang === 'TH' ? 'ห้องส่วนกลาง' : 'Common Room'}</li>
+                  {selectedDorm.facilities && (lang === 'TH' ? selectedDorm.facilities.commonTH : selectedDorm.facilities.commonEN)?.map((item, idx) => (
+                    <li key={idx}>• {item}</li>
+                  ))}
                 </ul>
               </div>
             </div>
+
+            {/* กล่องหมายเหตุดอกจันสีแดง (วันที่เก็บข้อมูล / สถานะรีโนเวท) */}
+            {selectedDorm.noteTH && (
+              <div style={{ 
+                margin: '0 auto 40px', 
+                padding: '12px 24px', 
+                background: '#FFF5F5', 
+                borderLeft: '4px solid #E53E3E', 
+                borderRadius: '8px', 
+                color: '#C53030', 
+                fontSize: '15px', 
+                fontWeight: '500' 
+              }}>
+                📌 <strong>{lang === 'TH' ? 'สำคัญ:' : 'Important:'}</strong> {lang === 'TH' ? selectedDorm.noteTH : selectedDorm.noteEN}
+              </div>
+            )}
 
             {/* GPS Location */}
             <div className="gps-section">
