@@ -26,7 +26,7 @@ function App() {
       },
       noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 9 พฤษภาคม 2569 อยู่ระหว่างรีโนเวท",
       noteEN: "Data & recorded on May 9, 2026 (Under renovation)"
-      isRenovating: true, //
+      isRenovating: true, 
     },
     {
       id: 2, dormCode: "L2", nameTH: "หอพักลำดวน 2", nameEN: "Lamduan 2", type: "ชาย", air: "พัดลม", cap: "4 คน",
@@ -137,7 +137,7 @@ function App() {
       },
       noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 13 พฤษภาคม 2569 อยู่ระหว่างรีโนเวท",
       noteEN: "Data & recorded on May 13, 2026 (Under renovation)"
-      isRenovating: true, //
+      isRenovating: true, 
     },
     {
       id: 11, dormCode: "F4", nameTH: "หอพัก F4", nameEN: "Dorm F4", type: "ชาย", air: "พัดลม", cap: "4 คน",
@@ -573,29 +573,42 @@ function App() {
               </div>
             </div>
 
-           {/* กล่องหมายเหตุดอกจันสีแดง (วันที่เก็บข้อมูล / สถานะรีโนเวท) */}
-            {selectedDorm.noteTH && (
-              <div style={{ 
-                margin: '0 auto 40px', 
-                padding: '12px 24px', 
-                background: '#FFF5F5', 
-                borderLeft: '4px solid #E53E3E', 
-                borderRadius: '8px', 
-                color: '#C53030', 
-                fontSize: '15px' 
-              }}>
-                📌 <strong>{lang === 'TH' ? 'สำคัญ:' : 'Important:'}</strong>{' '}
-                {lang === 'TH' ? selectedDorm.noteTH : selectedDorm.noteEN}
-                
-                {/* แสดงตัวหนาเน้นชัดๆ ถ้าหอนั้นอยู่ระหว่างรีโนเวท */}
-                {selectedDorm.isRenovating && (
-                  <strong style={{ marginLeft: '8px', textDecoration: 'underline' }}>
-                    {lang === 'TH' ? '(อยู่ระหว่างรีโนเวท)' : '(Under renovation)'}
-                  </strong>
-                )}
-              </div>
-            )}
-
+          {/* กล่องหมายเหตุดอกจันสีแดง */}
+          {selectedDorm.noteTH && (
+            <div style={{ 
+              margin: '0 auto 40px', 
+              padding: '14px 24px', 
+              background: '#FFF5F5', 
+              borderLeft: '6px solid #DC2626', 
+              borderRadius: '10px', 
+              color: '#991B1B', 
+              fontSize: '16px',
+              display: 'flex',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              gap: '12px'
+            }}>
+              <span>
+                📌 <strong style={{ fontWeight: 800 }}>{lang === 'TH' ? 'สำคัญ:' : 'Important:'}</strong> {lang === 'TH' ? selectedDorm.noteTH : selectedDorm.noteEN}
+              </span>
+              
+              {/* ป้ายกล่องสีแดงพื้นทึบ อักษรขาว ชัดเจนแน่นอน ไม่ต้องง้อฟอนต์หนา */}
+              {selectedDorm.isRenovating && (
+                <span style={{ 
+                  backgroundColor: '#DC2626', 
+                  color: '#FFFFFF', 
+                  padding: '4px 12px', 
+                  borderRadius: '20px', 
+                  fontSize: '14px',
+                  fontWeight: 'bold',
+                  display: 'inline-block',
+                  boxShadow: '0 2px 6px rgba(220, 38, 38, 0.3)'
+                }}>
+                  {lang === 'TH' ? '⚠️ อยู่ระหว่างรีโนเวท' : '⚠️ Under Renovation'}
+                </span>
+              )}
+            </div>
+          )}
             {/* GPS Location */}
             <div className="gps-section">
               <div className="gps-label" style={{ background: '#1A2B4C', color: 'white', padding: '10px 30px', borderRadius: '10px', display: 'inline-block', fontWeight: 'bold', marginBottom: '15px' }}>GPS Location</div>
