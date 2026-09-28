@@ -24,9 +24,9 @@ function App() {
         commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า", "ห้องส่วนกลาง"],
         commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washing Machine", "Common Room"]
       },
-      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 9 พฤษภาคม 2569 อยู่ระหว่างรีโนเวท",
-      noteEN: "Data & recorded on May 9, 2026 (Under renovation)"
-      isRenovating: true, 
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 9 พฤษภาคม 2569 ",
+      noteEN: "Data & recorded on May 9, 2026 "
+      isRenovating: true
     },
     {
       id: 2, dormCode: "L2", nameTH: "หอพักลำดวน 2", nameEN: "Lamduan 2", type: "ชาย", air: "พัดลม", cap: "4 คน",
@@ -135,9 +135,9 @@ function App() {
         commonTH: ["ห้องน้ำส่วนรวม"],
         commonEN: ["Shared Bathroom"]
       },
-      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 13 พฤษภาคม 2569 อยู่ระหว่างรีโนเวท",
-      noteEN: "Data & recorded on May 13, 2026 (Under renovation)"
-      isRenovating: true, 
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 13 พฤษภาคม 2569 ",
+      noteEN: "Data & recorded on May 13, 2026 "
+      isRenovating: true 
     },
     {
       id: 11, dormCode: "F4", nameTH: "หอพัก F4", nameEN: "Dorm F4", type: "ชาย", air: "พัดลม", cap: "4 คน",
