@@ -24,8 +24,8 @@ function App() {
         commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า", "ห้องส่วนกลาง"],
         commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washing Machine", "Common Room"]
       },
-      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 9 พฤษภาคม 2567 อยู่ระหว่างรีโนเวท",
-      noteEN: "Data & recorded on May 9, 2024 (Under renovation)"
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 9 พฤษภาคม 2569 อยู่ระหว่างรีโนเวท",
+      noteEN: "Data & recorded on May 9, 2026 (Under renovation)"
     },
     {
       id: 2, dormCode: "L2", nameTH: "หอพักลำดวน 2", nameEN: "Lamduan 2", type: "ชาย", air: "พัดลม", cap: "4 คน",
@@ -36,8 +36,8 @@ function App() {
         commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า", "ห้องส่วนกลาง"],
         commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washing Machine", "Common Room"]
       },
-      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 9 พฤษภาคม 2567",
-      noteEN: "Data & recorded on May 9, 2024"
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 9 พฤษภาคม 2569",
+      noteEN: "Data & recorded on May 9, 2026"
     },
     {
       id: 3, dormCode: "L3", nameTH: "หอพักลำดวน 3", nameEN: "Lamduan 3", type: "ชาย", air: "ปรับอากาศ", cap: "4 คน",
@@ -48,8 +48,8 @@ function App() {
         commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า", "ห้องส่วนกลาง"],
         commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washing Machine", "Common Room"]
       },
-      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 9 พฤษภาคม 2567",
-      noteEN: "Data & recorded on May 9, 2024"
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 9 พฤษภาคม 2569",
+      noteEN: "Data & recorded on May 9, 2026"
     },
     {
       id: 4, dormCode: "L4", nameTH: "หอพักลำดวน 4", nameEN: "Lamduan 4", type: "ชาย", air: "พัดลม", cap: "4 คน",
@@ -60,11 +60,11 @@ function App() {
         commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า", "ห้องส่วนกลาง"],
         commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washing Machine", "Common Room"]
       },
-      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 9 พฤษภาคม 2567",
-      noteEN: "Data & recorded on May 9, 2024"
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 9 พฤษภาคม 2569",
+      noteEN: "Data & recorded on May 9, 2026"
     },
     {
-      id: 5, dormCode: "L5", nameTH: "หอพักลำดวน 5", nameEN: "Lamduan 5", type: "ชาย", air: "พัดลม", cap: "4 คน",
+      id: 5, dormCode: "L5", nameTH: "หอพักลำดวน 5", nameEN: "Lamduan 5", type: "หญิง", air: "พัดลม", cap: "4 คน",
       gps: "https://maps.app.goo.gl/WJBTMbxnZBFoPxn78", videoUrl: "bqeFDHDg54M", videoUrl2: "UNSp-t9aZtE", image: "/l5.jpg",
       facilities: {
         roomTH: ["พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
@@ -72,8 +72,8 @@ function App() {
         commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า", "ห้องส่วนกลาง"],
         commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washing Machine", "Common Room"]
       },
-      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 10 พฤษภาคม 2567",
-      noteEN: "Data & recorded on May 10, 2024"
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 10 พฤษภาคม 2569",
+      noteEN: "Data & recorded on May 10, 2026"
     },
     {
       id: 6, dormCode: "L6", nameTH: "หอพักลำดวน 6", nameEN: "Lamduan 6", type: "หญิง", air: "พัดลม", cap: "4 คน",
@@ -84,8 +84,8 @@ function App() {
         commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า", "ห้องส่วนกลาง"],
         commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washing Machine", "Common Room"]
       },
-      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 10 พฤษภาคม 2567",
-      noteEN: "Data & recorded on May 10, 2024"
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 10 พฤษภาคม 2569",
+      noteEN: "Data & recorded on May 10, 2026"
     },
     {
       id: 7, dormCode: "L7", nameTH: "หอพักลำดวน 7", nameEN: "Lamduan 7", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน",
@@ -96,8 +96,8 @@ function App() {
         commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า", "ห้องส่วนกลาง"],
         commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washing Machine", "Common Room"]
       },
-      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 10 พฤษภาคม 2567",
-      noteEN: "Data & recorded on May 10, 2024"
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 10 พฤษภาคม 2569",
+      noteEN: "Data & recorded on May 10, 2026"
     },
     {
       id: 8, dormCode: "F1", nameTH: "หอพัก F1", nameEN: "Dorm F1", type: "หญิง", air: "พัดลม", cap: "4 คน",
@@ -109,8 +109,8 @@ function App() {
         commonTH: ["ห้องน้ำส่วนรวม", "ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า-อบผ้า", "ห้องกลาง"],
         commonEN: ["Shared Bathroom", "Refrigerator", "Water Dispenser", "Microwave", "Washer & Dryer", "Common Hall"]
       },
-      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 13 พฤษภาคม 2567",
-      noteEN: "Data & recorded on May 13, 2024"
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 13 พฤษภาคม 2569",
+      noteEN: "Data & recorded on May 13, 2026"
     },
     {
       id: 9, dormCode: "F2", nameTH: "หอพัก F2", nameEN: "Dorm F2", type: "หญิง", air: "พัดลม", cap: "4 คน",
@@ -122,8 +122,8 @@ function App() {
         commonTH: ["ห้องน้ำส่วนรวม", "ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า-อบผ้า", "ตู้แลกเหรียญ", "ห้องกลาง"],
         commonEN: ["Shared Bathroom", "Refrigerator", "Water Dispenser", "Microwave", "Washer & Dryer", "Coin Exchange Machine", "Common Hall"]
       },
-      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 13 พฤษภาคม 2567",
-      noteEN: "Data & recorded on May 13, 2024"
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 13 พฤษภาคม 2569",
+      noteEN: "Data & recorded on May 13, 2026"
     },
     {
       id: 10, dormCode: "F3", nameTH: "หอพัก F3", nameEN: "Dorm F3", type: "หญิง", air: "พัดลม", cap: "4 คน",
@@ -134,8 +134,8 @@ function App() {
         commonTH: ["ห้องน้ำส่วนรวม"],
         commonEN: ["Shared Bathroom"]
       },
-      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 13 พฤษภาคม 2567 อยู่ระหว่างรีโนเวท",
-      noteEN: "Data & recorded on May 13, 2024 (Under renovation)"
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 13 พฤษภาคม 2569 อยู่ระหว่างรีโนเวท",
+      noteEN: "Data & recorded on May 13, 2026 (Under renovation)"
     },
     {
       id: 11, dormCode: "F4", nameTH: "หอพัก F4", nameEN: "Dorm F4", type: "ชาย", air: "พัดลม", cap: "4 คน",
@@ -146,8 +146,8 @@ function App() {
         commonTH: ["ห้องน้ำส่วนรวม", "ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า-อบผ้า", "ห้องกลาง"],
         commonEN: ["Shared Bathroom", "Refrigerator", "Water Dispenser", "Microwave", "Washer & Dryer", "Common Hall"]
       },
-      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 14 พฤษภาคม 2567",
-      noteEN: "Data & recorded on May 14, 2024"
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 14 พฤษภาคม 2569",
+      noteEN: "Data & recorded on May 14, 2026"
     },
     {
       id: 12, dormCode: "F5", nameTH: "หอพัก F5", nameEN: "Dorm F5", type: "หญิง", air: "พัดลม", cap: "4 คน",
@@ -158,8 +158,8 @@ function App() {
         commonTH: ["ห้องน้ำส่วนรวม", "ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า-อบผ้า", "ห้องกลาง"],
         commonEN: ["Shared Bathroom", "Refrigerator", "Water Dispenser", "Microwave", "Washer & Dryer", "Common Hall"]
       },
-      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 14 พฤษภาคม 2567",
-      noteEN: "Data & recorded on May 14, 2024"
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 14 พฤษภาคม 2569",
+      noteEN: "Data & recorded on May 14, 2026"
     },
     {
       id: 13, dormCode: "F6", nameTH: "หอพัก F6", nameEN: "Dorm F6", type: "หญิง", air: "พัดลม", cap: "4 คน",
@@ -170,8 +170,8 @@ function App() {
         commonTH: ["ห้องน้ำส่วนรวม", "ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า-อบผ้า", "ห้องกลาง"],
         commonEN: ["Shared Bathroom", "Refrigerator", "Water Dispenser", "Microwave", "Washer & Dryer", "Common Hall"]
       },
-      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 14 พฤษภาคม 2567",
-      noteEN: "Data & recorded on May 14, 2024"
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 14 พฤษภาคม 2569",
+      noteEN: "Data & recorded on May 14, 2026"
     },
     {
       id: 14, dormCode: "SK1", nameTH: "หอพักสักทอง 1", nameEN: "Sakthong 1", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน",
@@ -182,8 +182,8 @@ function App() {
         commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า-อบผ้า", "ตู้แลกเหรียญ", "ห้องส่วนกลาง"],
         commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washer & Dryer", "Coin Exchange Machine", "Common Room"]
       },
-      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 12 พฤษภาคม 2567",
-      noteEN: "Data & recorded on May 12, 2024"
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 12 พฤษภาคม 2569",
+      noteEN: "Data & recorded on May 12, 2026"
     },
     {
       id: 15, dormCode: "SK2", nameTH: "หอพักสักทอง 2", nameEN: "Sakthong 2", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน",
@@ -194,8 +194,8 @@ function App() {
         commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า-อบผ้า", "ตู้แลกเหรียญ", "ห้องส่วนกลาง"],
         commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washer & Dryer", "Coin Exchange Machine", "Common Room"]
       },
-      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 12 พฤษภาคม 2567",
-      noteEN: "Data & recorded on May 12, 2024"
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 12 พฤษภาคม 2569",
+      noteEN: "Data & recorded on May 12, 2026"
     },
     {
       id: 16, dormCode: "SK3", nameTH: "หอพักสักทอง 3", nameEN: "Sakthong 3", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน",
@@ -206,8 +206,8 @@ function App() {
         commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า-อบผ้า", "ตู้แลกเหรียญ", "ห้องส่วนกลาง"],
         commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washer & Dryer", "Coin Exchange Machine", "Common Room"]
       },
-      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 12 พฤษภาคม 2567",
-      noteEN: "Data & recorded on May 12, 2024"
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 12 พฤษภาคม 2569",
+      noteEN: "Data & recorded on May 12, 2026"
     },
     {
       id: 17, dormCode: "BS", nameTH: "หอพักบุญทรง", nameEN: "Boonsong", type: "หญิง", air: "ปรับอากาศ", cap: "3 คน",
@@ -219,8 +219,8 @@ function App() {
         commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า-อบผ้า", "ห้องส่วนกลาง"],
         commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washer & Dryer", "Common Room"]
       },
-      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 11 พฤษภาคม 2567",
-      noteEN: "Data & recorded on May 11, 2024"
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 11 พฤษภาคม 2569",
+      noteEN: "Data & recorded on May 11, 2026"
     },
     {
       id: 18, dormCode: "PS", nameTH: "หอพักประเสริฐ", nameEN: "Prasert", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน",
@@ -231,8 +231,8 @@ function App() {
         commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า-อบผ้า", "ห้องส่วนกลาง"],
         commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washer & Dryer", "Common Room"]
       },
-      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 11 พฤษภาคม 2567",
-      noteEN: "Data & recorded on May 11, 2024"
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 11 พฤษภาคม 2569",
+      noteEN: "Data & recorded on May 11, 2026"
     },
     {
       id: 19, dormCode: "NANA", nameTH: "หอพักพล.ต.อ.เภาฯ", nameEN: "Pol.Gen.Phao", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน",
@@ -243,8 +243,8 @@ function App() {
         commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า-อบผ้า", "ตู้แลกเหรียญ", "ห้องส่วนกลาง"],
         commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washer & Dryer", "Coin Exchange Machine", "Common Room"]
       },
-      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 11 พฤษภาคม 2567",
-      noteEN: "Data & recorded on May 11, 2024"
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 11 พฤษภาคม 2569",
+      noteEN: "Data & recorded on May 11, 2026"
     }
   ];
 
