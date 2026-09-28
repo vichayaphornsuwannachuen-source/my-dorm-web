@@ -577,7 +577,7 @@ function App() {
           {selectedDorm.noteTH && (
             <div style={{ 
               margin: '0 auto 40px', 
-              padding: '12px 24px', 
+              padding: '14px 24px', 
               background: '#FFF5F5', 
               borderLeft: '5px solid #E53E3E', 
               borderRadius: '10px', 
@@ -586,28 +586,34 @@ function App() {
               display: 'flex',
               alignItems: 'center',
               flexWrap: 'wrap',
-              gap: '10px'
+              gap: '12px'
             }}>
               <span>
-                📌 <strong style={{ textShadow: '0.6px 0px 0px currentColor' }}>
+                📌 <strong style={{ 
+                  WebkitTextStroke: '0.6px #C53030',
+                  fontWeight: 'bold' 
+                }}>
                   {lang === 'TH' ? 'สำคัญ:' : 'Important:'}
                 </strong> {lang === 'TH' ? selectedDorm.noteTH : selectedDorm.noteEN}
               </span>
-              
-              {/* สั่งทำตัวหนาด้วย Text-Shadow แบบขอบซ้อน หนาแน่นอน 100%! */}
+
               {selectedDorm.isRenovating && (
                 <span style={{ 
-                  color: '#991B1B',
-                  textShadow: '0.8px 0px 0px currentColor, -0.8px 0px 0px currentColor',
-                  textDecoration: 'underline',
-                  fontSize: '17px'
+                  backgroundColor: '#E53E3E', 
+                  color: '#FFFFFF', 
+                  padding: '4px 14px', 
+                  borderRadius: '20px', 
+                  fontSize: '14px',
+                  WebkitTextStroke: '0.8px #FFFFFF', /* สั่งวาดเส้นขอบสีขาวทับลงไป ตัวหนังสือจะอ้วนหนาขึ้นทันที */
+                  fontWeight: 'bold',
+                  display: 'inline-block',
+                  boxShadow: '0 2px 6px rgba(229, 62, 62, 0.4)'
                 }}>
-                  {lang === 'TH' ? '(อยู่ระหว่างรีโนเวท)' : '(Under renovation)'}
+                  {lang === 'TH' ? '⚠️ อยู่ระหว่างรีโนเวท' : '⚠️ Under Renovation'}
                 </span>
               )}
             </div>
           )}
-
             {/* GPS Location */}
             <div className="gps-section">
               <div className="gps-label" style={{ background: '#1A2B4C', color: 'white', padding: '10px 30px', borderRadius: '10px', display: 'inline-block', fontWeight: 'bold', marginBottom: '15px' }}>GPS Location</div>
