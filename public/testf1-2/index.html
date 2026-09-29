@@ -79,7 +79,7 @@
         createUnityInstance(canvas, config, (progress) => {
           document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
         }).then((unityInstance) => {
-          // 1. เก็บ instance ไว้อ้างอิงภายนอก
+          // ผูก instance ไว้ให้ JavaScript ภายนอกเรียกใช้งานได้
           window.unityInstance = unityInstance;
 
           document.querySelector("#unity-loading-bar").style.display = "none";
@@ -92,16 +92,16 @@
       };
 
       document.body.appendChild(script);
+    </script>
 
-      // 2. สะพานเชื่อมต่อผ่าน iframe ไปยัง React
-      // รับข้อความจาก React ส่งต่อเข้า WebBridge ของ Unity
+    <!-- สะพานเชื่อม React ↔ Unity รับคำสั่งสลับหอพัก -->
+    <script>
       window.addEventListener("message", function(event) {
         if (event.data && event.data.type === "TO_UNITY" && window.unityInstance) {
           window.unityInstance.SendMessage("WebBridge", "ReceiveFromWeb", event.data.payload);
         }
       });
 
-      // รับ CustomEvent จาก Unity ส่งต่อออกไปยัง React แม่
       window.addEventListener("UnityMessage", function(event) {
         if (window.parent) {
           window.parent.postMessage({ type: "FROM_UNITY", payload: event.detail }, "*");
