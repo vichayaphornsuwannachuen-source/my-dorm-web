@@ -27,7 +27,7 @@ function App() {
       },
       noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 9 พฤษภาคม 2569 ",
       noteEN: "Data & recorded on May 9, 2026 "
-      isRenovating: true
+      isRenovating: true,
     },
     {
       id: 2, dormCode: "L2", nameTH: "หอพักลำดวน 2", nameEN: "Lamduan 2", type: "ชาย", air: "พัดลม", cap: "4 คน",
@@ -145,7 +145,7 @@ function App() {
       },
       noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 13 พฤษภาคม 2569 ",
       noteEN: "Data & recorded on May 13, 2026 "
-      isRenovating: true 
+      isRenovating: true,
     },
     {
       id: 11, dormCode: "F4", nameTH: "หอพัก F4", nameEN: "Dorm F4", type: "ชาย", air: "พัดลม", cap: "4 คน",
