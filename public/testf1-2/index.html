@@ -46,12 +46,12 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/test.loader.js";
+      var loaderUrl = buildUrl + "/testdorm.loader.js";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/test.data",
-        frameworkUrl: buildUrl + "/test.framework.js",
-        codeUrl: buildUrl + "/test.wasm",
+        dataUrl: buildUrl + "/testdorm.data",
+        frameworkUrl: buildUrl + "/testdorm.framework.js",
+        codeUrl: buildUrl + "/testdorm.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "Dorm",
@@ -79,7 +79,7 @@
         createUnityInstance(canvas, config, (progress) => {
           document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
         }).then((unityInstance) => {
-          // ผูก instance ไว้ให้ JavaScript ภายนอกเรียกใช้งานได้
+          // ผูก instance สำหรับเรียกใช้งานจากภายนอก
           window.unityInstance = unityInstance;
 
           document.querySelector("#unity-loading-bar").style.display = "none";
@@ -94,7 +94,7 @@
       document.body.appendChild(script);
     </script>
 
-    <!-- สะพานเชื่อม React ↔ Unity รับคำสั่งสลับหอพัก -->
+    <!-- สะพานเชื่อมคำสั่ง React ↔ Unity -->
     <script>
       window.addEventListener("message", function(event) {
         if (event.data && event.data.type === "TO_UNITY" && window.unityInstance) {
