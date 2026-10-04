@@ -26,7 +26,7 @@ function App() {
         commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washing Machine", "Common Room"]
       },
       noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 9 พฤษภาคม 2569 ",
-      noteEN: "Data & recorded on May 9, 2026 "
+      noteEN: "Data & recorded on May 9, 2026 ",
       isRenovating: true,
     },
     {
@@ -144,7 +144,7 @@ function App() {
         commonEN: ["Shared Bathroom"]
       },
       noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 13 พฤษภาคม 2569 ",
-      noteEN: "Data & recorded on May 13, 2026 "
+      noteEN: "Data & recorded on May 13, 2026 ",
       isRenovating: true,
     },
     {
