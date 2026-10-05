@@ -103,13 +103,17 @@
           window.unityInstance = unityInstance;
           document.querySelector("#unity-loading-bar").style.display = "none";
           
-          // ดึงรหัสหอพักจาก URL (?dorm=F3) มาเปิดทันทีที่โหลดเสร็จ
+          // ดึงค่า dorm จาก URL
           var urlParams = new URLSearchParams(window.location.search);
           var targetDorm = urlParams.get('dorm');
-          if (targetDorm) {
-            console.log("🚀 Unity เริ่มต้นด้วยหอ:", targetDorm);
-            unityInstance.SendMessage("WebBridge", "ReceiveFromWeb", targetDorm);
-          }
+
+          // หน่วงเวลา 400ms เพื่อให้ C# WebBridge ตื่นขึ้นมาพร้อมรับคำสั่ง
+          setTimeout(function() {
+            if (targetDorm) {
+              console.log("🚀 Unity โหลดเสร็จแล้ว สั่งสลับห้องไป:", targetDorm);
+              unityInstance.SendMessage("WebBridge", "ReceiveFromWeb", targetDorm);
+            }
+          }, 400);
 
           if (window.parent) {
             window.parent.postMessage({ type: "UNITY_READY" }, "*");

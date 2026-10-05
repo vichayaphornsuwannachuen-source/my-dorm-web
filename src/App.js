@@ -462,15 +462,14 @@ function App() {
               </div>
             ) : selectedDorm.tour360Url ? (
               <div className="tour-360-wrapper" style={{ width: '100%', maxWidth: '1200px', margin: '0 auto 25px', borderRadius: '24px', overflow: 'hidden', border: '3px solid #1A2B4C', boxShadow: '0 12px 35px rgba(0,0,0,0.2)', background: '#000' }}>
-                <iframe 
-                  key={selectedDorm.dormCode}
-                  id="unity-iframe" 
-                  title="Unity 360 Virtual Tour" 
-                  src={`${selectedDorm.tour360Url}?dorm=${selectedDorm.dormCode}&v=202610`} 
-                  style={{ width: '100%', height: '700px', border: 'none', display: 'block', overflow: 'hidden' }} 
-                  scrolling="no" 
-                  allowFullScreen 
-                />
+           <iframe 
+              key={`${selectedDorm.dormCode}-${selectedDorm.tour360Url}`}
+              id="unity-iframe" 
+              title="Unity 360 Virtual Tour" 
+              src={`${selectedDorm.tour360Url}?dorm=${selectedDorm.dormCode}&v=202611`} 
+              style={{ width: '100%', height: '700px', border: 'none', display: 'block', overflow: 'hidden' }} 
+              allowFullScreen 
+            />
               </div>
             ) : (
               <div className="room-frame" style={{ maxWidth: '850px', margin: '0 auto 25px' }}>
