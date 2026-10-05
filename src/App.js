@@ -280,9 +280,15 @@ function App() {
 
   window.sendToUnity = sendToUnity;
 
-  // จัดการการส่งคำสั่งและรับสัญญาณจาก Unity
+    // 1. ดึงหน้าจอกลับขึ้นบนสุดทันทีเมื่อมีการกดเลือกหอพัก (แก้ปัญหามือถือเด้งลงไปที่ Map)
   useEffect(() => {
-    // ส่งคำสั่งทันทีหากเป็นการสลับหอพักตอนที่ iframe โหลดเสร็จอยู่แล้ว
+    if (selectedDorm) {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }
+  }, [selectedDorm]);
+
+  // 2. จัดการส่งคำสั่งเปลี่ยนห้องเมื่อสลับหอพักในโหมด 360
+  useEffect(() => {
     if (selectedDorm && selectedDorm.dormCode && viewMode === '360') {
       const timer = setTimeout(() => {
         sendToUnity(selectedDorm.dormCode);
@@ -291,6 +297,7 @@ function App() {
     }
   }, [selectedDorm, viewMode]);
 
+  // 3. ดักฟังสัญญาณตอบกลับและสัญญาณพร้อมทำงานจาก Unity (UNITY_READY)
   useEffect(() => {
     const handleUnityMessage = (event) => {
       // เมื่อ Unity เพิ่งเปิดเครื่องเสร็จและส่งสัญญาณความพร้อม
@@ -640,11 +647,19 @@ function App() {
               </div>
             )}
 
-            {/* GPS Location */}
+           {/* GPS Location */}
             <div className="gps-section">
               <div className="gps-label" style={{ background: '#1A2B4C', color: 'white', padding: '10px 30px', borderRadius: '10px', display: 'inline-block', fontWeight: 'bold', marginBottom: '15px' }}>GPS Location</div>
               <div className="map-container" style={{ borderRadius: '25px', overflow: 'hidden', border: '2px solid #1A2B4C', margin: '15px 0' }}>
-                <iframe title="map" src={`https://maps.google.com/maps?q=${encodeURIComponent(selectedDorm.nameTH + " มหาวิทยาลัยแม่ฟ้าหลวง")}&output=embed`} width="100%" height="450" style={{ border: 0 }} allowFullScreen="" loading="lazy"></iframe>
+                <iframe 
+                  title="map" 
+                  src={`https://maps.google.com/maps?q=${encodeURIComponent(selectedDorm.nameTH + " มหาวิทยาลัยแม่ฟ้าหลวง")}&output=embed`} 
+                  width="100%" 
+                  height="450" 
+                  style={{ border: 0 }} 
+                  allowFullScreen="" 
+                  tabIndex="-1"
+                />
               </div>
             </div>
           </div>
