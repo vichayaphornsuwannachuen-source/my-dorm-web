@@ -103,7 +103,14 @@
           window.unityInstance = unityInstance;
           document.querySelector("#unity-loading-bar").style.display = "none";
           
-          // แจ้ง React ทันทีว่า Unity พร้อมรับคำสั่งแล้ว
+          // ดึงรหัสหอพักจาก URL (?dorm=F3) มาเปิดทันทีที่โหลดเสร็จ
+          var urlParams = new URLSearchParams(window.location.search);
+          var targetDorm = urlParams.get('dorm');
+          if (targetDorm) {
+            console.log("🚀 Unity เริ่มต้นด้วยหอ:", targetDorm);
+            unityInstance.SendMessage("WebBridge", "ReceiveFromWeb", targetDorm);
+          }
+
           if (window.parent) {
             window.parent.postMessage({ type: "UNITY_READY" }, "*");
           }
