@@ -18,21 +18,19 @@ function App() {
     {
       id: 1, dormCode: "L1", nameTH: "หอพักลำดวน 1", nameEN: "Lamduan 1", type: "ชาย", air: "ปรับอากาศ", cap: "4 คน",
       gps: "https://maps.app.goo.gl/FMvNZ9VAhdbZoBBn7", videoUrl: "c83wIDJAulY", videoUrl2: "y2WOY5ZD2JY", image: "/l1.jpg",
-      
       facilities: {
         roomTH: ["เครื่องปรับอากาศ (Air)", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น"],
         roomEN: ["Air Conditioner", "En-suite Bathroom", "Sink", "Water Heater"],
         commonTH: ["ตู้เย็น", "ตู้กดน้ำ", "ไมโครเวฟ", "เครื่องซักผ้า", "ห้องส่วนกลาง"],
         commonEN: ["Refrigerator", "Water Dispenser", "Microwave", "Washing Machine", "Common Room"]
       },
-      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 9 พฤษภาคม 2569 ",
-      noteEN: "Data & recorded on May 9, 2026 ",
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 9 พฤษภาคม 2569",
+      noteEN: "Data & recorded on May 9, 2026",
       isRenovating: true,
     },
     {
       id: 2, dormCode: "L2", nameTH: "หอพักลำดวน 2", nameEN: "Lamduan 2", type: "ชาย", air: "พัดลม", cap: "4 คน",
       gps: "", videoUrl: "adBy_LhDNFk", videoUrl2: "LKBnhgooV9s", image: "/l2.jpg",
-      
       facilities: {
         roomTH: ["พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
         roomEN: ["Ceiling Fan", "En-suite Bathroom", "Sink", "Water Heater", "Bunk Bed", "Desk & Chair", "Wardrobe"],
@@ -45,7 +43,6 @@ function App() {
     {
       id: 3, dormCode: "L3", nameTH: "หอพักลำดวน 3", nameEN: "Lamduan 3", type: "ชาย", air: "ปรับอากาศ", cap: "4 คน",
       gps: "https://maps.app.goo.gl/w7Pd9LGRBPyakJ5S9", videoUrl: "vWi9TEGzyqE", videoUrl2: "6Sv27ce7d-0", image: "/l3.jpg",
-      
       facilities: {
         roomTH: ["เครื่องปรับอากาศ (Air)", "พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
         roomEN: ["Air Conditioner", "Ceiling Fan", "En-suite Bathroom", "Sink", "Water Heater", "Bunk Bed", "Desk & Chair", "Wardrobe"],
@@ -58,7 +55,6 @@ function App() {
     {
       id: 4, dormCode: "L4", nameTH: "หอพักลำดวน 4", nameEN: "Lamduan 4", type: "ชาย", air: "พัดลม", cap: "4 คน",
       gps: "https://maps.app.goo.gl/mFb1v18Xo8N6Bkqe6", videoUrl: "DYtkO99Yin8", videoUrl2: "xDZx5DXJlIg", image: "/l4.jpg",
-      
       facilities: {
         roomTH: ["พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
         roomEN: ["Ceiling Fan", "En-suite Bathroom", "Sink", "Water Heater", "Bunk Bed", "Desk & Chair", "Wardrobe"],
@@ -71,7 +67,6 @@ function App() {
     {
       id: 5, dormCode: "L5", nameTH: "หอพักลำดวน 5", nameEN: "Lamduan 5", type: "หญิง", air: "พัดลม", cap: "4 คน",
       gps: "https://maps.app.goo.gl/WJBTMbxnZBFoPxn78", videoUrl: "bqeFDHDg54M", videoUrl2: "UNSp-t9aZtE", image: "/l5.jpg",
-      
       facilities: {
         roomTH: ["พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
         roomEN: ["Ceiling Fan", "En-suite Bathroom", "Sink", "Water Heater", "Bunk Bed", "Desk & Chair", "Wardrobe"],
@@ -84,7 +79,6 @@ function App() {
     {
       id: 6, dormCode: "L6", nameTH: "หอพักลำดวน 6", nameEN: "Lamduan 6", type: "หญิง", air: "พัดลม", cap: "4 คน",
       gps: "https://maps.app.goo.gl/d2esT7tLTb2FdAKV9", videoUrl: "Omc5_QTpdAU", videoUrl2: "iZ3v9HeHPqc", image: "/l6.jpg",
-     
       facilities: {
         roomTH: ["พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
         roomEN: ["Ceiling Fan", "En-suite Bathroom", "Sink", "Water Heater", "Bunk Bed", "Desk & Chair", "Wardrobe"],
@@ -97,7 +91,6 @@ function App() {
     {
       id: 7, dormCode: "L7", nameTH: "หอพักลำดวน 7", nameEN: "Lamduan 7", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน",
       gps: "https://maps.app.goo.gl/cJP3Gh92MPNBKdjD7", videoUrl: "bfyCzX0e1y4", videoUrl2: "pEDmizScPO0", image: "/l7.jpg",
-      
       facilities: {
         roomTH: ["เครื่องปรับอากาศ (Air)", "พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "ตู้เย็นมินิ", "เครื่องทำน้ำอุ่น", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
         roomEN: ["Air Conditioner", "Ceiling Fan", "En-suite Bathroom", "Sink", "Mini Refrigerator", "Water Heater", "Bunk Bed", "Desk & Chair", "Wardrobe"],
@@ -143,8 +136,8 @@ function App() {
         commonTH: ["ห้องน้ำส่วนรวม"],
         commonEN: ["Shared Bathroom"]
       },
-      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 13 พฤษภาคม 2569 ",
-      noteEN: "Data & recorded on May 13, 2026 ",
+      noteTH: "ข้อมูล & ถ่ายเมื่อวันที่ 13 พฤษภาคม 2569",
+      noteEN: "Data & recorded on May 13, 2026",
       isRenovating: true,
     },
     {
@@ -215,7 +208,6 @@ function App() {
     {
       id: 16, dormCode: "SK3", nameTH: "หอพักสักทอง 3", nameEN: "Sakthong 3", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน",
       gps: "https://maps.app.goo.gl/YdtoPXqvVmdLK4ev5", videoUrl: "Sh24ka-bJTU", videoUrl2: "o-G9wkIcEnI", image: "/sk3.jpg",
-      
       facilities: {
         roomTH: ["เครื่องปรับอากาศ (Air)", "พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียงเดี่ยว", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
         roomEN: ["Air Conditioner", "Ceiling Fan", "En-suite Bathroom", "Sink", "Water Heater", "Single Bed", "Desk & Chair", "Wardrobe"],
@@ -241,7 +233,6 @@ function App() {
     {
       id: 18, dormCode: "PS", nameTH: "หอพักประเสริฐ", nameEN: "Prasert", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน",
       gps: "https://maps.app.goo.gl/oc9qWcV6rpBwW2Fs6", videoUrl: "xzIjoF0wodw", videoUrl2: "OvDNQPW3Bbo", image: "/ps.jpg",
-      
       facilities: {
         roomTH: ["เครื่องปรับอากาศ (Air)", "พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียงเดี่ยว", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
         roomEN: ["Air Conditioner", "Ceiling Fan", "En-suite Bathroom", "Sink", "Water Heater", "Single Bed", "Desk & Chair", "Wardrobe"],
@@ -254,7 +245,6 @@ function App() {
     {
       id: 19, dormCode: "NANA", nameTH: "หอพักพล.ต.อ.เภาฯ", nameEN: "Pol.Gen.Phao", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน",
       gps: "https://maps.app.goo.gl/xxxx23", videoUrl: "Zky_CKvgG38", videoUrl2: "cbCi2DUdCpc", image: "/nana.jpg",
-      
       facilities: {
         roomTH: ["เครื่องปรับอากาศ (Air)", "พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียงเดี่ยว", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
         roomEN: ["Air Conditioner", "Ceiling Fan", "En-suite Bathroom", "Sink", "Water Heater", "Single Bed", "Desk & Chair", "Wardrobe"],
@@ -265,7 +255,6 @@ function App() {
       noteEN: "Data & recorded on May 11, 2026"
     }
   ];
-
 
   // ฟังก์ชันส่งคำสั่งเข้าไปใน Unity iframe
   const sendToUnity = (message) => {
@@ -280,7 +269,7 @@ function App() {
 
   window.sendToUnity = sendToUnity;
 
-    // 1. ดึงหน้าจอกลับขึ้นบนสุดทันทีเมื่อมีการกดเลือกหอพัก (แก้ปัญหามือถือเด้งลงไปที่ Map)
+  // 1. ดึงหน้าจอกลับขึ้นบนสุดทันทีเมื่อมีการกดเลือกหอพัก
   useEffect(() => {
     if (selectedDorm) {
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
@@ -300,7 +289,6 @@ function App() {
   // 3. ดักฟังสัญญาณตอบกลับและสัญญาณพร้อมทำงานจาก Unity (UNITY_READY)
   useEffect(() => {
     const handleUnityMessage = (event) => {
-      // เมื่อ Unity เพิ่งเปิดเครื่องเสร็จและส่งสัญญาณความพร้อม
       if (event.data && event.data.type === "UNITY_READY") {
         console.log("⚡ Unity ส่งสัญญาณพร้อมทำงานแล้ว!");
         if (selectedDorm && selectedDorm.dormCode) {
@@ -469,18 +457,75 @@ function App() {
               </div>
             ) : selectedDorm.tour360Url ? (
               <div className="tour-360-wrapper" style={{ width: '100%', maxWidth: '1200px', margin: '0 auto 25px', borderRadius: '24px', overflow: 'hidden', border: '3px solid #1A2B4C', boxShadow: '0 12px 35px rgba(0,0,0,0.2)', background: '#000' }}>
-           <iframe 
-              key={`${selectedDorm.dormCode}-${selectedDorm.tour360Url}`}
-              id="unity-iframe" 
-              title="Unity 360 Virtual Tour" 
-              src={`${selectedDorm.tour360Url}?dorm=${selectedDorm.dormCode}&v=202611`} 
-              style={{ width: '100%', height: '700px', border: 'none', display: 'block', overflow: 'hidden' }} 
-              allowFullScreen 
-            />
+                <iframe 
+                  key={`${selectedDorm.dormCode}-${selectedDorm.tour360Url}`}
+                  id="unity-iframe" 
+                  title="Unity 360 Virtual Tour" 
+                  src={`${selectedDorm.tour360Url}?dorm=${selectedDorm.dormCode}&v=202611`} 
+                  style={{ width: '100%', height: '700px', border: 'none', display: 'block', overflow: 'hidden' }} 
+                  allowFullScreen 
+                />
               </div>
             ) : (
               <div className="room-frame" style={{ maxWidth: '850px', margin: '0 auto 25px' }}>
                 <img src={selectedDorm.image || "/cover.jpg"} alt="Room" className="room-img" style={{ width: '100%', maxHeight: '450px', objectFit: 'cover', borderRadius: '20px' }} />
+              </div>
+            )}
+
+            {/* 🌟 กล่องสำคัญและคำแนะนำการใช้งาน (ย้ายมาไว้ใต้ภาพ/Unity เหนือปุ่มสลับสื่อ และแสดงผลกับทุกหอ) */}
+            {selectedDorm.noteTH && (
+              <div style={{ 
+                maxWidth: '1200px',
+                margin: '0 auto 20px', 
+                padding: '12px 20px', 
+                background: '#FFF5F5', 
+                borderLeft: '5px solid #E53E3E', 
+                borderRadius: '10px', 
+                color: '#C53030', 
+                fontSize: '15px', 
+                boxShadow: '0 2px 6px rgba(0,0,0,0.05)',
+                textAlign: 'left'
+              }}>
+                {/* แถวที่ 1: วันที่บันทึกข้อมูลและป้ายสถานะรีโนเวท */}
+                <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
+                  <span>
+                    📌 <strong style={{ 
+                      WebkitTextStroke: '0.6px #C53030', 
+                      fontWeight: 'bold' 
+                    }}>
+                      {lang === 'TH' ? 'สำคัญ:' : 'Important:'}
+                    </strong> {lang === 'TH' ? selectedDorm.noteTH : selectedDorm.noteEN}
+                  </span>
+
+                  {selectedDorm.isRenovating && (
+                    <span style={{ 
+                      backgroundColor: '#E53E3E', 
+                      color: '#FFFFFF', 
+                      padding: '3px 12px', 
+                      borderRadius: '20px', 
+                      fontSize: '13px', 
+                      WebkitTextStroke: '0.6px #FFFFFF', 
+                      fontWeight: 'bold', 
+                      display: 'inline-block', 
+                      boxShadow: '0 2px 6px rgba(229, 62, 62, 0.3)' 
+                    }}>
+                      {lang === 'TH' ? '⚠️ อยู่ระหว่างรีโนเวท' : '⚠️ Under Renovation'}
+                    </span>
+                  )}
+                </div>
+
+                {/* แถวที่ 2: คำแนะนำการใช้งานแบบที่ 2 (สำหรับอุปกรณ์หน้าจอสัมผัส) */}
+                <div style={{ marginTop: '6px', fontSize: '13px', color: '#b91c1c', fontWeight: '500' }}>
+                  {lang === 'TH' ? (
+                    <>
+                      * <strong>สำหรับอุปกรณ์หน้าจอสัมผัส (Touchscreen):</strong> ให้ใช้ <strong>2 นิ้ว</strong> ในการเลื่อนหมุนชมภาพ 360 องศา (ใช้ 1 นิ้วเพื่อเลื่อนหน้าเว็บตามปกติ)
+                    </>
+                  ) : (
+                    <>
+                      * <strong>For Touchscreen Devices:</strong> Use <strong>two fingers</strong> to drag and explore the 360° view (use one finger to scroll the page).
+                    </>
+                  )}
+                </div>
               </div>
             )}
 
@@ -574,13 +619,12 @@ function App() {
 
             <hr style={{ border: 'none', borderTop: '1px solid #E1EDFF', margin: '30px 0' }} />
 
-            {/* 🌟 5. สิ่งอำนวยความสะดวก (ดึงตามข้อมูลจริงแต่ละหอ) */}
+            {/* 5. สิ่งอำนวยความสะดวก */}
             <div className="fac-tag" style={{ background: '#1A2B4C', color: 'white', padding: '12px 35px', borderRadius: '12px', display: 'inline-block', fontSize: '22px', marginBottom: '25px', fontWeight: '600' }}>
               {lang === 'TH' ? 'สิ่งอำนวยความสะดวก' : 'Facilities'}
             </div>
             
             <div className="fac-box-container" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px', border: '2px solid #E1EDFF', borderRadius: '30px', padding: '40px', marginBottom: '25px', background: '#fcfcfc' }}>
-              {/* สิ่งอำนวยความสะดวก: ภายในห้อง */}
               <div className="fac-col">
                 <h4 style={{ color: '#1A2B4C', borderBottom: '2px solid #E1EDFF', paddingBottom: '10px', fontSize: '24px', marginTop: '0' }}>
                   {lang === 'TH' ? 'ภายในห้อง (ส่วนตัว)' : 'In Room (Private)'}
@@ -592,7 +636,6 @@ function App() {
                 </ul>
               </div>
 
-              {/* สิ่งอำนวยความสะดวก: ส่วนรวม */}
               <div className="fac-col">
                 <h4 style={{ color: '#1A2B4C', borderBottom: '2px solid #E1EDFF', paddingBottom: '10px', fontSize: '24px', marginTop: '0' }}>
                   {lang === 'TH' ? 'ส่วนรวม' : 'Common Area'}
@@ -605,49 +648,7 @@ function App() {
               </div>
             </div>
 
-            {/* กล่องหมายเหตุดอกจันสีแดง */}
-            {selectedDorm.noteTH && (
-              <div style={{ 
-                margin: '0 auto 40px', 
-                padding: '14px 24px', 
-                background: '#FFF5F5', 
-                borderLeft: '5px solid #E53E3E', 
-                borderRadius: '10px', 
-                color: '#C53030', 
-                fontSize: '16px', 
-                display: 'flex', 
-                alignItems: 'center', 
-                flexWrap: 'wrap', 
-                gap: '12px' 
-              }}>
-                <span>
-                  📌 <strong style={{ 
-                    WebkitTextStroke: '0.6px #C53030', 
-                    fontWeight: 'bold' 
-                  }}>
-                    {lang === 'TH' ? 'สำคัญ:' : 'Important:'}
-                  </strong> {lang === 'TH' ? selectedDorm.noteTH : selectedDorm.noteEN}
-                </span>
-
-                {selectedDorm.isRenovating && (
-                  <span style={{ 
-                    backgroundColor: '#E53E3E', 
-                    color: '#FFFFFF', 
-                    padding: '4px 14px', 
-                    borderRadius: '20px', 
-                    fontSize: '14px', 
-                    WebkitTextStroke: '0.8px #FFFFFF', 
-                    fontWeight: 'bold', 
-                    display: 'inline-block', 
-                    boxShadow: '0 2px 6px rgba(229, 62, 62, 0.4)' 
-                  }}>
-                    {lang === 'TH' ? '⚠️ อยู่ระหว่างรีโนเวท' : '⚠️ Under Renovation'}
-                  </span>
-                )}
-              </div>
-            )}
-
-           {/* GPS Location */}
+            {/* 6. GPS Location */}
             <div className="gps-section">
               <div className="gps-label" style={{ background: '#1A2B4C', color: 'white', padding: '10px 30px', borderRadius: '10px', display: 'inline-block', fontWeight: 'bold', marginBottom: '15px' }}>GPS Location</div>
               <div className="map-container" style={{ borderRadius: '25px', overflow: 'hidden', border: '2px solid #1A2B4C', margin: '15px 0' }}>
