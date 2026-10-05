@@ -102,6 +102,12 @@
         }).then((unityInstance) => {
           window.unityInstance = unityInstance;
           document.querySelector("#unity-loading-bar").style.display = "none";
+          
+          // แจ้ง React ทันทีว่า Unity พร้อมรับคำสั่งแล้ว
+          if (window.parent) {
+            window.parent.postMessage({ type: "UNITY_READY" }, "*");
+          }
+
           document.querySelector("#unity-fullscreen-button").onclick = () => {
             unityInstance.SetFullscreen(1);
           };

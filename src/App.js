@@ -280,20 +280,28 @@ function App() {
 
   window.sendToUnity = sendToUnity;
 
-  // สั่งเปลี่ยนห้องใน Unity อัตโนมัติเมื่อเลือกหอหรือเปิดโหมด 360
+  // จัดการการส่งคำสั่งและรับสัญญาณจาก Unity
   useEffect(() => {
+    // ส่งคำสั่งทันทีหากเป็นการสลับหอพักตอนที่ iframe โหลดเสร็จอยู่แล้ว
     if (selectedDorm && selectedDorm.dormCode && viewMode === '360') {
       const timer = setTimeout(() => {
         sendToUnity(selectedDorm.dormCode);
-      }, 600);
-
+      }, 500);
       return () => clearTimeout(timer);
     }
   }, [selectedDorm, viewMode]);
 
-  // ดักฟังข้อความตอบกลับจาก Unity
   useEffect(() => {
     const handleUnityMessage = (event) => {
+      // เมื่อ Unity เพิ่งเปิดเครื่องเสร็จและส่งสัญญาณความพร้อม
+      if (event.data && event.data.type === "UNITY_READY") {
+        console.log("⚡ Unity ส่งสัญญาณพร้อมทำงานแล้ว!");
+        if (selectedDorm && selectedDorm.dormCode) {
+          sendToUnity(selectedDorm.dormCode);
+        }
+        return;
+      }
+
       const msg = event.data?.payload || event.detail;
       if (!msg || typeof msg !== "string") return;
 
@@ -304,7 +312,7 @@ function App() {
 
     window.addEventListener("message", handleUnityMessage);
     return () => window.removeEventListener("message", handleUnityMessage);
-  }, []);
+  }, [selectedDorm]);
 
   const checkMatch = (dorm, currentFilters) => {
     const filtersWithoutVDO = currentFilters.filter(f => f !== 'VDO');
