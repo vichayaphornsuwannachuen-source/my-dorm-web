@@ -71,12 +71,12 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/New folder.loader.js";
+      var loaderUrl = buildUrl + "/testdorm.loader.js";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/New folder.data",
-        frameworkUrl: buildUrl + "/New folder.framework.js",
-        codeUrl: buildUrl + "/New folder.wasm",
+        dataUrl: buildUrl + "/testdorm.data",
+        frameworkUrl: buildUrl + "/testdorm.framework.js",
+        codeUrl: buildUrl + "/testdorm.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "Dorm",
@@ -92,7 +92,6 @@
         document.querySelector("#unity-container").className = "unity-mobile";
         canvas.className = "unity-mobile";
       } else {
-        // ปรับเต็มพื้นที่ 100% ไร้ขอบดำ
         canvas.style.width = "100%";
         canvas.style.height = "100%";
       }
