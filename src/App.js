@@ -472,7 +472,7 @@ function App() {
               </div>
             )}
 
-            {/* 🌟 กล่องสำคัญและคำแนะนำการใช้งาน (ย้ายมาไว้ใต้ภาพ/Unity เหนือปุ่มสลับสื่อ และแสดงผลกับทุกหอ) */}
+           {/* 🌟 กล่องสำคัญและคำแนะนำการใช้งาน */}
             {selectedDorm.noteTH && (
               <div style={{ 
                 maxWidth: '1200px',
@@ -486,7 +486,7 @@ function App() {
                 boxShadow: '0 2px 6px rgba(0,0,0,0.05)',
                 textAlign: 'left'
               }}>
-                {/* แถวที่ 1: วันที่บันทึกข้อมูลและป้ายสถานะรีโนเวท */}
+                {/* แถวที่ 1: ข้อมูล & ป้ายรีโนเวทตัวหนังสือสีดำ */}
                 <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
                   <span>
                     📌 <strong style={{ 
@@ -500,29 +500,28 @@ function App() {
                   {selectedDorm.isRenovating && (
                     <span style={{ 
                       backgroundColor: '#E53E3E', 
-                      color: '#FFFFFF', 
+                      color: '#000000', 
                       padding: '3px 12px', 
                       borderRadius: '20px', 
                       fontSize: '13px', 
-                      WebkitTextStroke: '0.6px #FFFFFF', 
                       fontWeight: 'bold', 
                       display: 'inline-block', 
                       boxShadow: '0 2px 6px rgba(229, 62, 62, 0.3)' 
                     }}>
-                      {lang === 'TH' ? '⚠️ อยู่ระหว่างรีโนเวท' : '⚠️ Under Renovation'}
+                      ⚠️ {lang === 'TH' ? 'อยู่ระหว่างรีโนเวท' : 'Under Renovation'}
                     </span>
                   )}
                 </div>
 
-                {/* แถวที่ 2: คำแนะนำการใช้งานแบบที่ 2 (สำหรับอุปกรณ์หน้าจอสัมผัส) */}
+                {/* แถวที่ 2: คำแนะนำ 2 นิ้ว (ลบข้อความในวงเล็บออกแล้ว) */}
                 <div style={{ marginTop: '6px', fontSize: '13px', color: '#b91c1c', fontWeight: '500' }}>
                   {lang === 'TH' ? (
                     <>
-                      * <strong>สำหรับอุปกรณ์หน้าจอสัมผัส (Touchscreen):</strong> ให้ใช้ <strong>2 นิ้ว</strong> ในการเลื่อนหมุนชมภาพ 360 องศา (ใช้ 1 นิ้วเพื่อเลื่อนหน้าเว็บตามปกติ)
+                      * <strong>สำหรับอุปกรณ์หน้าจอสัมผัส (Touchscreen):</strong> ให้ใช้ <strong>2 นิ้ว</strong> ในการเลื่อนหมุนชมภาพ 360 องศา
                     </>
                   ) : (
                     <>
-                      * <strong>For Touchscreen Devices:</strong> Use <strong>two fingers</strong> to drag and explore the 360° view (use one finger to scroll the page).
+                      * <strong>For Touchscreen Devices:</strong> Use <strong>two fingers</strong> to drag and explore the 360° view
                     </>
                   )}
                 </div>
