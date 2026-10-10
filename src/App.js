@@ -412,7 +412,12 @@ function App() {
                   />
                   <div className="dorm-card-info">
                     <h3>{lang === 'TH' ? dorm.nameTH : dorm.nameEN}</h3>
-                    <p>{dorm.type} | {dorm.air} | {dorm.cap}</p>
+                    {/* จุดที่แก้ไข: รองรับการสลับภาษา TH / EN อัตโนมัติ */}
+                    <p>
+                      {lang === 'TH' ? dorm.type : (dorm.type === 'ชาย' ? 'Male' : 'Female')} |{' '}
+                      {lang === 'TH' ? dorm.air : (dorm.air === 'ปรับอากาศ' ? 'Air Con' : 'Fan')} |{' '}
+                      {lang === 'TH' ? dorm.cap : dorm.cap.replace('คน', 'Persons')}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -518,7 +523,7 @@ function App() {
                   )}
                 </div>
 
-                {/* แถวที่ 2: คำแนะนำ 2 นิ้ว (ลบข้อความในวงเล็บออกแล้ว) */}
+                {/* แถวที่ 2: คำแนะนำ 2 นิ้ว */}
                 <div style={{ marginTop: '6px', fontSize: '13px', color: '#b91c1c', fontWeight: '500' }}>
                   {lang === 'TH' ? (
                     <>
