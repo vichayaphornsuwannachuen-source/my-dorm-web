@@ -45,6 +45,7 @@ function App() {
     {
       id: 3, dormCode: "L3", nameTH: "หอพักลำดวน 3", nameEN: "Lamduan 3", type: "ชาย", air: "ปรับอากาศ", cap: "4 คน",
       gps: "https://maps.app.goo.gl/w7Pd9LGRBPyakJ5S9", videoUrl: "vWi9TEGzyqE", videoUrl2: "6Sv27ce7d-0", image: "/l3.jpg",
+      tour360Url: "/testf1-2/index.html",
       facilities: {
         roomTH: ["เครื่องปรับอากาศ (Air)", "พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
         roomEN: ["Air Conditioner", "Ceiling Fan", "En-suite Bathroom", "Sink", "Water Heater", "Bunk Bed", "Desk & Chair", "Wardrobe"],
@@ -57,6 +58,7 @@ function App() {
     {
       id: 4, dormCode: "L4", nameTH: "หอพักลำดวน 4", nameEN: "Lamduan 4", type: "ชาย", air: "พัดลม", cap: "4 คน",
       gps: "https://maps.app.goo.gl/mFb1v18Xo8N6Bkqe6", videoUrl: "DYtkO99Yin8", videoUrl2: "xDZx5DXJlIg", image: "/l4.jpg",
+      tour360Url: "/testf1-2/index.html",
       facilities: {
         roomTH: ["พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
         roomEN: ["Ceiling Fan", "En-suite Bathroom", "Sink", "Water Heater", "Bunk Bed", "Desk & Chair", "Wardrobe"],
@@ -69,6 +71,7 @@ function App() {
     {
       id: 5, dormCode: "L5", nameTH: "หอพักลำดวน 5", nameEN: "Lamduan 5", type: "หญิง", air: "พัดลม", cap: "4 คน",
       gps: "https://maps.app.goo.gl/WJBTMbxnZBFoPxn78", videoUrl: "bqeFDHDg54M", videoUrl2: "UNSp-t9aZtE", image: "/l5.jpg",
+      tour360Url: "/testf1-2/index.html",
       facilities: {
         roomTH: ["พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
         roomEN: ["Ceiling Fan", "En-suite Bathroom", "Sink", "Water Heater", "Bunk Bed", "Desk & Chair", "Wardrobe"],
@@ -81,6 +84,7 @@ function App() {
     {
       id: 6, dormCode: "L6", nameTH: "หอพักลำดวน 6", nameEN: "Lamduan 6", type: "หญิง", air: "พัดลม", cap: "4 คน",
       gps: "https://maps.app.goo.gl/d2esT7tLTb2FdAKV9", videoUrl: "Omc5_QTpdAU", videoUrl2: "iZ3v9HeHPqc", image: "/l6.jpg",
+      tour360Url: "/testf1-2/index.html",
       facilities: {
         roomTH: ["พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
         roomEN: ["Ceiling Fan", "En-suite Bathroom", "Sink", "Water Heater", "Bunk Bed", "Desk & Chair", "Wardrobe"],
@@ -93,6 +97,7 @@ function App() {
     {
       id: 7, dormCode: "L7", nameTH: "หอพักลำดวน 7", nameEN: "Lamduan 7", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน",
       gps: "https://maps.app.goo.gl/cJP3Gh92MPNBKdjD7", videoUrl: "bfyCzX0e1y4", videoUrl2: "pEDmizScPO0", image: "/l7.jpg",
+      tour360Url: "/testf1-2/index.html",
       facilities: {
         roomTH: ["เครื่องปรับอากาศ (Air)", "พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "ตู้เย็นมินิ", "เครื่องทำน้ำอุ่น", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
         roomEN: ["Air Conditioner", "Ceiling Fan", "En-suite Bathroom", "Sink", "Mini Refrigerator", "Water Heater", "Bunk Bed", "Desk & Chair", "Wardrobe"],
