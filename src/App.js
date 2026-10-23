@@ -226,7 +226,7 @@ function App() {
       noteEN: "Data & recorded on May 12, 2026"
     },
     {
-      id: 17, dormCode: "BS", nameTH: "หอพักบุญทรง", nameEN: "Boonsong", type: "หญิง", air: "ปรับอากาศ", cap: "3 คน",
+      id: 17, dormCode: "BOON", nameTH: "หอพักบุญทรง", nameEN: "Boonsong", type: "หญิง", air: "ปรับอากาศ", cap: "3 คน",
       gps: "https://maps.app.goo.gl/eLWD815Zwmxmvx88A", videoUrl: "VuJgnJsSxEY", videoUrl2: "qG0kWAXMv3A", image: "/bs.jpeg",
       tour360Url: "/testf1-2/index.html",
       facilities: {
@@ -239,7 +239,7 @@ function App() {
       noteEN: "Data & recorded on May 11, 2026"
     },
     {
-      id: 18, dormCode: "PS", nameTH: "หอพักประเสริฐ", nameEN: "Prasert", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน",
+      id: 18, dormCode: "PRA", nameTH: "หอพักประเสริฐ", nameEN: "Prasert", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน",
       gps: "https://maps.app.goo.gl/oc9qWcV6rpBwW2Fs6", videoUrl: "xzIjoF0wodw", videoUrl2: "OvDNQPW3Bbo", image: "/ps.jpg",
       tour360Url: "/testf1-2/index.html",
       facilities: {
@@ -252,7 +252,7 @@ function App() {
       noteEN: "Data & recorded on May 11, 2026"
     },
     {
-      id: 19, dormCode: "NANA", nameTH: "หอพักพล.ต.อ.เภาฯ", nameEN: "Pol.Gen.Phao", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน",
+      id: 19, dormCode: "POL", nameTH: "หอพักพล.ต.อ.เภาฯ", nameEN: "Pol.Gen.Phao", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน",
       gps: "https://maps.app.goo.gl/xxxx23", videoUrl: "Zky_CKvgG38", videoUrl2: "cbCi2DUdCpc", image: "/nana.jpg",
       tour360Url: "/testf1-2/index.html",
       facilities: {
