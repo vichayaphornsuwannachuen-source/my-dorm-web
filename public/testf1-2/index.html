@@ -71,12 +71,12 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/testdorm.loader.js";
+      var loaderUrl = buildUrl + "/New folder.loader.js";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/testdorm.data",
-        frameworkUrl: buildUrl + "/testdorm.framework.js",
-        codeUrl: buildUrl + "/testdorm.wasm",
+        dataUrl: buildUrl + "/New folder.data.gz",
+        frameworkUrl: buildUrl + "/New folder.framework.js.gz",
+        codeUrl: buildUrl + "/New folder.wasm.gz",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "Dorm",
@@ -92,7 +92,6 @@
         document.querySelector("#unity-container").className = "unity-mobile";
         canvas.className = "unity-mobile";
       } else {
-        // ปรับเต็มจอ 100% ไร้ขอบดำ
         canvas.style.width = "100%";
         canvas.style.height = "100%";
       }
@@ -110,7 +109,7 @@
             unityInstance.SetFullscreen(1);
           };
 
-          // 1. อ่านค่ารหัสหอพักจาก URL
+          // 1. รับค่าหอพักเริ่มต้นจาก URL
           const urlParams = new URLSearchParams(window.location.search);
           const targetDorm = urlParams.get('dorm');
 
@@ -121,7 +120,7 @@
             }, 300);
           }
 
-          // 2. รองรับการกดสลับหอพักจาก React
+          // 2. รับสัญญาณสลับหอพักจาก React ผ่าน postMessage
           window.addEventListener("message", (event) => {
             if (event.data && event.data.type === "TO_UNITY") {
               const dormCode = event.data.payload;
