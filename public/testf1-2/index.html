@@ -70,19 +70,19 @@
         updateBannerVisibility();
       }
 
-      var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/testdorm.loader.js";
-      var config = {
-        arguments: [],
-        dataUrl: buildUrl + "/testdorm.data.gz",
-        frameworkUrl: buildUrl + "/testdorm.framework.js.gz",
-        codeUrl: buildUrl + "/testdorm.wasm.gz",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "DefaultCompany",
-        productName: "Dorm",
-        productVersion: "0.1",
-        showBanner: unityShowBanner,
-      };
+    var buildUrl = "Build";
+    var loaderUrl = buildUrl + "/testdorm.loader.js";
+    var config = {
+    arguments: [],
+    dataUrl: buildUrl + "/testdorm.data.gz",
+    frameworkUrl: buildUrl + "/testdorm.framework.js.gz",
+    codeUrl: buildUrl + "/testdorm.wasm.gz",
+    streamingAssetsUrl: "StreamingAssets",
+    companyName: "DefaultCompany",
+    productName: "Dorm",
+    productVersion: "0.1",
+    showBanner: unityShowBanner,
+    };
 
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         var meta = document.createElement('meta');
