@@ -13,6 +13,7 @@
         margin: 0;
         padding: 0;
         overflow: hidden;
+        background: #000;
       }
       #unity-container {
         width: 100% !important;
@@ -25,9 +26,9 @@
         width: 100% !important;
         height: 100% !important;
         display: block;
-      }
-      #unity-footer {
-        display: none; /* ซ่อนแถบฟุตเตอร์ด้านล่างเพื่อให้ภาพแสดงผลเต็มพื้นที่จอ */
+        /* บังคับการเรนเดอร์ขอบภาพและคอนทราสต์ให้คม ไม่เบลอ */
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
       }
     </style>
   </head>
@@ -49,9 +50,12 @@
     </div>
     <script>
       var canvas = document.querySelector("#unity-canvas");
+      var loadingBar = document.querySelector("#unity-loading-bar");
+      var progressBarFull = document.querySelector("#unity-progress-bar-full");
+      var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+      var warningBanner = document.querySelector("#unity-warning");
 
       function unityShowBanner(msg, type) {
-        var warningBanner = document.querySelector("#unity-warning");
         function updateBannerVisibility() {
           warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
         }
@@ -81,6 +85,8 @@
         productName: "Dorm",
         productVersion: "0.1",
         showBanner: unityShowBanner,
+        // ปรับให้ดึงความละเอียดจริงตามหน้าจอ (รองรับทั้งจอ Retina, 2K, 4K)
+        devicePixelRatio: window.devicePixelRatio || 1,
       };
 
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
@@ -90,23 +96,41 @@
         document.getElementsByTagName('head')[0].appendChild(meta);
         document.querySelector("#unity-container").className = "unity-mobile";
         canvas.className = "unity-mobile";
-      } else {
-        canvas.style.width = "100%";
-        canvas.style.height = "100%";
       }
 
-      document.querySelector("#unity-loading-bar").style.display = "block";
+      loadingBar.style.display = "block";
 
       var script = document.createElement("script");
       script.src = loaderUrl;
       script.onload = () => {
         createUnityInstance(canvas, config, (progress) => {
-          document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
+          progressBarFull.style.width = 100 * progress + "%";
         }).then((unityInstance) => {
-          document.querySelector("#unity-loading-bar").style.display = "none";
-          document.querySelector("#unity-fullscreen-button").onclick = () => {
+          loadingBar.style.display = "none";
+          fullscreenButton.onclick = () => {
             unityInstance.SetFullscreen(1);
           };
+
+          // 1. รับค่าหอพักเริ่มต้นจาก URL
+          const urlParams = new URLSearchParams(window.location.search);
+          const targetDorm = urlParams.get('dorm');
+
+          if (targetDorm) {
+            console.log("🚀 index.html สั่งโหลดหอเริ่มต้น:", targetDorm);
+            setTimeout(() => {
+              unityInstance.SendMessage("WebBridge", "ReceiveFromWeb", targetDorm);
+            }, 300);
+          }
+
+          // 2. รับสัญญาณสลับหอพักจาก React ผ่าน postMessage
+          window.addEventListener("message", (event) => {
+            if (event.data && event.data.type === "TO_UNITY") {
+              const dormCode = event.data.payload;
+              console.log("📥 index.html ส่งต่อให้ Unity:", dormCode);
+              unityInstance.SendMessage("WebBridge", "ReceiveFromWeb", dormCode);
+            }
+          });
+
         }).catch((message) => {
           alert(message);
         });
