@@ -52,23 +52,17 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/New folder.loader.js";
+      var loaderUrl = buildUrl + "/testdorm.loader.js";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/New folder.data.gz",
-        frameworkUrl: buildUrl + "/New folder.framework.js.gz",
-        codeUrl: buildUrl + "/New folder.wasm.gz",
+        dataUrl: buildUrl + "/testdorm.data.gz",
+        frameworkUrl: buildUrl + "/testdorm.framework.js.gz",
+        codeUrl: buildUrl + "/testdorm.wasm.gz",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "Dorm",
         productVersion: "0.1",
         showBanner: unityShowBanner,
-        // errorHandler: function(err, url, line) {
-        //    alert("error " + err + " occurred at line " + line);
-        //    // Return 'true' if you handled this error and don't want Unity
-        //    // to process it further, 'false' otherwise.
-        //    return true;
-        // },
       };
 
       // By default, Unity keeps WebGL canvas render target size matched with
