@@ -26,9 +26,9 @@
         width: 100% !important;
         height: 100% !important;
         display: block;
-        /* บังคับการเรนเดอร์ขอบภาพและคอนทราสต์ให้คม ไม่เบลอ */
-        image-rendering: -webkit-optimize-contrast;
-        image-rendering: crisp-edges;
+      }
+      #unity-footer {
+        display: none; /* ซ่อนแถบด้านล่างเพื่อไม่ให้กินพื้นที่จอ */
       }
     </style>
   </head>
@@ -85,7 +85,6 @@
         productName: "Dorm",
         productVersion: "0.1",
         showBanner: unityShowBanner,
-        // ปรับให้ดึงความละเอียดจริงตามหน้าจอ (รองรับทั้งจอ Retina, 2K, 4K)
         devicePixelRatio: window.devicePixelRatio || 1,
       };
 
