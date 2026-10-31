@@ -17,7 +17,7 @@ function App() {
   const dorms = [
     {
       id: 1, dormCode: "L1", nameTH: "หอพักลำดวน 1", nameEN: "Lamduan 1", type: "ชาย", air: "ปรับอากาศ", cap: "4 คน",
-      gps: "https://maps.app.goo.gl/FMvNZ9VAhdbZoBBn7", videoUrl: "onxi-2KijdQ", videoUrl2: "y2WOY5ZD2JY", image: "/l1.jpg",
+      gps: "https://maps.app.goo.gl/FMvNZ9VAhdbZoBBn7", videoUrl: "onxi-2KijdQ", videoUrl2: "tRB24cF1oDs", image: "/l1.jpg",
       tour360Url: "/testf1-2/index.html",
       facilities: {
         roomTH: ["เครื่องปรับอากาศ (Air)", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น"],
@@ -31,7 +31,7 @@ function App() {
     },
     {
       id: 2, dormCode: "L2", nameTH: "หอพักลำดวน 2", nameEN: "Lamduan 2", type: "ชาย", air: "พัดลม", cap: "4 คน",
-      gps: "", videoUrl: "adBy_LhDNFk", videoUrl2: "LKBnhgooV9s", image: "/l2.jpg",
+      gps: "", videoUrl: "U0774-iGnnA", videoUrl2: "h5RCO6fUkbI", image: "/l2.jpg",
       tour360Url: "/testf1-2/index.html",
       facilities: {
         roomTH: ["พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
@@ -44,7 +44,7 @@ function App() {
     },
     {
       id: 3, dormCode: "L3", nameTH: "หอพักลำดวน 3", nameEN: "Lamduan 3", type: "ชาย", air: "ปรับอากาศ", cap: "4 คน",
-      gps: "https://maps.app.goo.gl/w7Pd9LGRBPyakJ5S9", videoUrl: "vWi9TEGzyqE", videoUrl2: "6Sv27ce7d-0", image: "/l3.jpg",
+      gps: "https://maps.app.goo.gl/w7Pd9LGRBPyakJ5S9", videoUrl: "RDUvNuKtZhk", videoUrl2: "-jpNNhB5ag0", image: "/l3.jpg",
       tour360Url: "/testf1-2/index.html",
       facilities: {
         roomTH: ["เครื่องปรับอากาศ (Air)", "พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
@@ -57,7 +57,7 @@ function App() {
     },
     {
       id: 4, dormCode: "L4", nameTH: "หอพักลำดวน 4", nameEN: "Lamduan 4", type: "ชาย", air: "พัดลม", cap: "4 คน",
-      gps: "https://maps.app.goo.gl/mFb1v18Xo8N6Bkqe6", videoUrl: "DYtkO99Yin8", videoUrl2: "xDZx5DXJlIg", image: "/l4.jpg",
+      gps: "https://maps.app.goo.gl/mFb1v18Xo8N6Bkqe6", videoUrl: "mqth2CEH_08", videoUrl2: "rKp74BxREFo", image: "/l4.jpg",
       tour360Url: "/testf1-2/index.html",
       facilities: {
         roomTH: ["พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
@@ -70,7 +70,7 @@ function App() {
     },
     {
       id: 5, dormCode: "L5", nameTH: "หอพักลำดวน 5", nameEN: "Lamduan 5", type: "หญิง", air: "พัดลม", cap: "4 คน",
-      gps: "https://maps.app.goo.gl/WJBTMbxnZBFoPxn78", videoUrl: "bqeFDHDg54M", videoUrl2: "UNSp-t9aZtE", image: "/l5.jpg",
+      gps: "https://maps.app.goo.gl/WJBTMbxnZBFoPxn78", videoUrl: "5baFRJY1Xwo", videoUrl2: "dyzYdYuosWQ", image: "/l5.jpg",
       tour360Url: "/testf1-2/index.html",
       facilities: {
         roomTH: ["พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
@@ -83,7 +83,7 @@ function App() {
     },
     {
       id: 6, dormCode: "L6", nameTH: "หอพักลำดวน 6", nameEN: "Lamduan 6", type: "หญิง", air: "พัดลม", cap: "4 คน",
-      gps: "https://maps.app.goo.gl/d2esT7tLTb2FdAKV9", videoUrl: "Omc5_QTpdAU", videoUrl2: "iZ3v9HeHPqc", image: "/l6.jpg",
+      gps: "https://maps.app.goo.gl/d2esT7tLTb2FdAKV9", videoUrl: "A4aly0kzns0", videoUrl2: "PpcxRSzWpVk", image: "/l6.jpg",
       tour360Url: "/testf1-2/index.html",
       facilities: {
         roomTH: ["พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
@@ -96,7 +96,7 @@ function App() {
     },
     {
       id: 7, dormCode: "L7", nameTH: "หอพักลำดวน 7", nameEN: "Lamduan 7", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน",
-      gps: "https://maps.app.goo.gl/cJP3Gh92MPNBKdjD7", videoUrl: "bfyCzX0e1y4", videoUrl2: "pEDmizScPO0", image: "/l7.jpg",
+      gps: "https://maps.app.goo.gl/cJP3Gh92MPNBKdjD7", videoUrl: "2jqZgOwvo6k", videoUrl2: "96DCN6Bl4FM", image: "/l7.jpg",
       tour360Url: "/testf1-2/index.html",
       facilities: {
         roomTH: ["เครื่องปรับอากาศ (Air)", "พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "ตู้เย็นมินิ", "เครื่องทำน้ำอุ่น", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
@@ -109,7 +109,7 @@ function App() {
     },
     {
       id: 8, dormCode: "F1", nameTH: "หอพัก F1", nameEN: "Dorm F1", type: "หญิง", air: "พัดลม", cap: "4 คน",
-      gps: "https://maps.app.goo.gl/JY7VbfxykiiCSgaM9", videoUrl: "rGE6J_3kkzs", videoUrl2: "VPXZ_bDyH-o", image: "/f1.jpg",
+      gps: "https://maps.app.goo.gl/JY7VbfxykiiCSgaM9", videoUrl: "c0kNdJ4M3hQ", videoUrl2: "NARR8GP5Tws", image: "/f1.jpg",
       tour360Url: "/testf1-2/index.html",
       facilities: {
         roomTH: ["พัดลมเพดาน", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
@@ -122,7 +122,7 @@ function App() {
     },
     {
       id: 9, dormCode: "F2", nameTH: "หอพัก F2", nameEN: "Dorm F2", type: "หญิง", air: "พัดลม", cap: "4 คน",
-      gps: "https://maps.app.goo.gl/REtk2znMin5zwpj99", videoUrl: "L-UQOpQavCo", videoUrl2: "O2s0waA2JQY", image: "/f2.jpg",
+      gps: "https://maps.app.goo.gl/REtk2znMin5zwpj99", videoUrl: "MjxCOP3lmIs", videoUrl2: "mLzh9RE9Xmo", image: "/f2.jpg",
       tour360Url: "/testf1-2/index.html",
       facilities: {
         roomTH: ["พัดลมเพดาน", "เตียงเดี่ยว", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
@@ -135,7 +135,7 @@ function App() {
     },
     {
       id: 10, dormCode: "F3", nameTH: "หอพัก F3", nameEN: "Dorm F3", type: "หญิง", air: "พัดลม", cap: "4 คน",
-      gps: "https://maps.app.goo.gl/ZLCvWtj1sYQbJzot9", videoUrl: "2bVpgKXNlaE", image: "/f3.jpg",
+      gps: "https://maps.app.goo.gl/ZLCvWtj1sYQbJzot9", videoUrl: "SXk1oxk-eBQ", image: "/f3.jpg",
       tour360Url: "/testf1-2/index.html",
       facilities: {
         roomTH: ["พัดลมเพดาน"],
@@ -149,7 +149,7 @@ function App() {
     },
     {
       id: 11, dormCode: "F4", nameTH: "หอพัก F4", nameEN: "Dorm F4", type: "ชาย", air: "พัดลม", cap: "4 คน",
-      gps: "https://maps.app.goo.gl/AdxsmwS6mw7bB4NUA", videoUrl: "okWuaFANYeU", videoUrl2: "UHsDxgSaXoo", image: "/f4.jpg",
+      gps: "https://maps.app.goo.gl/AdxsmwS6mw7bB4NUA", videoUrl: "oq3E9-j4kfc", videoUrl2: "Y8Db2meTE6c", image: "/f4.jpg",
       tour360Url: "/testf1-2/index.html",
       facilities: {
         roomTH: ["พัดลมเพดาน", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
@@ -162,7 +162,7 @@ function App() {
     },
     {
       id: 12, dormCode: "F5", nameTH: "หอพัก F5", nameEN: "Dorm F5", type: "หญิง", air: "พัดลม", cap: "4 คน",
-      gps: "https://maps.app.goo.gl/2Scm791aSiEKYUQb6", videoUrl: "Eh-dGqtZRGw", videoUrl2: "QZO_UqV0Grk", image: "/f5.jpg",
+      gps: "https://maps.app.goo.gl/2Scm791aSiEKYUQb6", videoUrl: "f2r18_M8rNc", videoUrl2: "xjmrigNhRFg", image: "/f5.jpg",
       tour360Url: "/testf1-2/index.html",
       facilities: {
         roomTH: ["พัดลมเพดาน", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
@@ -175,7 +175,7 @@ function App() {
     },
     {
       id: 13, dormCode: "F6", nameTH: "หอพัก F6", nameEN: "Dorm F6", type: "หญิง", air: "พัดลม", cap: "4 คน",
-      gps: "https://maps.app.goo.gl/eLWD815Zwmxmvx88A", videoUrl: "MVmN_R7hFj4", videoUrl2: "8VsFaJWkrhw", image: "/f6.jpg",
+      gps: "https://maps.app.goo.gl/eLWD815Zwmxmvx88A", videoUrl: "QLT593RLYIM", videoUrl2: "FgBObt4vh9U", image: "/f6.jpg",
       tour360Url: "/testf1-2/index.html",
       facilities: {
         roomTH: ["พัดลมเพดาน", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
@@ -188,7 +188,7 @@ function App() {
     },
     {
       id: 14, dormCode: "SK1", nameTH: "หอพักสักทอง 1", nameEN: "Sakthong 1", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน",
-      gps: "https://maps.app.goo.gl/yu5DyqudiV6zqbJs6", videoUrl: "suRcASJX8jw", videoUrl2: "iK8rZhhb3lY", image: "/sk1.jpg",
+      gps: "https://maps.app.goo.gl/yu5DyqudiV6zqbJs6", videoUrl: "Xu_QmW2lXcw", videoUrl2: "U12NJpxBzT4", image: "/sk1.jpg",
       tour360Url: "/testf1-2/index.html",
       facilities: { 
         roomTH: ["เครื่องปรับอากาศ (Air)", "พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
@@ -201,7 +201,7 @@ function App() {
     },
     {
       id: 15, dormCode: "SK2", nameTH: "หอพักสักทอง 2", nameEN: "Sakthong 2", type: "หญิง", air: "ปรับอากาศ", cap: "4 คน",
-      gps: "https://maps.app.goo.gl/xxxx19", videoUrl: "SC_TH55_ml4", videoUrl2: "ir0N4hU9lyU", image: "/sk2.jpg",
+      gps: "https://maps.app.goo.gl/xxxx19", videoUrl: "dszora_-0Wg", videoUrl2: "rAEDVBqgdu4", image: "/sk2.jpg",
       tour360Url: "/testf1-2/index.html",
       facilities: {
         roomTH: ["เครื่องปรับอากาศ (Air)", "พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียง 2 ชั้น", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
@@ -214,7 +214,7 @@ function App() {
     },
     {
       id: 16, dormCode: "SK3", nameTH: "หอพักสักทอง 3", nameEN: "Sakthong 3", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน",
-      gps: "https://maps.app.goo.gl/YdtoPXqvVmdLK4ev5", videoUrl: "Sh24ka-bJTU", videoUrl2: "o-G9wkIcEnI", image: "/sk3.jpg",
+      gps: "https://maps.app.goo.gl/YdtoPXqvVmdLK4ev5", videoUrl: "I-uhTU7PTm8", videoUrl2: "MocYMMlS5Pk", image: "/sk3.jpg",
       tour360Url: "/testf1-2/index.html",
       facilities: {
         roomTH: ["เครื่องปรับอากาศ (Air)", "พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียงเดี่ยว", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
@@ -227,7 +227,7 @@ function App() {
     },
     {
       id: 17, dormCode: "BOON", nameTH: "หอพักบุญทรง", nameEN: "Boonsong", type: "หญิง", air: "ปรับอากาศ", cap: "3 คน",
-      gps: "https://maps.app.goo.gl/eLWD815Zwmxmvx88A", videoUrl: "VuJgnJsSxEY", videoUrl2: "qG0kWAXMv3A", image: "/bs.jpeg",
+      gps: "https://maps.app.goo.gl/eLWD815Zwmxmvx88A", videoUrl: "yqCklVcqPzA", videoUrl2: "gKcH6lH7rak", image: "/bs.jpeg",
       tour360Url: "/testf1-2/index.html",
       facilities: {
         roomTH: ["เครื่องปรับอากาศ (Air)", "พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียงเดี่ยว", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
@@ -240,7 +240,7 @@ function App() {
     },
     {
       id: 18, dormCode: "PRA", nameTH: "หอพักประเสริฐ", nameEN: "Prasert", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน",
-      gps: "https://maps.app.goo.gl/oc9qWcV6rpBwW2Fs6", videoUrl: "xzIjoF0wodw", videoUrl2: "OvDNQPW3Bbo", image: "/ps.jpg",
+      gps: "https://maps.app.goo.gl/oc9qWcV6rpBwW2Fs6", videoUrl: "Er_K5N5Z7iA", videoUrl2: "c02xz-Yspk4", image: "/ps.jpg",
       tour360Url: "/testf1-2/index.html",
       facilities: {
         roomTH: ["เครื่องปรับอากาศ (Air)", "พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียงเดี่ยว", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
@@ -253,7 +253,7 @@ function App() {
     },
     {
       id: 19, dormCode: "POL", nameTH: "หอพักพล.ต.อ.เภาฯ", nameEN: "Pol.Gen.Phao", type: "หญิง", air: "ปรับอากาศ", cap: "2 คน",
-      gps: "https://maps.app.goo.gl/xxxx23", videoUrl: "Zky_CKvgG38", videoUrl2: "cbCi2DUdCpc", image: "/nana.jpg",
+      gps: "https://maps.app.goo.gl/xxxx23", videoUrl: "n-s7901qyx0", videoUrl2: "lnbXzKeRpHs", image: "/nana.jpg",
       tour360Url: "/testf1-2/index.html",
       facilities: {
         roomTH: ["เครื่องปรับอากาศ (Air)", "พัดลมเพดาน", "ห้องน้ำในตัว", "ซิงค์ล้างจาน", "เครื่องทำน้ำอุ่น", "เตียงเดี่ยว", "โต๊ะ-เก้าอี้", "ตู้เสื้อผ้า"],
