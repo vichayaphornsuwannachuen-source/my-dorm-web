@@ -372,7 +372,7 @@ function App() {
         </div>
       </nav>
 
-      {/* Side Menu Drawer ปรับปรุงตามแบบร่างกระดาษ */}
+      {/* Side Menu Drawer */}
       <div 
         className={`side-menu ${isMenuOpen ? 'open' : ''}`}
         style={{
@@ -385,7 +385,7 @@ function App() {
       >
         <div className="close-btn" onClick={() => setIsMenuOpen(false)} style={{ cursor: 'pointer', fontSize: '28px', textAlign: 'right', marginBottom: '10px' }}>×</div>
         
-        {/* 1. ส่วนหัวข้อและช่องทางติดต่อ ส่วนพัฒนานักศึกษา */}
+        {/* 1. ข้อมูลและช่องทางติดต่อ ส่วนพัฒนานักศึกษา */}
         <div style={{ borderBottom: '1px solid #E2E8F0', paddingBottom: '16px', marginBottom: '16px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
             <img src="/logo.png" alt="MFU Logo" style={{ width: '38px', height: 'auto' }} />
@@ -445,7 +445,7 @@ function App() {
           </span>
         </div>
 
-        {/* 4. ข้อมูลผู้พัฒนา */}
+        {/* 4. ข้อมูลผู้พัฒนา (แบบที่ 1: Technical & Professional) */}
         <div style={{ borderBottom: '1px solid #E2E8F0', paddingBottom: '18px', marginBottom: '18px' }}>
           <h4 style={{ margin: '0 0 12px', fontSize: '15px', color: '#1A2B4C', fontWeight: 'bold' }}>
             {lang === 'TH' ? 'ผู้พัฒนา (Developers)' : 'Developers'}
@@ -462,7 +462,7 @@ function App() {
               <div style={{ fontWeight: 'bold', color: '#0F172A' }}>Miss Vichayaphorn Suwannachuen</div>
               <div style={{ color: '#334155' }}>นางสาว วิชญาพร สุวรรณชื่น</div>
               <div style={{ color: '#2563EB', fontWeight: '600', marginTop: '2px' }}>
-                {lang === 'TH' ? 'หน้าที่: ส่วน Web' : 'Role: Web Development'}
+                Web Application Developer
               </div>
             </div>
           </div>
@@ -479,7 +479,7 @@ function App() {
               <div style={{ fontWeight: 'bold', color: '#0F172A' }}>Miss Wachiraya Sitthikasemkit</div>
               <div style={{ color: '#334155' }}>นางสาว วชิรญาณ์ สิทธิเกษมกิจ</div>
               <div style={{ color: '#2563EB', fontWeight: '600', marginTop: '2px' }}>
-                {lang === 'TH' ? 'หน้าที่: ส่วน Unity' : 'Role: Unity 360'}
+                360° Virtual Tour & Unity Developer
               </div>
             </div>
           </div>
