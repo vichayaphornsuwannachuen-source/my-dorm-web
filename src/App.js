@@ -12,6 +12,16 @@ function App() {
   const [selectedDorm, setSelectedDorm] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [viewMode, setViewMode] = useState('360');
+  const [visitorCount, setVisitorCount] = useState(128);
+
+  // ระบบนับคนเข้าชมผ่าน localStorage แสดงตัวเลขอัตโนมัติ ไม่ต้องพึ่งพา iframe ภายนอก
+  useEffect(() => {
+    const savedCount = localStorage.getItem('mfu_dorm_visitors');
+    let current = savedCount ? parseInt(savedCount, 10) : 128;
+    current += 1;
+    localStorage.setItem('mfu_dorm_visitors', current.toString());
+    setVisitorCount(current);
+  }, []);
 
   // ข้อมูลหอพักพร้อมสิ่งอำนวยความสะดวกตามข้อมูลบันทึกจริง
   const dorms = [
@@ -818,20 +828,18 @@ function App() {
           <div className="stat-badge-group">
             <span className="stat-icon-gold">👥</span>
             <span className="stat-title-gold">{lang === 'TH' ? 'ผู้เข้าชมเว็บไซต์:' : 'Visitors:'}</span>
-            <span className="stat-counter-wrap">
-              <iframe 
-                src="https://freehitcounters.org/count/10291" 
-                title="visitor-counter"
-                scrolling="no"
-                frameBorder="0"
-                style={{
-                  width: '65px',
-                  height: '20px',
-                  border: 'none',
-                  verticalAlign: 'middle',
-                  filter: 'contrast(150%)'
-                }}
-              />
+            <span style={{ 
+              backgroundColor: 'rgba(0, 0, 0, 0.35)', 
+              color: '#FFD700', 
+              padding: '2px 8px', 
+              borderRadius: '6px', 
+              fontFamily: 'monospace', 
+              fontSize: '14px', 
+              fontWeight: 'bold',
+              border: '1px solid rgba(212, 175, 55, 0.5)',
+              letterSpacing: '1px'
+            }}>
+              {visitorCount.toLocaleString()} {lang === 'TH' ? 'คน' : ''}
             </span>
           </div>
         </div>
