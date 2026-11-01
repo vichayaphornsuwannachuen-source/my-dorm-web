@@ -12,12 +12,12 @@ function App() {
   const [selectedDorm, setSelectedDorm] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [viewMode, setViewMode] = useState('360');
-  const [visitorCount, setVisitorCount] = useState(128);
+  const [visitorCount, setVisitorCount] = useState(0);
 
-  // ระบบนับคนเข้าชมผ่าน localStorage แสดงตัวเลขอัตโนมัติ ไม่ต้องพึ่งพา iframe ภายนอก
+  // เริ่มต้นนับสถิติจาก 0 เมื่อมีคนเข้าชมจริงจะเพิ่มทีละ 1
   useEffect(() => {
     const savedCount = localStorage.getItem('mfu_dorm_visitors');
-    let current = savedCount ? parseInt(savedCount, 10) : 128;
+    let current = savedCount ? parseInt(savedCount, 10) : 0;
     current += 1;
     localStorage.setItem('mfu_dorm_visitors', current.toString());
     setVisitorCount(current);
