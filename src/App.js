@@ -372,12 +372,136 @@ function App() {
         </div>
       </nav>
 
-      <div className={`side-menu ${isMenuOpen ? 'open' : ''}`}>
-        <div className="close-btn" onClick={() => setIsMenuOpen(false)}>×</div>
-        <div className="creator-profile">
-          <div className="profile-img-box"><img src="/Moji.jpg" alt="Dev" className="creator-img" /></div>
-          <h3>{lang === 'TH' ? 'ผู้พัฒนา' : 'Developers'}</h3><p>Vichayaphorn (DCE)</p>
+      {/* Side Menu Drawer ปรับปรุงตามแบบร่างกระดาษ */}
+      <div 
+        className={`side-menu ${isMenuOpen ? 'open' : ''}`}
+        style={{
+          overflowY: 'auto',
+          maxHeight: '100vh',
+          padding: '24px 20px',
+          boxSizing: 'border-box',
+          textAlign: 'left'
+        }}
+      >
+        <div className="close-btn" onClick={() => setIsMenuOpen(false)} style={{ cursor: 'pointer', fontSize: '28px', textAlign: 'right', marginBottom: '10px' }}>×</div>
+        
+        {/* 1. ส่วนหัวข้อและช่องทางติดต่อ ส่วนพัฒนานักศึกษา */}
+        <div style={{ borderBottom: '1px solid #E2E8F0', paddingBottom: '16px', marginBottom: '16px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
+            <img src="/logo.png" alt="MFU Logo" style={{ width: '38px', height: 'auto' }} />
+            <div>
+              <div style={{ fontSize: '15px', fontWeight: 'bold', color: '#1A2B4C', lineHeight: '1.3' }}>
+                {lang === 'TH' ? 'ส่วนพัฒนานักศึกษา มหาวิทยาลัยแม่ฟ้าหลวง' : 'Student Development Affairs Division'}
+              </div>
+              <div style={{ fontSize: '12px', color: '#64748B' }}>Mae Fah Luang University</div>
+            </div>
+          </div>
+
+          <div style={{ fontSize: '12px', color: '#475569', lineHeight: '1.6', background: '#F8FAFC', padding: '10px 12px', borderRadius: '8px' }}>
+            <p style={{ margin: '0 0 4px' }}>
+              <strong>{lang === 'TH' ? 'ที่อยู่:' : 'Address:'}</strong> อาคารโรงอาหาร D1 333 หมู่ 1 ต.ท่าสุด อ.เมือง จ.เชียงราย 57100
+            </p>
+            <p style={{ margin: '0 0 6px', color: '#64748B' }}>
+              D1 Building 333 Moo 1, Thasud, Muang, Chiang Rai 57100
+            </p>
+            <p style={{ margin: '0 0 4px' }}>
+              <strong>ส่วนพัฒนานักศึกษา มฟล. SDAD MFU</strong>
+            </p>
+            <p style={{ margin: '0 0 4px' }}>
+              📧 Email: <a href="mailto:sdad@mfu.ac.th" style={{ color: '#2563EB', textDecoration: 'none' }}>sdad@mfu.ac.th</a>
+            </p>
+            <p style={{ margin: 0 }}>
+              📞 โทรศัพท์: <a href="tel:053916376" style={{ color: '#2563EB', textDecoration: 'none' }}>053-916376</a>
+            </p>
+          </div>
         </div>
+
+        {/* 2. Important Notice */}
+        <div style={{ 
+          background: '#FEF2F2', 
+          borderLeft: '4px solid #DC2626', 
+          padding: '10px 12px', 
+          borderRadius: '6px', 
+          marginBottom: '16px',
+          color: '#991B1B',
+          fontSize: '13px',
+          fontWeight: '600'
+        }}>
+          📌 Important: Information as of November 2, 2026
+        </div>
+
+        {/* 3. Version */}
+        <div style={{ marginBottom: '16px' }}>
+          <span style={{ 
+            display: 'inline-block',
+            fontWeight: '900', 
+            fontSize: '15px', 
+            color: '#1E293B',
+            background: '#F1F5F9',
+            padding: '4px 10px',
+            borderRadius: '6px'
+          }}>
+            Version 1
+          </span>
+        </div>
+
+        {/* 4. ข้อมูลผู้พัฒนา */}
+        <div style={{ borderBottom: '1px solid #E2E8F0', paddingBottom: '18px', marginBottom: '18px' }}>
+          <h4 style={{ margin: '0 0 12px', fontSize: '15px', color: '#1A2B4C', fontWeight: 'bold' }}>
+            {lang === 'TH' ? 'ผู้พัฒนา (Developers)' : 'Developers'}
+          </h4>
+          
+          {/* คนที่ 1: โมจิ */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '14px' }}>
+            <img 
+              src="/Moji.jpg" 
+              alt="Moji" 
+              style={{ width: '56px', height: '56px', borderRadius: '50%', objectFit: 'cover', border: '2px solid #CBD5E1' }} 
+            />
+            <div style={{ fontSize: '12px', lineHeight: '1.4' }}>
+              <div style={{ fontWeight: 'bold', color: '#0F172A' }}>Miss Vichayaphorn Suwannachuen</div>
+              <div style={{ color: '#334155' }}>นางสาว วิชญาพร สุวรรณชื่น</div>
+              <div style={{ color: '#2563EB', fontWeight: '600', marginTop: '2px' }}>
+                {lang === 'TH' ? 'หน้าที่: ส่วน Web' : 'Role: Web Development'}
+              </div>
+            </div>
+          </div>
+
+          {/* คนที่ 2: หยก */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <img 
+              src="/Yok.jpg" 
+              alt="Yok" 
+              onError={(e) => { e.target.src = '/cover.jpg'; }}
+              style={{ width: '56px', height: '56px', borderRadius: '50%', objectFit: 'cover', border: '2px solid #CBD5E1' }} 
+            />
+            <div style={{ fontSize: '12px', lineHeight: '1.4' }}>
+              <div style={{ fontWeight: 'bold', color: '#0F172A' }}>Miss Wachiraya Sitthikasemkit</div>
+              <div style={{ color: '#334155' }}>นางสาว วชิรญาณ์ สิทธิเกษมกิจ</div>
+              <div style={{ color: '#2563EB', fontWeight: '600', marginTop: '2px' }}>
+                {lang === 'TH' ? 'หน้าที่: ส่วน Unity' : 'Role: Unity 360'}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 5. ชื่ออาจารย์ที่ปรึกษา */}
+        <div>
+          <h4 style={{ margin: '0 0 10px', fontSize: '15px', color: '#1A2B4C', fontWeight: 'bold' }}>
+            ⭐ {lang === 'TH' ? 'ชื่ออาจารย์ที่ปรึกษา' : 'Advisors'}
+          </h4>
+          <div style={{ fontSize: '12px', color: '#334155', lineHeight: '1.5' }}>
+            <div style={{ marginBottom: '10px', background: '#F8FAFC', padding: '8px 10px', borderRadius: '6px' }}>
+              <div style={{ fontWeight: '600', color: '#0F172A' }}>1. ผู้ช่วยศาสตราจารย์ ดร.ศุภกานต์ จันทร์เสรีวิทยา</div>
+              <div style={{ color: '#64748B' }}>Asst. Prof. Suppakarn Chansareewittaya, Ph.D.</div>
+            </div>
+            <div style={{ background: '#F8FAFC', padding: '8px 10px', borderRadius: '6px' }}>
+              <div style={{ fontWeight: '600', color: '#0F172A' }}>2. อาจารย์ ดร.เขมชาติ เขมวุฒมานนท์</div>
+              <div style={{ color: '#64748B' }}>Kemachat Kemavuthanon, Ph.D.</div>
+            </div>
+          </div>
+        </div>
+
       </div>
       {isMenuOpen && <div className="menu-overlay" onClick={() => setIsMenuOpen(false)}></div>}
 
@@ -417,7 +541,6 @@ function App() {
                   />
                   <div className="dorm-card-info">
                     <h3>{lang === 'TH' ? dorm.nameTH : dorm.nameEN}</h3>
-                    {/* จุดที่แก้ไข: รองรับการสลับภาษา TH / EN อัตโนมัติ */}
                     <p>
                       {lang === 'TH' ? dorm.type : (dorm.type === 'ชาย' ? 'Male' : 'Female')} |{' '}
                       {lang === 'TH' ? dorm.air : (dorm.air === 'ปรับอากาศ' ? 'Air Con' : 'Fan')} |{' '}
@@ -430,7 +553,6 @@ function App() {
           </>
         ) : (
           <div className="detail-page">
-            {/* ปุ่มย้อนกลับหน้าหลัก */}
             <button className="back-btn" onClick={() => { setSelectedDorm(null); setViewMode('360'); }} style={{ marginBottom: '20px', padding: '10px 20px', borderRadius: '10px', cursor: 'pointer' }}>
               {lang === 'TH' ? '← ย้อนกลับหน้าหลัก' : '← Back to Main'}
             </button>
@@ -444,7 +566,7 @@ function App() {
               <div style={{ 
                 display: 'flex', 
                 flexDirection: 'row', 
-                justifyContent: 'center',
+                justifyContent: 'center', 
                 gap: '30px', 
                 margin: '0 auto 25px', 
                 width: '100%', 
@@ -487,10 +609,10 @@ function App() {
               </div>
             )}
 
-           {/* 🌟 กล่องสำคัญและคำแนะนำการใช้งาน */}
+            {/* กล่องสำคัญและคำแนะนำการใช้งาน */}
             {selectedDorm.noteTH && (
               <div style={{ 
-                maxWidth: '1200px',
+                maxWidth: '1200px', 
                 margin: '0 auto 20px', 
                 padding: '12px 20px', 
                 background: '#FFF5F5', 
@@ -498,16 +620,12 @@ function App() {
                 borderRadius: '10px', 
                 color: '#C53030', 
                 fontSize: '15px', 
-                boxShadow: '0 2px 6px rgba(0,0,0,0.05)',
-                textAlign: 'left'
+                boxShadow: '0 2px 6px rgba(0,0,0,0.05)', 
+                textAlign: 'left' 
               }}>
-                {/* แถวที่ 1: ข้อมูล & ป้ายรีโนเวทตัวหนังสือสีดำ */}
                 <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
                   <span>
-                    📌 <strong style={{ 
-                      WebkitTextStroke: '0.6px #C53030', 
-                      fontWeight: 'bold' 
-                    }}>
+                    📌 <strong style={{ WebkitTextStroke: '0.6px #C53030', fontWeight: 'bold' }}>
                       {lang === 'TH' ? 'สำคัญ:' : 'Important:'}
                     </strong> {lang === 'TH' ? selectedDorm.noteTH : selectedDorm.noteEN}
                   </span>
@@ -528,7 +646,6 @@ function App() {
                   )}
                 </div>
 
-                {/* แถวที่ 2: คำแนะนำ 2 นิ้ว */}
                 <div style={{ marginTop: '6px', fontSize: '13px', color: '#b91c1c', fontWeight: '500' }}>
                   {lang === 'TH' ? (
                     <>
@@ -552,11 +669,11 @@ function App() {
                   borderRadius: '30px', 
                   fontSize: '16px', 
                   fontWeight: 'bold', 
-                  cursor: 'pointer',
-                  border: '2px solid #1A2B4C',
-                  background: viewMode === '360' ? '#1A2B4C' : '#FFFFFF',
-                  color: viewMode === '360' ? '#FFFFFF' : '#1A2B4C',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.08)'
+                  cursor: 'pointer', 
+                  border: '2px solid #1A2B4C', 
+                  background: viewMode === '360' ? '#1A2B4C' : '#FFFFFF', 
+                  color: viewMode === '360' ? '#FFFFFF' : '#1A2B4C', 
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.08)' 
                 }}
               >
                 {lang === 'TH' ? '🖼️ มุมมอง 360° / รูปภาพ' : '🖼️ 360° / Photos'}
@@ -568,11 +685,11 @@ function App() {
                   borderRadius: '30px', 
                   fontSize: '16px', 
                   fontWeight: 'bold', 
-                  cursor: 'pointer',
-                  border: '2px solid #1A2B4C',
-                  background: viewMode === 'vdo' ? '#1A2B4C' : '#FFFFFF',
-                  color: viewMode === 'vdo' ? '#FFFFFF' : '#1A2B4C',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.08)'
+                  cursor: 'pointer', 
+                  border: '2px solid #1A2B4C', 
+                  background: viewMode === 'vdo' ? '#1A2B4C' : '#FFFFFF', 
+                  color: viewMode === 'vdo' ? '#FFFFFF' : '#1A2B4C', 
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.08)' 
                 }}
               >
                 {lang === 'TH' ? '🎥 วิดีโอรีวิว (VDO)' : '🎥 VDO Walkthrough'}
@@ -645,7 +762,7 @@ function App() {
                 </h4>
                 <ul style={{ listStyle: 'none', padding: '0', fontSize: '18px', lineHeight: '2.2', color: '#444' }}>
                   {selectedDorm.facilities && (lang === 'TH' ? selectedDorm.facilities.roomTH : selectedDorm.facilities.roomEN)?.map((item, idx) => (
-                    <li key={idx}>• {item}</li>
+                    <li key={idx}>{item}</li>
                   ))}
                 </ul>
               </div>
@@ -656,7 +773,7 @@ function App() {
                 </h4>
                 <ul style={{ listStyle: 'none', padding: '0', fontSize: '18px', lineHeight: '2.2', color: '#444' }}>
                   {selectedDorm.facilities && (lang === 'TH' ? selectedDorm.facilities.commonTH : selectedDorm.facilities.commonEN)?.map((item, idx) => (
-                    <li key={idx}>• {item}</li>
+                    <li key={idx}>{item}</li>
                   ))}
                 </ul>
               </div>
