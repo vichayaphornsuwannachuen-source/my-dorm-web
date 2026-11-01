@@ -15,12 +15,12 @@ body { margin: 0; font-family: 'Kanit', sans-serif; background-color: #fff; }
 .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; }
 .hamburger span { width: 25px; height: 3px; background: #1A2B4C; border-radius: 2px; transition: 0.3s; }
 
-/* เว้นระยะห่างด้านล่างจอ เพื่อไม่ให้แถบที่ลอยอยู่ไปทับปุ่มหรือเนื้อหาท้ายหน้า */
+/* เว้นระยะห่างด้านล่าง ไม่ให้แถบลอยไปบังเนื้อหาหน้าจอ */
 .container { 
   width: 90%; 
   margin: 0 auto; 
   padding-top: 20px; 
-  padding-bottom: 75px !important; 
+  padding-bottom: 90px !important; 
 }
 
 /* Banner */
@@ -123,64 +123,72 @@ body { margin: 0; font-family: 'Kanit', sans-serif; background-color: #fff; }
 }
 
 /* ===================================================
-   MFU Red & Gold Fixed Bottom Bar (ลอยติดขอบล่างตลอดเวลา)
+   MFU Red & Gold Fixed Footer (กล่องสถิติ 4 ช่องครบชุด)
    =================================================== */
 .mfu-fixed-bottom-bar {
   position: fixed;
-  bottom: 12px;
+  bottom: 10px;
   left: 0;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 998;
-  pointer-events: none; /* ป้องกันขอบใสไปบังการกดปุ่มบนหน้าเว็บ */
+  pointer-events: none;
 }
 
-.mfu-stats-card {
+.mfu-traffic-box {
   pointer-events: auto;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  background: linear-gradient(135deg, #7A0009 0%, #9B111E 100%); /* แดงเลือดนก มฟล. */
-  border: 1.5px solid #D4AF37; /* ขอบสีทอง */
-  padding: 6px 20px;
-  border-radius: 50px;
+  background: linear-gradient(135deg, #7A0009 0%, #9B111E 100%); /* แดง มฟล. */
+  border: 1.5px solid #D4AF37; /* ขอบทอง */
+  border-radius: 14px;
+  padding: 6px 16px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), 0 0 10px rgba(212, 175, 55, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
 }
 
-.stat-badge-group {
+.mfu-traffic-date {
+  font-size: 11px;
+  color: #F8E7BE;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.mfu-traffic-grid {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 12px;
+  align-items: center;
+}
+
+.traffic-item {
   display: flex;
   align-items: center;
   gap: 6px;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
 }
 
-.stat-icon-gold {
-  font-size: 14px;
+.traffic-label {
+  font-size: 11px;
+  color: #F8E7BE;
+  font-family: monospace;
 }
 
-.stat-title-gold {
-  font-size: 13px;
-  font-weight: 500;
-  color: #F8E7BE; /* สีทองนวล */
-}
-
-.stat-value-gold {
-  font-size: 13px;
-  font-weight: 600;
+.traffic-val {
+  font-size: 12px;
+  font-weight: bold;
   color: #FFFFFF;
+  font-family: monospace;
 }
 
-.stat-separator-gold {
-  width: 1px;
-  height: 16px;
-  background: rgba(212, 175, 55, 0.4);
-}
-
-.stat-counter-wrap {
-  display: inline-flex;
-  align-items: center;
+.traffic-val.gold {
+  color: #FFD700;
 }
 
 /* Responsive สำหรับหน้าจอขนาดเล็ก/มือถือ */
@@ -193,14 +201,11 @@ body { margin: 0; font-family: 'Kanit', sans-serif; background-color: #fff; }
 }
 
 @media (max-width: 600px) {
-  .mfu-fixed-bottom-bar {
-    bottom: 8px;
+  .mfu-traffic-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
   }
-  .mfu-stats-card {
-    padding: 5px 14px;
-    gap: 10px;
-  }
-  .stat-title-gold, .stat-value-gold {
-    font-size: 11px;
+  .traffic-item {
+    justify-content: space-between;
   }
 }

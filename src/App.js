@@ -12,15 +12,41 @@ function App() {
   const [selectedDorm, setSelectedDorm] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [viewMode, setViewMode] = useState('360');
-  const [visitorCount, setVisitorCount] = useState(0);
 
-  // เริ่มต้นนับสถิติจาก 0 เมื่อมีคนเข้าชมจริงจะเพิ่มทีละ 1
+  // สเตตสถิติ 4 ค่า
+  const [trafficStats, setTrafficStats] = useState({
+    pages: 0,
+    visitors: 0,
+    visToday: 0,
+    pagToday: 0
+  });
+
+  // ระบบนับสถิติ 4 ค่าแยกวันอัตโนมัติ
   useEffect(() => {
-    const savedCount = localStorage.getItem('mfu_dorm_visitors');
-    let current = savedCount ? parseInt(savedCount, 10) : 0;
-    current += 1;
-    localStorage.setItem('mfu_dorm_visitors', current.toString());
-    setVisitorCount(current);
+    const today = new Date().toISOString().slice(0, 10);
+    const lastDate = localStorage.getItem('mfu_counter_date');
+    const isNewDay = lastDate !== today;
+
+    let pages = parseInt(localStorage.getItem('mfu_counter_pages') || '0', 10) + 1;
+    let pagToday = isNewDay ? 1 : parseInt(localStorage.getItem('mfu_counter_pag_today') || '0', 10) + 1;
+
+    let visitors = parseInt(localStorage.getItem('mfu_counter_visitors') || '0', 10);
+    let visToday = isNewDay ? 0 : parseInt(localStorage.getItem('mfu_counter_vis_today') || '0', 10);
+
+    const hasSession = sessionStorage.getItem('mfu_visitor_session');
+    if (!hasSession) {
+      visitors += 1;
+      visToday += 1;
+      sessionStorage.setItem('mfu_visitor_session', 'active');
+    }
+
+    localStorage.setItem('mfu_counter_date', today);
+    localStorage.setItem('mfu_counter_pages', pages.toString());
+    localStorage.setItem('mfu_counter_pag_today', pagToday.toString());
+    localStorage.setItem('mfu_counter_visitors', visitors.toString());
+    localStorage.setItem('mfu_counter_vis_today', visToday.toString());
+
+    setTrafficStats({ pages, visitors, visToday, pagToday });
   }, []);
 
   // ข้อมูลหอพักพร้อมสิ่งอำนวยความสะดวกตามข้อมูลบันทึกจริง
@@ -808,39 +834,33 @@ function App() {
         )}
       </div>
 
-      {/* Footer สถิติผู้เข้าชมและวันที่ (ลอยติดขอบล่างตลอดเวลาทุกหน้า) */}
+      {/* Footer สถิติครบ 4 ค่าตามแบบ (ลอยติดขอบล่างตลอดเวลาทุกหน้า) */}
       <footer className="mfu-fixed-bottom-bar">
-        <div className="mfu-stats-card">
-          <div className="stat-badge-group">
-            <span className="stat-icon-gold">📅</span>
-            <span className="stat-title-gold">{lang === 'TH' ? 'วันที่:' : 'Date:'}</span>
-            <span className="stat-value-gold">
-              {new Date().toLocaleDateString(lang === 'TH' ? 'th-TH' : 'en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-              })}
-            </span>
+        <div className="mfu-traffic-box">
+          <div className="mfu-traffic-date">
+            📅 {new Date().toLocaleDateString(lang === 'TH' ? 'th-TH' : 'en-US', {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric'
+            })}
           </div>
-
-          <div className="stat-separator-gold"></div>
-
-          <div className="stat-badge-group">
-            <span className="stat-icon-gold">👥</span>
-            <span className="stat-title-gold">{lang === 'TH' ? 'ผู้เข้าชมเว็บไซต์:' : 'Visitors:'}</span>
-            <span style={{ 
-              backgroundColor: 'rgba(0, 0, 0, 0.35)', 
-              color: '#FFD700', 
-              padding: '2px 8px', 
-              borderRadius: '6px', 
-              fontFamily: 'monospace', 
-              fontSize: '14px', 
-              fontWeight: 'bold',
-              border: '1px solid rgba(212, 175, 55, 0.5)',
-              letterSpacing: '1px'
-            }}>
-              {visitorCount.toLocaleString()} {lang === 'TH' ? 'คน' : ''}
-            </span>
+          <div className="mfu-traffic-grid">
+            <div className="traffic-item">
+              <span className="traffic-label">pages</span>
+              <span className="traffic-val">{trafficStats.pages.toLocaleString()}</span>
+            </div>
+            <div className="traffic-item">
+              <span className="traffic-label">visitors</span>
+              <span className="traffic-val gold">{trafficStats.visitors.toLocaleString()}</span>
+            </div>
+            <div className="traffic-item">
+              <span className="traffic-label">vis.today</span>
+              <span className="traffic-val">{trafficStats.visToday.toLocaleString()}</span>
+            </div>
+            <div className="traffic-item">
+              <span className="traffic-label">pag.today</span>
+              <span className="traffic-val gold">{trafficStats.pagToday.toLocaleString()}</span>
+            </div>
           </div>
         </div>
       </footer>
