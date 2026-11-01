@@ -798,8 +798,8 @@ function App() {
         )}
       </div>
 
-      {/* Footer สถิติผู้เข้าชมและวันที่ (กรอบสีแดง-ทอง อัตลักษณ์ มฟล. อยู่ล่างสุดตรงกลางของทุกหน้า) */}
-      <footer className="mfu-footer">
+      {/* Footer สถิติผู้เข้าชมและวันที่ (ลอยติดขอบล่างตลอดเวลาทุกหน้า) */}
+      <footer className="mfu-fixed-bottom-bar">
         <div className="mfu-stats-card">
           <div className="stat-badge-group">
             <span className="stat-icon-gold">📅</span>
@@ -819,17 +819,21 @@ function App() {
             <span className="stat-icon-gold">👥</span>
             <span className="stat-title-gold">{lang === 'TH' ? 'ผู้เข้าชมเว็บไซต์:' : 'Visitors:'}</span>
             <span className="stat-counter-wrap">
-              <img 
-                src="https://api.visitorbadge.io/api/visitors?pageId=mfu-virtual-dorm-2026&label=%20&countColor=%238B0000" 
-                alt="visitor counter" 
-                className="visitor-badge-img"
+              <iframe 
+                src="https://freehitcounters.org/count/10291" 
+                title="visitor-counter"
+                scrolling="no"
+                frameBorder="0"
+                style={{
+                  width: '65px',
+                  height: '20px',
+                  border: 'none',
+                  verticalAlign: 'middle',
+                  filter: 'contrast(150%)'
+                }}
               />
             </span>
           </div>
-        </div>
-
-        <div className="mfu-footer-text">
-          Mae Fah Luang University Virtual Dormitory System © 2026
         </div>
       </footer>
     </div>
