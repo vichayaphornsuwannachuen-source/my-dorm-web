@@ -834,7 +834,7 @@ function App() {
         )}
       </div>
 
-      {/* Footer สถิติครบ 4 ค่าตามแบบ (ลอยติดขอบล่างตลอดเวลาทุกหน้า) */}
+      {/* Footer สถิติครบ 4 ค่า สลับภาษา TH/EN อัตโนมัติ (ลอยติดขอบล่างตลอดเวลาทุกหน้า) */}
       <footer className="mfu-fixed-bottom-bar">
         <div className="mfu-traffic-box">
           <div className="mfu-traffic-date">
@@ -846,19 +846,27 @@ function App() {
           </div>
           <div className="mfu-traffic-grid">
             <div className="traffic-item">
-              <span className="traffic-label">pages</span>
+              <span className="traffic-label">
+                {lang === 'TH' ? 'ยอดวิวรวม' : 'pages'}
+              </span>
               <span className="traffic-val">{trafficStats.pages.toLocaleString()}</span>
             </div>
             <div className="traffic-item">
-              <span className="traffic-label">visitors</span>
+              <span className="traffic-label">
+                {lang === 'TH' ? 'ผู้เข้าชม' : 'visitors'}
+              </span>
               <span className="traffic-val gold">{trafficStats.visitors.toLocaleString()}</span>
             </div>
             <div className="traffic-item">
-              <span className="traffic-label">vis.today</span>
+              <span className="traffic-label">
+                {lang === 'TH' ? 'ผู้เข้าชมวันนี้' : 'vis.today'}
+              </span>
               <span className="traffic-val">{trafficStats.visToday.toLocaleString()}</span>
             </div>
             <div className="traffic-item">
-              <span className="traffic-label">pag.today</span>
+              <span className="traffic-label">
+                {lang === 'TH' ? 'เปิดดูวันนี้' : 'pag.today'}
+              </span>
               <span className="traffic-val gold">{trafficStats.pagToday.toLocaleString()}</span>
             </div>
           </div>
