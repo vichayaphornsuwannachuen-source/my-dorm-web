@@ -797,6 +797,41 @@ function App() {
           </div>
         )}
       </div>
+
+      {/* Footer สถิติผู้เข้าชมและวันที่ (กรอบสีแดง-ทอง อัตลักษณ์ มฟล. อยู่ล่างสุดตรงกลางของทุกหน้า) */}
+      <footer className="mfu-footer">
+        <div className="mfu-stats-card">
+          <div className="stat-badge-group">
+            <span className="stat-icon-gold">📅</span>
+            <span className="stat-title-gold">{lang === 'TH' ? 'วันที่:' : 'Date:'}</span>
+            <span className="stat-value-gold">
+              {new Date().toLocaleDateString(lang === 'TH' ? 'th-TH' : 'en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </span>
+          </div>
+
+          <div className="stat-separator-gold"></div>
+
+          <div className="stat-badge-group">
+            <span className="stat-icon-gold">👥</span>
+            <span className="stat-title-gold">{lang === 'TH' ? 'ผู้เข้าชมเว็บไซต์:' : 'Visitors:'}</span>
+            <span className="stat-counter-wrap">
+              <img 
+                src="https://api.visitorbadge.io/api/visitors?pageId=mfu-virtual-dorm-2026&label=%20&countColor=%238B0000" 
+                alt="visitor counter" 
+                className="visitor-badge-img"
+              />
+            </span>
+          </div>
+        </div>
+
+        <div className="mfu-footer-text">
+          Mae Fah Luang University Virtual Dormitory System © 2026
+        </div>
+      </footer>
     </div>
   );
 }
