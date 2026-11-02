@@ -1,6 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
+// นำเข้า Firebase และ Firestore SDK
+import { initializeApp, getApps, getApp } from 'firebase/app';
+import { 
+  getFirestore, 
+  doc, 
+  getDoc, 
+  setDoc, 
+  updateDoc, 
+  increment 
+} from 'firebase/firestore';
+
+// คอนฟิกเชื่อมต่อ Cloud Firestore
+const firebaseConfig = {
+  projectId: "mfu-dorm-counter"
+};
+
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+const db = getFirestore(app);
+
 const filterNames = {
   TH: ['หอพักทั้งหมด', 'หอพักชาย', 'หอพักหญิง', 'หอพักพัดลม', 'หอพักปรับอากาศ', 'จำนวน 2 คน', 'จำนวน 3 คน', 'จำนวน 4 คน'],
   EN: ['All Dorms', 'Male Dorm', 'Female Dorm', 'Fan Dorm', 'Air Dorm', '2 Persons', '3 Persons', '4 Persons']
@@ -21,57 +40,65 @@ function App() {
     pagToday: 0
   });
 
-  // ระบบนับสถิติกลาง Real-time ผ่าน Shared Cloud Counter (แสดงตัวเลขตรงกันทุกเครื่อง)
+  // ระบบนับสถิติ Cloud Firestore ด้วย Atomic Increment (รองรับการกดพร้อมกันไม่จำกัด ยอดไม่ตกหล่น)
   useEffect(() => {
-    const today = new Date().toISOString().slice(0, 10);
-    const namespace = "mfu-dorm-web-2026";
-
-    const syncCloudCounter = async () => {
+    const syncFirestoreStats = async () => {
       try {
-        // 1. อัปเดตและดึงยอดเปิดดูสะสมรวม (pages) จากเซิร์ฟเวอร์กลาง
-        const resPages = await fetch(`https://api.counterapi.dev/v1/${namespace}/pages/up`);
-        const dataPages = await resPages.json();
+        const today = new Date().toISOString().slice(0, 10);
+        const statsRef = doc(db, "system_metrics", "traffic");
+        const docSnap = await getDoc(statsRef);
 
-        // 2. อัปเดตและดึงยอดเปิดดูประจำวัน (pagToday)
-        const resPagToday = await fetch(`https://api.counterapi.dev/v1/${namespace}/pages_${today}/up`);
-        const dataPagToday = await resPagToday.json();
-
-        // 3. ตรวจสอบสถานะผู้เข้าชมใหม่ของแต่ละอุปกรณ์
-        const hasSession = sessionStorage.getItem('mfu_visitor_session');
-        let dataVisitors = { count: 0 };
-        let dataVisToday = { count: 0 };
-
-        if (!hasSession) {
-          // หากเป็นการเปิดครั้งแรกของเซสชันนี้ ให้เพิ่มยอดผู้เข้าชมกลาง
-          const rVis = await fetch(`https://api.counterapi.dev/v1/${namespace}/visitors/up`);
-          dataVisitors = await rVis.json();
-
-          const rVisToday = await fetch(`https://api.counterapi.dev/v1/${namespace}/visitors_${today}/up`);
-          dataVisToday = await rVisToday.json();
-
-          sessionStorage.setItem('mfu_visitor_session', 'active');
-        } else {
-          // หากเปิดอยู่แล้ว ให้อ่านยอดสะสมล่าสุดมาแสดงโดยไม่นับซ้ำ
-          const rVis = await fetch(`https://api.counterapi.dev/v1/${namespace}/visitors`);
-          dataVisitors = await rVis.json();
-
-          const rVisToday = await fetch(`https://api.counterapi.dev/v1/${namespace}/visitors_${today}`);
-          dataVisToday = await rVisToday.json();
+        const hasSession = sessionStorage.getItem("mfu_visitor_session");
+        const isNewVisitor = !hasSession;
+        if (isNewVisitor) {
+          sessionStorage.setItem("mfu_visitor_session", "active");
         }
 
-        // นำตัวเลขจากฐานข้อมูลกลางมาอัปเดตบนหน้าเว็บ
-        setTrafficStats({
-          pages: dataPages.count || 1,
-          visitors: dataVisitors.count || 1,
-          visToday: dataVisToday.count || 1,
-          pagToday: dataPagToday.count || 1
-        });
+        if (!docSnap.exists()) {
+          // เริ่มต้นข้อมูลครั้งแรกในฐานข้อมูล
+          const initialData = {
+            date: today,
+            pages: 1,
+            pagToday: 1,
+            visitors: isNewVisitor ? 1 : 0,
+            visToday: isNewVisitor ? 1 : 0
+          };
+          await setDoc(statsRef, initialData);
+          setTrafficStats(initialData);
+        } else {
+          const data = docSnap.data();
+          const isNewDay = data.date !== today;
+
+          // คำสั่ง atomic increment สั่งให้เซิร์ฟเวอร์จัดคิวบวกเลข ป้องกันยอดชนกัน
+          let updatePayload = {
+            date: today,
+            pages: increment(1),
+            pagToday: isNewDay ? 1 : increment(1)
+          };
+
+          if (isNewVisitor) {
+            updatePayload.visitors = increment(1);
+            updatePayload.visToday = isNewDay ? 1 : increment(1);
+          } else if (isNewDay) {
+            updatePayload.visToday = 0;
+          }
+
+          await updateDoc(statsRef, updatePayload);
+
+          // นำตัวเลขล่าสุดมาแสดงผลบนหน้าจอ
+          setTrafficStats({
+            pages: (data.pages || 0) + 1,
+            pagToday: isNewDay ? 1 : (data.pagToday || 0) + 1,
+            visitors: isNewVisitor ? (data.visitors || 0) + 1 : (data.visitors || 0),
+            visToday: isNewDay ? (isNewVisitor ? 1 : 0) : (isNewVisitor ? (data.visToday || 0) + 1 : (data.visToday || 0))
+          });
+        }
       } catch (err) {
-        console.warn("ดึงข้อมูลสถิติกลางไม่สำเร็จ:", err);
+        console.error("Firestore sync error:", err);
       }
     };
 
-    syncCloudCounter();
+    syncFirestoreStats();
   }, []);
 
   // ข้อมูลหอพักพร้อมสิ่งอำนวยความสะดวกตามข้อมูลบันทึกจริง
