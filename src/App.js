@@ -21,32 +21,57 @@ function App() {
     pagToday: 0
   });
 
-  // ระบบนับสถิติ 4 ค่าแยกวันอัตโนมัติ
+  // ระบบนับสถิติกลาง Real-time ผ่าน Shared Cloud Counter (แสดงตัวเลขตรงกันทุกเครื่อง)
   useEffect(() => {
     const today = new Date().toISOString().slice(0, 10);
-    const lastDate = localStorage.getItem('mfu_counter_date');
-    const isNewDay = lastDate !== today;
+    const namespace = "mfu-dorm-web-2026";
 
-    let pages = parseInt(localStorage.getItem('mfu_counter_pages') || '0', 10) + 1;
-    let pagToday = isNewDay ? 1 : parseInt(localStorage.getItem('mfu_counter_pag_today') || '0', 10) + 1;
+    const syncCloudCounter = async () => {
+      try {
+        // 1. อัปเดตและดึงยอดเปิดดูสะสมรวม (pages) จากเซิร์ฟเวอร์กลาง
+        const resPages = await fetch(`https://api.counterapi.dev/v1/${namespace}/pages/up`);
+        const dataPages = await resPages.json();
 
-    let visitors = parseInt(localStorage.getItem('mfu_counter_visitors') || '0', 10);
-    let visToday = isNewDay ? 0 : parseInt(localStorage.getItem('mfu_counter_vis_today') || '0', 10);
+        // 2. อัปเดตและดึงยอดเปิดดูประจำวัน (pagToday)
+        const resPagToday = await fetch(`https://api.counterapi.dev/v1/${namespace}/pages_${today}/up`);
+        const dataPagToday = await resPagToday.json();
 
-    const hasSession = sessionStorage.getItem('mfu_visitor_session');
-    if (!hasSession) {
-      visitors += 1;
-      visToday += 1;
-      sessionStorage.setItem('mfu_visitor_session', 'active');
-    }
+        // 3. ตรวจสอบสถานะผู้เข้าชมใหม่ของแต่ละอุปกรณ์
+        const hasSession = sessionStorage.getItem('mfu_visitor_session');
+        let dataVisitors = { count: 0 };
+        let dataVisToday = { count: 0 };
 
-    localStorage.setItem('mfu_counter_date', today);
-    localStorage.setItem('mfu_counter_pages', pages.toString());
-    localStorage.setItem('mfu_counter_pag_today', pagToday.toString());
-    localStorage.setItem('mfu_counter_visitors', visitors.toString());
-    localStorage.setItem('mfu_counter_vis_today', visToday.toString());
+        if (!hasSession) {
+          // หากเป็นการเปิดครั้งแรกของเซสชันนี้ ให้เพิ่มยอดผู้เข้าชมกลาง
+          const rVis = await fetch(`https://api.counterapi.dev/v1/${namespace}/visitors/up`);
+          dataVisitors = await rVis.json();
 
-    setTrafficStats({ pages, visitors, visToday, pagToday });
+          const rVisToday = await fetch(`https://api.counterapi.dev/v1/${namespace}/visitors_${today}/up`);
+          dataVisToday = await rVisToday.json();
+
+          sessionStorage.setItem('mfu_visitor_session', 'active');
+        } else {
+          // หากเปิดอยู่แล้ว ให้อ่านยอดสะสมล่าสุดมาแสดงโดยไม่นับซ้ำ
+          const rVis = await fetch(`https://api.counterapi.dev/v1/${namespace}/visitors`);
+          dataVisitors = await rVis.json();
+
+          const rVisToday = await fetch(`https://api.counterapi.dev/v1/${namespace}/visitors_${today}`);
+          dataVisToday = await rVisToday.json();
+        }
+
+        // นำตัวเลขจากฐานข้อมูลกลางมาอัปเดตบนหน้าเว็บ
+        setTrafficStats({
+          pages: dataPages.count || 1,
+          visitors: dataVisitors.count || 1,
+          visToday: dataVisToday.count || 1,
+          pagToday: dataPagToday.count || 1
+        });
+      } catch (err) {
+        console.warn("ดึงข้อมูลสถิติกลางไม่สำเร็จ:", err);
+      }
+    };
+
+    syncCloudCounter();
   }, []);
 
   // ข้อมูลหอพักพร้อมสิ่งอำนวยความสะดวกตามข้อมูลบันทึกจริง
