@@ -123,11 +123,11 @@ body { margin: 0; font-family: 'Kanit', sans-serif; background-color: #fff; }
 }
 
 /* ===================================================
-   MFU Red & Gold Fixed Footer (กล่องสถิติ 4 ช่องครบชุด)
+   Frosted Glass Fixed Footer (ขาวขุ่นโปร่งแสง ตัวหนังสือสีกรม)
    =================================================== */
 .mfu-fixed-bottom-bar {
   position: fixed;
-  bottom: 10px;
+  bottom: 12px;
   left: 0;
   width: 100%;
   display: flex;
@@ -139,11 +139,13 @@ body { margin: 0; font-family: 'Kanit', sans-serif; background-color: #fff; }
 
 .mfu-traffic-box {
   pointer-events: auto;
-  background: linear-gradient(135deg, #7A0009 0%, #9B111E 100%); /* แดง มฟล. */
-  border: 1.5px solid #D4AF37; /* ขอบทอง */
-  border-radius: 14px;
-  padding: 6px 16px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), 0 0 10px rgba(212, 175, 55, 0.2);
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  border-radius: 20px;
+  padding: 6px 18px;
+  box-shadow: 0 8px 24px rgba(26, 43, 76, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.6);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -152,15 +154,15 @@ body { margin: 0; font-family: 'Kanit', sans-serif; background-color: #fff; }
 
 .mfu-traffic-date {
   font-size: 11px;
-  color: #F8E7BE;
-  font-weight: 500;
+  color: #1A2B4C;
+  font-weight: 600;
   letter-spacing: 0.3px;
 }
 
 .mfu-traffic-grid {
   display: grid;
   grid-template-columns: repeat(4, auto);
-  gap: 12px;
+  gap: 10px;
   align-items: center;
 }
 
@@ -168,27 +170,29 @@ body { margin: 0; font-family: 'Kanit', sans-serif; background-color: #fff; }
   display: flex;
   align-items: center;
   gap: 6px;
-  background: rgba(0, 0, 0, 0.25);
-  padding: 3px 8px;
-  border-radius: 6px;
-  border: 1px solid rgba(212, 175, 55, 0.3);
+  background: rgba(255, 255, 255, 0.7);
+  padding: 3px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(26, 43, 76, 0.15);
+  box-shadow: 0 2px 6px rgba(26, 43, 76, 0.04);
 }
 
 .traffic-label {
   font-size: 11px;
-  color: #F8E7BE;
-  font-family: monospace;
+  color: #1A2B4C;
+  font-weight: 600;
+  font-family: 'Kanit', sans-serif;
 }
 
 .traffic-val {
   font-size: 12px;
   font-weight: bold;
-  color: #FFFFFF;
+  color: #1A2B4C;
   font-family: monospace;
 }
 
 .traffic-val.gold {
-  color: #FFD700;
+  color: #B45309;
 }
 
 /* Responsive สำหรับหน้าจอขนาดเล็ก/มือถือ */
