@@ -32,7 +32,7 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [viewMode, setViewMode] = useState('360');
 
-  // สเตตสถิติ 4 ค่า
+  // สเตตสถิติ 2 ค่าหลัก
   const [trafficStats, setTrafficStats] = useState({
     pages: 0,
     visitors: 0,
@@ -459,7 +459,7 @@ function App() {
           {/* เส้นคั่นแนวตั้ง สีส้ม-ทอง */}
           <div style={{ width: '2px', height: '42px', background: 'linear-gradient(to bottom, #D97706, #DC2626)', borderRadius: '2px' }}></div>
 
-          {/* กลุ่มข้อความชื่อส่วนพัฒนานักศึกษา สลับภาษา TH/EN แบบสมบูรณ์ */}
+          {/* กลุ่มข้อความชื่อส่วนพัฒนานักศึกษา สลับคู่ภาษา TH/EN แบบสมบูรณ์ */}
           <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left', lineHeight: '1.25' }}>
             <span style={{ fontSize: '16px', fontWeight: 'bold', color: '#1E3A8A' }}>
               {lang === 'TH' ? 'ส่วนพัฒนานักศึกษา' : 'Student Development Affairs Division'}
@@ -910,7 +910,7 @@ function App() {
         )}
       </div>
 
-      {/* Footer สถิติครบ 4 ค่า สลับภาษา TH/EN อัตโนมัติ (ลอยติดขอบล่างตลอดเวลาทุกหน้า) */}
+      {/* Footer สถิติเหลือ 2 ค่า: ยอดวิวรวม และ ผู้เข้าชมวันนี้ (สลับภาษาอัตโนมัติ) */}
       <footer className="mfu-fixed-bottom-bar">
         <div className="mfu-traffic-box">
           <div className="mfu-traffic-date">
@@ -929,21 +929,9 @@ function App() {
             </div>
             <div className="traffic-item">
               <span className="traffic-label">
-                {lang === 'TH' ? 'ผู้เข้าชม' : 'visitors'}
-              </span>
-              <span className="traffic-val gold">{trafficStats.visitors.toLocaleString()}</span>
-            </div>
-            <div className="traffic-item">
-              <span className="traffic-label">
                 {lang === 'TH' ? 'ผู้เข้าชมวันนี้' : 'vis.today'}
               </span>
-              <span className="traffic-val">{trafficStats.visToday.toLocaleString()}</span>
-            </div>
-            <div className="traffic-item">
-              <span className="traffic-label">
-                {lang === 'TH' ? 'เปิดดูวันนี้' : 'pag.today'}
-              </span>
-              <span className="traffic-val gold">{trafficStats.pagToday.toLocaleString()}</span>
+              <span className="traffic-val gold">{trafficStats.visToday.toLocaleString()}</span>
             </div>
           </div>
         </div>
@@ -951,5 +939,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
