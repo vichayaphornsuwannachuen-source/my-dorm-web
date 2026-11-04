@@ -448,9 +448,31 @@ function App() {
     <div className="App">
       {/* Navbar & Side Menu */}
       <nav className="nav-bar">
-        <div className="logo-section" onClick={() => { setSelectedDorm(null); setFilters([]); setViewMode('360'); }} style={{ cursor: 'pointer' }}>
-          <img src="/logo.png" alt="Logo" className="mfu-logo" /><span className="home-text">Home Page</span>
+        <div 
+          className="logo-section" 
+          onClick={() => { setSelectedDorm(null); setFilters([]); setViewMode('360'); }} 
+          style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '12px' }}
+        >
+          {/* ตราสัญลักษณ์มหาวิทยาลัย */}
+          <img src="/logo.png" alt="MFU Logo" style={{ height: '48px', width: 'auto', objectFit: 'contain' }} />
+
+          {/* เส้นคั่นแนวตั้ง สีส้ม-ทอง */}
+          <div style={{ width: '2px', height: '42px', background: 'linear-gradient(to bottom, #D97706, #DC2626)', borderRadius: '2px' }}></div>
+
+          {/* กลุ่มข้อความชื่อส่วนพัฒนานักศึกษา พร้อมสลับภาษา TH/EN */}
+          <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left', lineHeight: '1.25' }}>
+            <span style={{ fontSize: '16px', fontWeight: 'bold', color: '#1E3A8A' }}>
+              {lang === 'TH' ? 'ส่วนพัฒนานักศึกษา' : 'Student Development Affairs Division'}
+            </span>
+            <span style={{ fontSize: '13px', fontWeight: '600', color: '#1E3A8A' }}>
+              {lang === 'TH' ? 'มหาวิทยาลัยแม่ฟ้าหลวง' : 'Mae Fah Luang University'}
+            </span>
+            <span style={{ fontSize: '9.5px', fontWeight: '600', color: '#0284C7', letterSpacing: '0.3px', marginTop: '1px' }}>
+              STUDENT DEVELOPMENT AFFAIRS DIVISION, MAE FAH LUANG UNIVERSITY
+            </span>
+          </div>
         </div>
+
         <div className="nav-right">
           <div className="lang-switch">
             <button className={lang === 'TH' ? 'active' : ''} onClick={() => setLang('TH')}>TH</button>
@@ -533,7 +555,7 @@ function App() {
           </span>
         </div>
 
-        {/* 4. ข้อมูลผู้พัฒนา (แบบที่ 1: Technical & Professional) */}
+        {/* 4. ข้อมูลผู้พัฒนา */}
         <div style={{ borderBottom: '1px solid #E2E8F0', paddingBottom: '18px', marginBottom: '18px' }}>
           <h4 style={{ margin: '0 0 12px', fontSize: '15px', color: '#1A2B4C', fontWeight: 'bold' }}>
             {lang === 'TH' ? 'ผู้พัฒนา (Developers)' : 'Developers'}
