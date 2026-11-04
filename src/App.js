@@ -32,7 +32,7 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [viewMode, setViewMode] = useState('360');
 
-  // สเตตสถิติ 2 ค่าหลัก
+  // สเตตสถิติ
   const [trafficStats, setTrafficStats] = useState({
     pages: 0,
     visitors: 0,
@@ -40,7 +40,7 @@ function App() {
     pagToday: 0
   });
 
-  // ระบบนับสถิติ Cloud Firestore ด้วย Atomic Increment (รองรับการกดพร้อมกันไม่จำกัด ยอดไม่ตกหล่น)
+  // ระบบนับสถิติ Cloud Firestore ด้วย Atomic Increment
   useEffect(() => {
     const syncFirestoreStats = async () => {
       try {
@@ -55,7 +55,6 @@ function App() {
         }
 
         if (!docSnap.exists()) {
-          // เริ่มต้นข้อมูลครั้งแรกในฐานข้อมูล
           const initialData = {
             date: today,
             pages: 1,
@@ -69,7 +68,6 @@ function App() {
           const data = docSnap.data();
           const isNewDay = data.date !== today;
 
-          // คำสั่ง atomic increment สั่งให้เซิร์ฟเวอร์จัดคิวบวกเลข ป้องกันยอดชนกัน
           let updatePayload = {
             date: today,
             pages: increment(1),
@@ -85,7 +83,6 @@ function App() {
 
           await updateDoc(statsRef, updatePayload);
 
-          // นำตัวเลขล่าสุดมาแสดงผลบนหน้าจอ
           setTrafficStats({
             pages: (data.pages || 0) + 1,
             pagToday: isNewDay ? 1 : (data.pagToday || 0) + 1,
@@ -101,7 +98,7 @@ function App() {
     syncFirestoreStats();
   }, []);
 
-  // ข้อมูลหอพักพร้อมสิ่งอำนวยความสะดวกตามข้อมูลบันทึกจริง
+  // ข้อมูลหอพัก
   const dorms = [
     {
       id: 1, dormCode: "L1", nameTH: "หอพักลำดวน 1", nameEN: "Lamduan 1", type: "ชาย", air: "ปรับอากาศ", cap: "4 คน",
@@ -384,7 +381,7 @@ function App() {
     }
   }, [selectedDorm, viewMode]);
 
-  // 3. ดักฟังสัญญาณตอบกลับและสัญญาณพร้อมทำงานจาก Unity (UNITY_READY)
+  // 3. ดักฟังสัญญาณตอบกลับและสัญญาณพร้อมทำงานจาก Unity
   useEffect(() => {
     const handleUnityMessage = (event) => {
       if (event.data && event.data.type === "UNITY_READY") {
@@ -484,7 +481,7 @@ function App() {
         </div>
       </nav>
 
-      {/* Side Menu Drawer */}
+      {/* Side Menu Drawer ปรับระบบภาษา TH/EN แบบแยกเด็ดขาด ไม่ปนสองภาษาพร้อมกัน */}
       <div 
         className={`side-menu ${isMenuOpen ? 'open' : ''}`}
         style={{
@@ -497,7 +494,7 @@ function App() {
       >
         <div className="close-btn" onClick={() => setIsMenuOpen(false)} style={{ cursor: 'pointer', fontSize: '28px', textAlign: 'right', marginBottom: '10px' }}>×</div>
         
-        {/* 1. ข้อมูลและช่องทางติดต่อ ส่วนพัฒนานักศึกษา */}
+        {/* 1. ส่วนหัวและข้อมูลติดต่อ ส่วนพัฒนานักศึกษา */}
         <div style={{ borderBottom: '1px solid #E2E8F0', paddingBottom: '16px', marginBottom: '16px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
             <img src="/logo.png" alt="MFU Logo" style={{ width: '38px', height: 'auto' }} />
@@ -505,30 +502,32 @@ function App() {
               <div style={{ fontSize: '15px', fontWeight: 'bold', color: '#1A2B4C', lineHeight: '1.3' }}>
                 {lang === 'TH' ? 'ส่วนพัฒนานักศึกษา มหาวิทยาลัยแม่ฟ้าหลวง' : 'Student Development Affairs Division'}
               </div>
-              <div style={{ fontSize: '12px', color: '#64748B' }}>Mae Fah Luang University</div>
+              <div style={{ fontSize: '12px', color: '#64748B' }}>
+                {lang === 'TH' ? 'มหาวิทยาลัยแม่ฟ้าหลวง' : 'Mae Fah Luang University'}
+              </div>
             </div>
           </div>
 
           <div style={{ fontSize: '12px', color: '#475569', lineHeight: '1.6', background: '#F8FAFC', padding: '10px 12px', borderRadius: '8px' }}>
             <p style={{ margin: '0 0 4px' }}>
-              <strong>{lang === 'TH' ? 'ที่อยู่:' : 'Address:'}</strong> อาคารโรงอาหาร D1 333 หมู่ 1 ต.ท่าสุด อ.เมือง จ.เชียงราย 57100
-            </p>
-            <p style={{ margin: '0 0 6px', color: '#64748B' }}>
-              D1 Building 333 Moo 1, Thasud, Muang, Chiang Rai 57100
-            </p>
-            <p style={{ margin: '0 0 4px' }}>
-              <strong>ส่วนพัฒนานักศึกษา มฟล. SDAD MFU</strong>
+              <strong>{lang === 'TH' ? 'ที่อยู่:' : 'Address:'}</strong>{' '}
+              {lang === 'TH' 
+                ? 'อาคารโรงอาหาร D1 333 หมู่ 1 ต.ท่าสุด อ.เมือง จ.เชียงราย 57100' 
+                : 'D1 Building 333 Moo 1, Thasud, Mueang, Chiang Rai 57100'}
             </p>
             <p style={{ margin: '0 0 4px' }}>
-              📧 Email: <a href="mailto:sdad@mfu.ac.th" style={{ color: '#2563EB', textDecoration: 'none' }}>sdad@mfu.ac.th</a>
+              <strong>{lang === 'TH' ? 'ส่วนพัฒนานักศึกษา มฟล. (SDAD MFU)' : 'SDAD MFU'}</strong>
+            </p>
+            <p style={{ margin: '0 0 4px' }}>
+              📧 {lang === 'TH' ? 'อีเมล:' : 'Email:'} <a href="mailto:sdad@mfu.ac.th" style={{ color: '#2563EB', textDecoration: 'none' }}>sdad@mfu.ac.th</a>
             </p>
             <p style={{ margin: 0 }}>
-              📞 โทรศัพท์: <a href="tel:053916376" style={{ color: '#2563EB', textDecoration: 'none' }}>053-916376</a>
+              📞 {lang === 'TH' ? 'โทรศัพท์:' : 'Phone:'} <a href="tel:053916376" style={{ color: '#2563EB', textDecoration: 'none' }}>053-916376</a>
             </p>
           </div>
         </div>
 
-        {/* 2. Important Notice */}
+        {/* 2. ประกาศ Important Notice */}
         <div style={{ 
           background: '#FEF2F2', 
           borderLeft: '4px solid #DC2626', 
@@ -539,10 +538,12 @@ function App() {
           fontSize: '13px',
           fontWeight: '600'
         }}>
-          📌 Important: Information as of November 2, 2026
+          📌 {lang === 'TH' 
+            ? 'สำคัญ: ข้อมูล ณ วันที่ 2 พฤศจิกายน 2569' 
+            : 'Important: Information as of November 2, 2026'}
         </div>
 
-        {/* 3. Version */}
+        {/* 3. แสดงเวอร์ชัน */}
         <div style={{ marginBottom: '16px' }}>
           <span style={{ 
             display: 'inline-block',
@@ -553,14 +554,14 @@ function App() {
             padding: '4px 10px',
             borderRadius: '6px'
           }}>
-            Version 1
+            {lang === 'TH' ? 'เวอร์ชัน 1' : 'Version 1'}
           </span>
         </div>
 
-        {/* 4. ข้อมูลผู้พัฒนา */}
+        {/* 4. ข้อมูลผู้พัฒนา สลับภาษาตาม TH/EN ไม่แสดงซ้ำซ้อน */}
         <div style={{ borderBottom: '1px solid #E2E8F0', paddingBottom: '18px', marginBottom: '18px' }}>
           <h4 style={{ margin: '0 0 12px', fontSize: '15px', color: '#1A2B4C', fontWeight: 'bold' }}>
-            {lang === 'TH' ? 'ผู้พัฒนา (Developers)' : 'Developers'}
+            {lang === 'TH' ? 'ผู้พัฒนา' : 'Developers'}
           </h4>
           
           {/* คนที่ 1: โมจิ */}
@@ -571,10 +572,11 @@ function App() {
               style={{ width: '56px', height: '56px', borderRadius: '50%', objectFit: 'cover', border: '2px solid #CBD5E1' }} 
             />
             <div style={{ fontSize: '12px', lineHeight: '1.4' }}>
-              <div style={{ fontWeight: 'bold', color: '#0F172A' }}>Miss Vichayaphorn Suwannachuen</div>
-              <div style={{ color: '#334155' }}>นางสาว วิชญาพร สุวรรณชื่น</div>
+              <div style={{ fontWeight: 'bold', color: '#0F172A' }}>
+                {lang === 'TH' ? 'นางสาว วิชญาพร สุวรรณชื่น' : 'Miss Vichayaphorn Suwannachuen'}
+              </div>
               <div style={{ color: '#2563EB', fontWeight: '600', marginTop: '2px' }}>
-                Web Application Developer
+                {lang === 'TH' ? 'นักพัฒนาเว็บแอปพลิเคชัน (Web Developer)' : 'Web Application Developer'}
               </div>
             </div>
           </div>
@@ -588,28 +590,35 @@ function App() {
               style={{ width: '56px', height: '56px', borderRadius: '50%', objectFit: 'cover', border: '2px solid #CBD5E1' }} 
             />
             <div style={{ fontSize: '12px', lineHeight: '1.4' }}>
-              <div style={{ fontWeight: 'bold', color: '#0F172A' }}>Miss Wachiraya Sitthikasemkit</div>
-              <div style={{ color: '#334155' }}>นางสาว วชิรญาณ์ สิทธิเกษมกิจ</div>
+              <div style={{ fontWeight: 'bold', color: '#0F172A' }}>
+                {lang === 'TH' ? 'นางสาว วชิรญาณ์ สิทธิเกษมกิจ' : 'Miss Wachiraya Sitthikasemkit'}
+              </div>
               <div style={{ color: '#2563EB', fontWeight: '600', marginTop: '2px' }}>
-                360° Virtual Tour & Unity Developer
+                {lang === 'TH' ? 'นักพัฒนาระบบเสมือนจริง 360° และ Unity' : '360° Virtual Tour & Unity Developer'}
               </div>
             </div>
           </div>
         </div>
 
-        {/* 5. ชื่ออาจารย์ที่ปรึกษา */}
+        {/* 5. ชื่ออาจารย์ที่ปรึกษา สลับภาษาตาม TH/EN ไม่แสดงซ้อนกัน */}
         <div>
           <h4 style={{ margin: '0 0 10px', fontSize: '15px', color: '#1A2B4C', fontWeight: 'bold' }}>
-            ⭐ {lang === 'TH' ? 'ชื่ออาจารย์ที่ปรึกษา' : 'Advisors'}
+            ⭐ {lang === 'TH' ? 'อาจารย์ที่ปรึกษา' : 'Project Advisors'}
           </h4>
           <div style={{ fontSize: '12px', color: '#334155', lineHeight: '1.5' }}>
             <div style={{ marginBottom: '10px', background: '#F8FAFC', padding: '8px 10px', borderRadius: '6px' }}>
-              <div style={{ fontWeight: '600', color: '#0F172A' }}>1. ผู้ช่วยศาสตราจารย์ ดร.ศุภกานต์ จันทร์เสรีวิทยา</div>
-              <div style={{ color: '#64748B' }}>Asst. Prof. Suppakarn Chansareewittaya, Ph.D.</div>
+              <div style={{ fontWeight: '600', color: '#0F172A' }}>
+                {lang === 'TH' 
+                  ? '1. ผู้ช่วยศาสตราจารย์ ดร.ศุภกานต์ จันทร์เสรีวิทยา' 
+                  : '1. Asst. Prof. Suppakarn Chansareewittaya, Ph.D.'}
+              </div>
             </div>
             <div style={{ background: '#F8FAFC', padding: '8px 10px', borderRadius: '6px' }}>
-              <div style={{ fontWeight: '600', color: '#0F172A' }}>2. อาจารย์ ดร.เขมชาติ เขมวุฒมานนท์</div>
-              <div style={{ color: '#64748B' }}>Kemachat Kemavuthanon, Ph.D.</div>
+              <div style={{ fontWeight: '600', color: '#0F172A' }}>
+                {lang === 'TH' 
+                  ? '2. อาจารย์ ดร.เขมชาติ เขมวุฒมานนท์' 
+                  : '2. Kemachat Kemavuthanon, Ph.D.'}
+              </div>
             </div>
           </div>
         </div>
@@ -721,7 +730,7 @@ function App() {
               </div>
             )}
 
-            {/* กล่องสำคัญและคำแนะนำการใช้งาน */}
+            {/* กล่องข้อความสำคัญและคำแนะนำ */}
             {selectedDorm.noteTH && (
               <div style={{ 
                 maxWidth: '1200px', 
@@ -772,7 +781,7 @@ function App() {
               </div>
             )}
 
-            {/* 2. ปุ่มสลับสื่อ 2 ปุ่ม */}
+            {/* 2. ปุ่มสลับสื่อ */}
             <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', marginBottom: '25px' }}>
               <button 
                 onClick={() => setViewMode('360')}
@@ -808,7 +817,7 @@ function App() {
               </button>
             </div>
 
-            {/* 3. แถบฟิลเตอร์ 8 ปุ่ม */}
+            {/* 3. แถบฟิลเตอร์ */}
             <div className="filter-bar" style={{ margin: '15px 0 20px', textAlign: 'center', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px' }}>
               {filterNames[lang].map((btn, i) => {
                 const val = filterNames['TH'][i];
@@ -827,7 +836,7 @@ function App() {
               })}
             </div>
 
-            {/* 4. แถบการ์ดเลือกหอพักอื่นๆ ตามฟิลเตอร์ */}
+            {/* 4. การ์ดหอพักอื่นๆ */}
             <div style={{ margin: '20px auto 40px', maxWidth: '1200px' }}>
               <div style={{ fontSize: '16px', fontWeight: 'bold', color: '#1A2B4C', marginBottom: '12px', textAlign: 'center' }}>
                 {lang === 'TH' ? 'เลือกดูหอพักอื่นตามฟิลเตอร์:' : 'Select other dorms matching filter:'}
@@ -910,7 +919,7 @@ function App() {
         )}
       </div>
 
-      {/* Footer สถิติเหลือ 2 ค่า: ยอดวิวรวม และ ผู้เข้าชมวันนี้ (สลับภาษาอัตโนมัติ) */}
+      {/* Footer สถิติ 2 ค่า (ยอดวิวรวม และ ผู้เข้าชมวันนี้) สลับภาษาตาม TH/EN */}
       <footer className="mfu-fixed-bottom-bar">
         <div className="mfu-traffic-box">
           <div className="mfu-traffic-date">
