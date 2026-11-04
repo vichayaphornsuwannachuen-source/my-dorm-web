@@ -459,7 +459,7 @@ function App() {
           {/* เส้นคั่นแนวตั้ง สีส้ม-ทอง */}
           <div style={{ width: '2px', height: '42px', background: 'linear-gradient(to bottom, #D97706, #DC2626)', borderRadius: '2px' }}></div>
 
-          {/* กลุ่มข้อความชื่อส่วนพัฒนานักศึกษา พร้อมสลับภาษา TH/EN */}
+          {/* กลุ่มข้อความชื่อส่วนพัฒนานักศึกษา สลับภาษา TH/EN แบบสมบูรณ์ */}
           <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left', lineHeight: '1.25' }}>
             <span style={{ fontSize: '16px', fontWeight: 'bold', color: '#1E3A8A' }}>
               {lang === 'TH' ? 'ส่วนพัฒนานักศึกษา' : 'Student Development Affairs Division'}
@@ -468,7 +468,9 @@ function App() {
               {lang === 'TH' ? 'มหาวิทยาลัยแม่ฟ้าหลวง' : 'Mae Fah Luang University'}
             </span>
             <span style={{ fontSize: '9.5px', fontWeight: '600', color: '#0284C7', letterSpacing: '0.3px', marginTop: '1px' }}>
-              STUDENT DEVELOPMENT AFFAIRS DIVISION, MAE FAH LUANG UNIVERSITY
+              {lang === 'TH' 
+                ? 'STUDENT DEVELOPMENT AFFAIRS DIVISION, MAE FAH LUANG UNIVERSITY' 
+                : 'ส่วนพัฒนานักศึกษา มหาวิทยาลัยแม่ฟ้าหลวง'}
             </span>
           </div>
         </div>
