@@ -40,7 +40,7 @@ function App() {
     pagToday: 0
   });
 
-  // ระบบนับสถิติ Cloud Firestore ด้วย Atomic Increment
+  // ระบบนับสถิติ Cloud Firestore: แยกเครื่องรายบุคคล (1 คน / 1 อุปกรณ์ แม้ใช้เน็ตเดียวกันก็นับแยก)
   useEffect(() => {
     const syncFirestoreStats = async () => {
       try {
@@ -48,10 +48,19 @@ function App() {
         const statsRef = doc(db, "system_metrics", "traffic");
         const docSnap = await getDoc(statsRef);
 
-        const hasSession = sessionStorage.getItem("mfu_visitor_session");
-        const isNewVisitor = !hasSession;
-        if (isNewVisitor) {
-          sessionStorage.setItem("mfu_visitor_session", "active");
+        // 1. ตรวจสอบผู้ใช้รายเครื่องตลอดกาล (1 คน/เครื่อง นับ 1 ครั้ง)
+        let deviceId = localStorage.getItem("mfu_unique_device_id");
+        const isNewDevice = !deviceId;
+        if (isNewDevice) {
+          deviceId = 'dev_' + Math.random().toString(36).substr(2, 9) + Date.now();
+          localStorage.setItem("mfu_unique_device_id", deviceId);
+        }
+
+        // 2. ตรวจสอบการเข้าชมของวันนี้ (ถ้าคนเดิมเข้ามาในวันใหม่ นับเป็นผู้เข้าชมวันนี้เพิ่ม)
+        const lastVisitDate = localStorage.getItem("mfu_last_visit_date");
+        const isNewVisitorToday = lastVisitDate !== today;
+        if (isNewVisitorToday) {
+          localStorage.setItem("mfu_last_visit_date", today);
         }
 
         if (!docSnap.exists()) {
@@ -59,8 +68,8 @@ function App() {
             date: today,
             pages: 1,
             pagToday: 1,
-            visitors: isNewVisitor ? 1 : 0,
-            visToday: isNewVisitor ? 1 : 0
+            visitors: 1,
+            visToday: 1
           };
           await setDoc(statsRef, initialData);
           setTrafficStats(initialData);
@@ -74,8 +83,13 @@ function App() {
             pagToday: isNewDay ? 1 : increment(1)
           };
 
-          if (isNewVisitor) {
+          // ตรวจพบเครื่องใหม่ที่ไม่เคยเข้าชมมาก่อน
+          if (isNewDevice) {
             updatePayload.visitors = increment(1);
+          }
+
+          // ตรวจพบเครื่องที่เพิ่งเข้าชมในวันปัจจุบัน
+          if (isNewVisitorToday) {
             updatePayload.visToday = isNewDay ? 1 : increment(1);
           } else if (isNewDay) {
             updatePayload.visToday = 0;
@@ -86,8 +100,10 @@ function App() {
           setTrafficStats({
             pages: (data.pages || 0) + 1,
             pagToday: isNewDay ? 1 : (data.pagToday || 0) + 1,
-            visitors: isNewVisitor ? (data.visitors || 0) + 1 : (data.visitors || 0),
-            visToday: isNewDay ? (isNewVisitor ? 1 : 0) : (isNewVisitor ? (data.visToday || 0) + 1 : (data.visToday || 0))
+            visitors: isNewDevice ? (data.visitors || 0) + 1 : (data.visitors || 0),
+            visToday: isNewDay 
+              ? (isNewVisitorToday ? 1 : 0) 
+              : (isNewVisitorToday ? (data.visToday || 0) + 1 : (data.visToday || 0))
           });
         }
       } catch (err) {
@@ -351,7 +367,7 @@ function App() {
     }
   ];
 
-  // ฟังก์ชันส่งคำสั่งเข้าไปใน Unity iframe
+  // ส่งคำสั่งเข้า Unity iframe
   const sendToUnity = (message) => {
     const iframe = document.getElementById("unity-iframe");
     if (!iframe || !iframe.contentWindow) {
@@ -364,14 +380,14 @@ function App() {
 
   window.sendToUnity = sendToUnity;
 
-  // 1. ดึงหน้าจอกลับขึ้นบนสุดทันทีเมื่อมีการกดเลือกหอพัก
+  // เลื่อนกลับขึ้นบนสุดเมื่อเลือกหอพัก
   useEffect(() => {
     if (selectedDorm) {
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }
   }, [selectedDorm]);
 
-  // 2. จัดการส่งคำสั่งเปลี่ยนห้องเมื่อสลับหอพักในโหมด 360
+  // ส่งคำสั่งเปลี่ยนห้องเมื่อเลือกหอพักในโหมด 360
   useEffect(() => {
     if (selectedDorm && selectedDorm.dormCode && viewMode === '360') {
       const timer = setTimeout(() => {
@@ -381,7 +397,7 @@ function App() {
     }
   }, [selectedDorm, viewMode]);
 
-  // 3. ดักฟังสัญญาณตอบกลับและสัญญาณพร้อมทำงานจาก Unity
+  // ดักฟังสัญญาณตอบกลับจาก Unity
   useEffect(() => {
     const handleUnityMessage = (event) => {
       if (event.data && event.data.type === "UNITY_READY") {
@@ -443,20 +459,15 @@ function App() {
 
   return (
     <div className="App">
-      {/* Navbar & Side Menu */}
+      {/* Navbar */}
       <nav className="nav-bar">
         <div 
           className="logo-section" 
           onClick={() => { setSelectedDorm(null); setFilters([]); setViewMode('360'); }} 
           style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '12px' }}
         >
-          {/* ตราสัญลักษณ์มหาวิทยาลัย */}
           <img src="/logo.png" alt="MFU Logo" style={{ height: '48px', width: 'auto', objectFit: 'contain' }} />
-
-          {/* เส้นคั่นแนวตั้ง สีส้ม-ทอง */}
           <div style={{ width: '2px', height: '42px', background: 'linear-gradient(to bottom, #D97706, #DC2626)', borderRadius: '2px' }}></div>
-
-          {/* กลุ่มข้อความชื่อส่วนพัฒนานักศึกษา สลับคู่ภาษา TH/EN แบบสมบูรณ์ */}
           <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left', lineHeight: '1.25' }}>
             <span style={{ fontSize: '16px', fontWeight: 'bold', color: '#1E3A8A' }}>
               {lang === 'TH' ? 'ส่วนพัฒนานักศึกษา' : 'Student Development Affairs Division'}
@@ -481,7 +492,7 @@ function App() {
         </div>
       </nav>
 
-      {/* Side Menu Drawer ปรับระบบภาษา TH/EN แบบแยกเด็ดขาด ไม่ปนสองภาษาพร้อมกัน */}
+      {/* Side Menu Drawer (สลับภาษาเด็ดขาด TH หรือ EN ตามปุ่ม) */}
       <div 
         className={`side-menu ${isMenuOpen ? 'open' : ''}`}
         style={{
@@ -494,7 +505,7 @@ function App() {
       >
         <div className="close-btn" onClick={() => setIsMenuOpen(false)} style={{ cursor: 'pointer', fontSize: '28px', textAlign: 'right', marginBottom: '10px' }}>×</div>
         
-        {/* 1. ส่วนหัวและข้อมูลติดต่อ ส่วนพัฒนานักศึกษา */}
+        {/* 1. ข้อมูลติดต่อ ส่วนพัฒนานักศึกษา */}
         <div style={{ borderBottom: '1px solid #E2E8F0', paddingBottom: '16px', marginBottom: '16px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
             <img src="/logo.png" alt="MFU Logo" style={{ width: '38px', height: 'auto' }} />
@@ -527,7 +538,7 @@ function App() {
           </div>
         </div>
 
-        {/* 2. ประกาศ Important Notice */}
+        {/* 2. Important Notice */}
         <div style={{ 
           background: '#FEF2F2', 
           borderLeft: '4px solid #DC2626', 
@@ -543,7 +554,7 @@ function App() {
             : 'Important: Information as of November 2, 2026'}
         </div>
 
-        {/* 3. แสดงเวอร์ชัน */}
+        {/* 3. เวอร์ชัน */}
         <div style={{ marginBottom: '16px' }}>
           <span style={{ 
             display: 'inline-block',
@@ -558,13 +569,13 @@ function App() {
           </span>
         </div>
 
-        {/* 4. ข้อมูลผู้พัฒนา สลับภาษาตาม TH/EN ไม่แสดงซ้ำซ้อน */}
+        {/* 4. ผู้พัฒนา */}
         <div style={{ borderBottom: '1px solid #E2E8F0', paddingBottom: '18px', marginBottom: '18px' }}>
           <h4 style={{ margin: '0 0 12px', fontSize: '15px', color: '#1A2B4C', fontWeight: 'bold' }}>
             {lang === 'TH' ? 'ผู้พัฒนา' : 'Developers'}
           </h4>
           
-          {/* คนที่ 1: โมจิ */}
+          {/* โมจิ */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '14px' }}>
             <img 
               src="/Moji.jpg" 
@@ -581,7 +592,7 @@ function App() {
             </div>
           </div>
 
-          {/* คนที่ 2: หยก */}
+          {/* หยก */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <img 
               src="/Yok.jpg" 
@@ -600,7 +611,7 @@ function App() {
           </div>
         </div>
 
-        {/* 5. ชื่ออาจารย์ที่ปรึกษา สลับภาษาตาม TH/EN ไม่แสดงซ้อนกัน */}
+        {/* 5. อาจารย์ที่ปรึกษา */}
         <div>
           <h4 style={{ margin: '0 0 10px', fontSize: '15px', color: '#1A2B4C', fontWeight: 'bold' }}>
             ⭐ {lang === 'TH' ? 'อาจารย์ที่ปรึกษา' : 'Project Advisors'}
@@ -682,7 +693,7 @@ function App() {
               {lang === 'TH' ? selectedDorm.nameTH : selectedDorm.nameEN}
             </h2>
 
-            {/* 1. สื่อหลัก (Unity 360 / VDO) */}
+            {/* สื่อหลัก (Unity 360 / VDO) */}
             {viewMode === 'vdo' ? (
               <div style={{ 
                 display: 'flex', 
@@ -730,7 +741,7 @@ function App() {
               </div>
             )}
 
-            {/* กล่องข้อความสำคัญและคำแนะนำ */}
+            {/* กล่องคำแนะนำและสำคัญ */}
             {selectedDorm.noteTH && (
               <div style={{ 
                 maxWidth: '1200px', 
@@ -781,7 +792,7 @@ function App() {
               </div>
             )}
 
-            {/* 2. ปุ่มสลับสื่อ */}
+            {/* ปุ่มสลับสื่อ */}
             <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', marginBottom: '25px' }}>
               <button 
                 onClick={() => setViewMode('360')}
@@ -817,7 +828,7 @@ function App() {
               </button>
             </div>
 
-            {/* 3. แถบฟิลเตอร์ */}
+            {/* Filter Bar */}
             <div className="filter-bar" style={{ margin: '15px 0 20px', textAlign: 'center', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px' }}>
               {filterNames[lang].map((btn, i) => {
                 const val = filterNames['TH'][i];
@@ -836,7 +847,7 @@ function App() {
               })}
             </div>
 
-            {/* 4. การ์ดหอพักอื่นๆ */}
+            {/* บล็อกเลือกหอพักอื่น */}
             <div style={{ margin: '20px auto 40px', maxWidth: '1200px' }}>
               <div style={{ fontSize: '16px', fontWeight: 'bold', color: '#1A2B4C', marginBottom: '12px', textAlign: 'center' }}>
                 {lang === 'TH' ? 'เลือกดูหอพักอื่นตามฟิลเตอร์:' : 'Select other dorms matching filter:'}
@@ -871,7 +882,7 @@ function App() {
 
             <hr style={{ border: 'none', borderTop: '1px solid #E1EDFF', margin: '30px 0' }} />
 
-            {/* 5. สิ่งอำนวยความสะดวก */}
+            {/* สิ่งอำนวยความสะดวก */}
             <div className="fac-tag" style={{ background: '#1A2B4C', color: 'white', padding: '12px 35px', borderRadius: '12px', display: 'inline-block', fontSize: '22px', marginBottom: '25px', fontWeight: '600' }}>
               {lang === 'TH' ? 'สิ่งอำนวยความสะดวก' : 'Facilities'}
             </div>
@@ -900,7 +911,7 @@ function App() {
               </div>
             </div>
 
-            {/* 6. GPS Location */}
+            {/* แผนที่ GPS */}
             <div className="gps-section">
               <div className="gps-label" style={{ background: '#1A2B4C', color: 'white', padding: '10px 30px', borderRadius: '10px', display: 'inline-block', fontWeight: 'bold', marginBottom: '15px' }}>GPS Location</div>
               <div className="map-container" style={{ borderRadius: '25px', overflow: 'hidden', border: '2px solid #1A2B4C', margin: '15px 0' }}>
@@ -919,7 +930,7 @@ function App() {
         )}
       </div>
 
-      {/* Footer สถิติ 2 ค่า (ยอดวิวรวม และ ผู้เข้าชมวันนี้) สลับภาษาตาม TH/EN */}
+      {/* Footer สถิติเรียงลำดับ: ยอดวิวรวม -> ผู้เข้าชมวันนี้ -> ผู้เข้าชม (แยกรายเครื่อง) */}
       <footer className="mfu-fixed-bottom-bar">
         <div className="mfu-traffic-box">
           <div className="mfu-traffic-date">
@@ -930,17 +941,28 @@ function App() {
             })}
           </div>
           <div className="mfu-traffic-grid">
+            {/* 1. ยอดวิวรวม */}
             <div className="traffic-item">
               <span className="traffic-label">
                 {lang === 'TH' ? 'ยอดวิวรวม' : 'pages'}
               </span>
               <span className="traffic-val">{trafficStats.pages.toLocaleString()}</span>
             </div>
+
+            {/* 2. ผู้เข้าชมวันนี้ */}
             <div className="traffic-item">
               <span className="traffic-label">
                 {lang === 'TH' ? 'ผู้เข้าชมวันนี้' : 'vis.today'}
               </span>
-              <span className="traffic-val gold">{trafficStats.visToday.toLocaleString()}</span>
+              <span className="traffic-val">{trafficStats.visToday.toLocaleString()}</span>
+            </div>
+
+            {/* 3. ผู้เข้าชม (สะสมรายเครื่อง) */}
+            <div className="traffic-item">
+              <span className="traffic-label">
+                {lang === 'TH' ? 'ผู้เข้าชม' : 'visitors'}
+              </span>
+              <span className="traffic-val gold">{trafficStats.visitors.toLocaleString()}</span>
             </div>
           </div>
         </div>
