@@ -134,7 +134,7 @@ function App() {
     syncFirestoreStats();
   }, []);
 
-  // ข้อมูลหอพัก
+  // ข้อมูลหอพัก (อัปเดต L5 เป็นชาย และ F4 เป็นหญิง เรียบร้อยแล้ว)
   const dorms = [
     {
       id: 1, dormCode: "L1", nameTH: "หอพักลำดวน 1", nameEN: "Lamduan 1", type: "ชาย", air: "ปรับอากาศ", cap: "4 คน",
@@ -190,7 +190,7 @@ function App() {
       noteEN: "Data & recorded on May 10, 2026"
     },
     {
-      id: 5, dormCode: "L5", nameTH: "หอพักลำดวน 5", nameEN: "Lamduan 5", type: "หญิง", air: "พัดลม", cap: "4 คน",
+      id: 5, dormCode: "L5", nameTH: "หอพักลำดวน 5", nameEN: "Lamduan 5", type: "ชาย", air: "พัดลม", cap: "4 คน",
       gps: "https://maps.app.goo.gl/WJBTMbxnZBFoPxn78", videoUrl: "5baFRJY1Xwo", videoUrl2: "dyzYdYuosWQ", image: "/l5.jpg",
       tour360Url: "/testf1-2/index.html",
       facilities: {
@@ -269,7 +269,7 @@ function App() {
       isRenovating: true,
     },
     {
-      id: 11, dormCode: "F4", nameTH: "หอพัก F4", nameEN: "Dorm F4", type: "ชาย", air: "พัดลม", cap: "4 คน",
+      id: 11, dormCode: "F4", nameTH: "หอพัก F4", nameEN: "Dorm F4", type: "หญิง", air: "พัดลม", cap: "4 คน",
       gps: "https://maps.app.goo.gl/AdxsmwS6mw7bB4NUA", videoUrl: "oq3E9-j4kfc", videoUrl2: "Y8Db2meTE6c", image: "/f4.jpg",
       tour360Url: "/testf1-2/index.html",
       facilities: {
