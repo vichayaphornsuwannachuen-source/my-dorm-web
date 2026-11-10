@@ -40,7 +40,7 @@ function App() {
     pagToday: 0
   });
 
-  // ระบบนับสถิติ Cloud Firestore: แยกเครื่องรายบุคคล (1 คน / 1 อุปกรณ์ แม้ใช้เน็ตเดียวกันก็นับแยก)
+  // ระบบนับสถิติ Cloud Firestore: มี Cooldown 6 ชม. สำหรับยอดวิวรวม + แยกเครื่องรายบุคคล (1 คน / 1 อุปกรณ์ แม้ใช้เน็ตเดียวกันก็นับแยก)
   useEffect(() => {
     const syncFirestoreStats = async () => {
       try {
@@ -48,7 +48,18 @@ function App() {
         const statsRef = doc(db, "system_metrics", "traffic");
         const docSnap = await getDoc(statsRef);
 
-        // 1. ตรวจสอบผู้ใช้รายเครื่องตลอดกาล (1 คน/เครื่อง นับ 1 ครั้ง)
+        const now = Date.now();
+        const SIX_HOURS = 6 * 60 * 60 * 1000; // 6 ชั่วโมงในหน่วยมิลลิวินาที
+
+        // 1. ตรวจสอบ Cooldown 6 ชั่วโมงของการนับวิว (กันกดรีเฟรชปั๊มยอด / กันบอท)
+        const lastViewTime = localStorage.getItem("mfu_last_view_timestamp");
+        const shouldCountView = !lastViewTime || (now - parseInt(lastViewTime, 10) > SIX_HOURS);
+
+        if (shouldCountView) {
+          localStorage.setItem("mfu_last_view_timestamp", now.toString());
+        }
+
+        // 2. ตรวจสอบผู้ใช้รายเครื่องตลอดกาล (1 คน/เครื่อง นับ 1 ครั้ง)
         let deviceId = localStorage.getItem("mfu_unique_device_id");
         const isNewDevice = !deviceId;
         if (isNewDevice) {
@@ -56,7 +67,7 @@ function App() {
           localStorage.setItem("mfu_unique_device_id", deviceId);
         }
 
-        // 2. ตรวจสอบการเข้าชมของวันนี้ (ถ้าคนเดิมเข้ามาในวันใหม่ นับเป็นผู้เข้าชมวันนี้เพิ่ม)
+        // 3. ตรวจสอบการเข้าชมของวันนี้ (ถ้าคนเดิมเข้ามาในวันใหม่ นับเพิ่ม)
         const lastVisitDate = localStorage.getItem("mfu_last_visit_date");
         const isNewVisitorToday = lastVisitDate !== today;
         if (isNewVisitorToday) {
@@ -78,12 +89,16 @@ function App() {
           const isNewDay = data.date !== today;
 
           let updatePayload = {
-            date: today,
-            pages: increment(1),
-            pagToday: isNewDay ? 1 : increment(1)
+            date: today
           };
 
-          // ตรวจพบเครื่องใหม่ที่ไม่เคยเข้าชมมาก่อน
+          // นับยอดวิวเพิ่มเฉพาะเมื่อพ้นช่วง Cooldown 6 ชั่วโมงแล้วเท่านั้น
+          if (shouldCountView) {
+            updatePayload.pages = increment(1);
+            updatePayload.pagToday = isNewDay ? 1 : increment(1);
+          }
+
+          // ตรวจพบเครื่องใหม่ที่ไม่เคยเข้าชมมาก่อนเลย
           if (isNewDevice) {
             updatePayload.visitors = increment(1);
           }
@@ -95,11 +110,16 @@ function App() {
             updatePayload.visToday = 0;
           }
 
-          await updateDoc(statsRef, updatePayload);
+          // มีข้อมูลฟิลด์ที่ต้องอัปเดตจริงค่อยส่งคำสั่ง updateDoc ไปยัง Firestore
+          if (Object.keys(updatePayload).length > 1 || isNewDay) {
+            await updateDoc(statsRef, updatePayload);
+          }
 
           setTrafficStats({
-            pages: (data.pages || 0) + 1,
-            pagToday: isNewDay ? 1 : (data.pagToday || 0) + 1,
+            pages: shouldCountView ? (data.pages || 0) + 1 : (data.pages || 0),
+            pagToday: shouldCountView 
+              ? (isNewDay ? 1 : (data.pagToday || 0) + 1) 
+              : (isNewDay ? 0 : (data.pagToday || 0)),
             visitors: isNewDevice ? (data.visitors || 0) + 1 : (data.visitors || 0),
             visToday: isNewDay 
               ? (isNewVisitorToday ? 1 : 0) 
